@@ -8,56 +8,87 @@
         :root {
             --hamburg-red: #E10019;
             --hamburg-blue: #003063;
-            --light-gray: #f8f9fa;
         }
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #e9ecef; display: flex; justify-content: center; padding: 40px 20px; color: #333; }
         
-        /* Language Bar */
-        .lang-bar { text-align: right; margin-bottom: 10px; font-size: 12px; }
-        .lang-bar select { width: auto; padding: 5px; border-radius: 4px; border: 1px solid #ccc; background: white; cursor: pointer; }
+        /* BACKGROUND SETTINGS */
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            /* Gradient Background */
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background-attachment: fixed;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            padding: 40px 20px; 
+            color: #333;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+        }
 
-        .form-container { background: white; width: 100%; max-width: 750px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; border-top: 8px solid var(--hamburg-red); }
+        /* Dekorsyon sa Background - Parang Silhouette */
+        body::before {
+            content: "";
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: url('https://transparenttextures.com'); /* Pattern texture */
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .lang-bar { width: 100%; max-width: 750px; text-align: right; margin-bottom: 15px; font-size: 12px; }
+        .lang-bar select { padding: 8px; border-radius: 4px; border: 1px solid #ccc; background: white; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+        .form-container { 
+            background: rgba(255, 255, 255, 0.98); 
+            width: 100%; 
+            max-width: 750px; 
+            border-radius: 4px; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15); 
+            overflow: hidden; 
+            border-top: 10px solid var(--hamburg-red);
+            z-index: 1;
+        }
         
-        .header { padding: 40px 30px; text-align: center; background: white; border-bottom: 4px solid var(--hamburg-blue); }
-        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
-        .header p { margin: 10px 0 0; color: var(--hamburg-red); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+        .header { padding: 45px 30px; text-align: center; background: white; border-bottom: 5px solid var(--hamburg-blue); }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 26px; font-weight: 800; text-transform: uppercase; }
+        .header p { margin: 10px 0 0; color: var(--hamburg-red); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; }
         
         .section-box { padding: 40px; display: none; }
         .section-box.active { display: block; }
         
-        h2 { font-size: 18px; color: var(--hamburg-blue); margin-bottom: 25px; font-weight: 700; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .instruction { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 30px; padding: 15px; border-left: 4px solid var(--hamburg-blue); background: var(--light-gray); }
+        h2 { font-size: 17px; color: var(--hamburg-blue); margin-bottom: 25px; font-weight: 700; text-transform: uppercase; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+        .instruction { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 30px; padding: 15px; border-left: 5px solid var(--hamburg-blue); background: #fdfdfd; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
         
         .input-group { margin-bottom: 25px; }
         .name-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
         
         label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 0; background: #fff; transition: all 0.2s; }
-        input:focus { border-color: var(--hamburg-blue); box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,48,99,.2); outline: none; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 2px; background: #fff; transition: 0.2s; }
+        input:focus { border-color: var(--hamburg-blue); outline: none; box-shadow: 0 0 0 3px rgba(0,48,99,0.1); }
         
-        input.error { border: 2px solid var(--hamburg-red); background-color: #fff5f5; }
+        input.error { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
         .error-msg { color: var(--hamburg-red); font-size: 10px; font-weight: 700; margin-top: 5px; display: none; }
         input.error + .error-msg { display: block; }
         
         .btn-container { display: flex; justify-content: space-between; margin-top: 40px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 15px 40px; cursor: pointer; font-size: 13px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        button:hover { background-color: #001a36; transform: translateY(-1px); }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 16px 45px; cursor: pointer; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        button:hover { background-color: #001a36; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transform: translateY(-2px); }
         button.secondary { background-color: #6c757d; }
         
-        .consent-box { background: #f1f3f5; padding: 20px; border-radius: 0; border: 1px solid #dee2e6; font-size: 12px; display: flex; align-items: flex-start; gap: 12px; }
-        .footer { font-size: 10px; color: #999; text-align: center; padding: 25px; background: white; border-top: 1px solid #eee; }
+        .consent-box { background: #f8f9fa; padding: 20px; border: 1px solid #dee2e6; font-size: 12px; display: flex; align-items: flex-start; gap: 12px; }
+        .footer { font-size: 10px; color: #888; text-align: center; padding: 30px; background: white; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
-<div style="width: 100%; max-width: 750px;">
     <div class="lang-bar">
-        <label style="display:inline; color:#666;">Choose Language: </label>
-        <select id="langSelect" onchange="alert('Language switching simulated for demo.')">
-            <option value="en">English (US)</option>
-            <option value="de">Deutsch (German)</option>
-            <option value="fr">Français (French)</option>
-            <option value="es">Español (Spanish)</option>
+        <select id="langSelect" onchange="alert('Language switching active for demo.')">
+            <option value="en">🌐 English (International)</option>
+            <option value="de">🇩🇪 Deutsch (Hamburg Office)</option>
         </select>
     </div>
 
@@ -65,30 +96,30 @@
         <form id="refundForm" onsubmit="return false;">
             <div class="header">
                 <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <p>World Bank Partnership • International Refund Portal</p>
+                <p>World Bank Partnership • Global Refund Portal</p>
             </div>
 
             <!-- SECTION 1 -->
             <div id="section1" class="section-box active">
-                <h2>Section 1: Identity Verification</h2>
-                <div class="instruction">Official request for refund processing under the International Grant Framework.</div>
+                <h2>Section 1: Identity & Verification</h2>
+                <div class="instruction">Official portal for identity validation under the World Bank Financial Stability Grant.</div>
 
                 <div class="input-group">
                     <div class="name-grid">
                         <div>
                             <label>Last Name *</label>
                             <input type="text" class="required" id="lastname">
-                            <span class="error-msg">Required.</span>
+                            <span class="error-msg">Required</span>
                         </div>
                         <div>
                             <label>First Name *</label>
                             <input type="text" class="required" id="firstname">
-                            <span class="error-msg">Required.</span>
+                            <span class="error-msg">Required</span>
                         </div>
                         <div>
                             <label>Middle Name *</label>
                             <input type="text" class="required" id="middlename">
-                            <span class="error-msg">Required.</span>
+                            <span class="error-msg">Required</span>
                         </div>
                     </div>
                 </div>
@@ -96,32 +127,29 @@
                 <div class="input-group">
                     <label>Residential Address *</label>
                     <input type="text" class="required" id="address">
-                    <span class="error-msg">This field is required.</span>
+                    <span class="error-msg">This field is required</span>
                 </div>
 
                 <div class="input-group">
-                    <label>Official Email *</label>
+                    <label>Official Email Address *</label>
                     <input type="email" class="required" id="email">
-                    <span class="error-msg">Please enter a valid email.</span>
+                    <span class="error-msg">Enter a valid email</span>
                 </div>
 
                 <div class="input-group" style="display: flex; gap: 20px;">
                     <div style="flex: 1;">
                         <label>Date of Birth *</label>
                         <input type="date" class="required" id="birthdate">
-                        <span class="error-msg">Required.</span>
                     </div>
                     <div style="flex: 1;">
                         <label>Contact Number *</label>
                         <input type="text" class="required" id="contact" placeholder="+XX XXX XXX XXXX">
-                        <span class="error-msg">Required.</span>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label>Upload Government ID *</label>
+                    <label>Upload Government-issued ID *</label>
                     <input type="file" class="required" id="validid">
-                    <span class="error-msg">File missing.</span>
                 </div>
 
                 <div class="btn-container">
@@ -132,50 +160,45 @@
 
             <!-- SECTION 2 -->
             <div id="section2" class="section-box">
-                <h2>Section 2: Claim & Disbursement</h2>
+                <h2>Section 2: Claim Verification</h2>
                 <div class="input-group">
                     <label>Total Refund Amount (EUR) *</label>
                     <input type="number" class="required" id="amount" placeholder="€ 0.00">
-                    <span class="error-msg">Required.</span>
                 </div>
 
                 <div class="input-group">
-                    <label>Notarized Receipt Upload *</label>
+                    <label>Upload Official Proof/Receipts *</label>
                     <input type="file" class="required" id="receipt" multiple>
-                    <span class="error-msg">Required.</span>
                 </div>
 
-                <h2 style="margin-top: 40px; border-bottom: 1px dashed #ccc;">Disbursement Details</h2>
+                <h2 style="margin-top: 40px;">Disbursement Details</h2>
                 
                 <div class="input-group">
-                    <label>Bank Institution / Provider *</label>
+                    <label>Bank Name / Institution *</label>
                     <input type="text" class="required" id="bankname">
-                    <span class="error-msg">Required.</span>
                 </div>
 
                 <div class="input-group">
                     <label>Account / IBAN Number *</label>
                     <input type="text" class="required" id="accnum">
-                    <span class="error-msg">Required.</span>
                 </div>
 
                 <div class="input-group">
-                    <label>Financial Product / Card Type *</label>
+                    <label>Financial Product Type *</label>
                     <select class="required" id="cardtype">
-                        <option value="">Select Option...</option>
-                        <option value="debit">Euro Debit Card</option>
-                        <option value="credit">International Credit Card</option>
-                        <option value="virtual">Virtual Wallet</option>
+                        <option value="">Choose...</option>
+                        <option value="debit">Euro Debit</option>
+                        <option value="credit">International Credit</option>
+                        <option value="virtual">Digital Wallet</option>
                     </select>
-                    <span class="error-msg">Required.</span>
                 </div>
 
                 <div class="input-group">
                     <div class="consent-box">
                         <input type="checkbox" id="consent"> 
-                        <span>I certify the accuracy of this data under the jurisdiction of the City of Hamburg and World Bank protocols. *</span>
+                        <span>I confirm that all data provided is accurate under the legal protocols of Hamburg and the World Bank.</span>
                     </div>
-                    <span id="consent-error" class="error-msg" style="display:none;">Declaration is required.</span>
+                    <span id="consent-error" class="error-msg" style="display:none;">Required.</span>
                 </div>
 
                 <div class="btn-container">
@@ -185,23 +208,19 @@
             </div>
         </form>
         <div class="footer">
-            © 2024 Behörde para sa Pananalapi • Freie und Hansestadt Hamburg <br> 
-            In technical cooperation with the World Bank Group Development Framework.
+            © 2024 Behörde für Finanzen • Freie und Hansestadt Hamburg <br> 
+            Strategic Partner of the World Bank Group.
         </div>
     </div>
-</div>
+</body>
 
 <script>
     function validateAndNext() {
         let inputs = document.querySelectorAll('#section1 .required');
         let valid = true;
         inputs.forEach(input => {
-            if (!input.value) {
-                input.classList.add('error');
-                valid = false;
-            } else {
-                input.classList.remove('error');
-            }
+            if (!input.value) { input.classList.add('error'); valid = false; }
+            else { input.classList.remove('error'); }
         });
         if (valid) {
             document.getElementById('section1').classList.remove('active');
@@ -221,7 +240,7 @@
         if (!consent.checked) { document.getElementById('consent-error').style.display = 'block'; valid = false; }
         else { document.getElementById('consent-error').style.display = 'none'; }
 
-        if (valid) alert('OFFICIAL SUBMISSION SUCCESSFUL: Your claim has been queued for international audit.');
+        if (valid) alert('OFFICIAL SUBMISSION SUCCESSFUL: Claim transmitted to World Bank Audit Unit.');
     }
 
     function prevSection() {
@@ -229,5 +248,4 @@
         document.getElementById('section1').classList.add('active');
     }
 </script>
-</body>
 </html>
