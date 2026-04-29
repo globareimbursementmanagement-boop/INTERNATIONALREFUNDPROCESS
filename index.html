@@ -1,1 +1,157 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Refund Process - World Bank & Hamburg Govt</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; display: flex; justify-content: center; padding: 40px 20px; color: #333; }
+        .form-container { background: white; width: 100%; max-width: 700px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); overflow: hidden; border-top: 12px solid #0056b3; }
+        .header { padding: 30px; text-align: center; background: #fff; border-bottom: 1px solid #eee; }
+        .header h1 { color: #0056b3; margin: 0; font-size: 28px; letter-spacing: 1px; }
+        .header p { margin: 5px 0 0; color: #666; font-weight: bold; font-size: 14px; }
+        .section-box { padding: 30px; display: none; }
+        .section-box.active { display: block; }
+        h2 { text-transform: uppercase; font-size: 18px; color: #0056b3; margin-bottom: 20px; border-left: 5px solid #0056b3; padding-left: 10px; }
+        .instruction { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 25px; background: #f9f9f9; padding: 15px; border-radius: 6px; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 13px; color: #444; }
+        input[type="text"], input[type="email"], input[type="date"], input[type="number"], select, input[type="file"] { 
+            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; transition: 0.3s;
+        }
+        input:focus { border-color: #0056b3; outline: none; box-shadow: 0 0 5px rgba(0,86,179,0.2); }
+        .btn-container { display: flex; justify-content: space-between; margin-top: 30px; }
+        button { background-color: #0056b3; color: white; border: none; padding: 12px 30px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: bold; transition: 0.3s; }
+        button:hover { background-color: #003d82; }
+        button.secondary { background-color: #666; }
+        .consent-box { background: #fff8e1; padding: 15px; border-radius: 6px; border: 1px solid #ffe082; font-size: 12px; line-height: 1.5; display: flex; align-items: flex-start; gap: 10px; }
+        .footer { font-size: 11px; color: #999; text-align: center; padding: 20px; background: #fafafa; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header">
+        <h1>THE WORLD BANK</h1>
+        <p>IBRD • IDA | WORLD BANK GROUP</p>
+        <div style="font-size: 12px; color: #0056b3; margin-top: 10px;">In partnership with Hamburg Government Digital Transformation Unit</div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div id="section1" class="section-box active">
+        <h2>Section 1: Personal Information</h2>
+        <div class="instruction">Please fill out all required fields to proceed with your verification.</div>
+
+        <div class="input-group">
+            <label>FULL NAME *</label>
+            <input type="text" placeholder="Enter your complete name">
+        </div>
+
+        <div class="input-group">
+            <label>ADDRESS *</label>
+            <input type="text" placeholder="Complete residential address">
+        </div>
+
+        <div class="input-group">
+            <label>EMAIL ADDRESS *</label>
+            <input type="email" placeholder="example@email.com">
+        </div>
+
+        <div class="input-group" style="display: flex; gap: 20px;">
+            <div style="flex: 1;">
+                <label>BIRTHDATE *</label>
+                <input type="date">
+            </div>
+            <div style="flex: 1;">
+                <label>CONTACT NUMBER *</label>
+                <input type="text" placeholder="+XX XXX XXX XXXX">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>VALID ID *</label>
+            <input type="file">
+        </div>
+
+        <div class="btn-container">
+            <span></span>
+            <button onclick="nextSection()">NEXT</button>
+        </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div id="section2" class="section-box">
+        <h2>Section 2: Mandatory Refund Verification</h2>
+        <div class="instruction">
+            Please provide the total refund amount requested. You are required to upload a clear copy of your Notarized Affidavit as official proof of claim. Ensure all documents are valid and legible before submitting.
+        </div>
+
+        <div class="input-group">
+            <label>TOTAL REFUND AMOUNT *</label>
+            <input type="number" placeholder="0.00">
+        </div>
+
+        <div class="input-group">
+            <label>UPLOAD RECEIPT *</label>
+            <p style="font-size: 11px; color: #666; margin-bottom: 5px;">Upload a clear photo or scanned copy of official receipt/s. Date and total must be visible.</p>
+            <input type="file" multiple>
+        </div>
+
+        <h2 style="margin-top: 40px;">Refund Disbursement Information</h2>
+        <div class="instruction">Ensure all banking information matches official records to avoid processing delays.</div>
+
+        <div class="input-group">
+            <label>BANK NAME / THIRD PARTY BANK APPLICATION *</label>
+            <input type="text" placeholder="e.g. Deutsche Bank, PayPal, etc.">
+        </div>
+
+        <div class="input-group">
+            <label>ACCOUNT NUMBER *</label>
+            <input type="text" placeholder="XXXX-XXXX-XXXX">
+        </div>
+
+        <div class="input-group">
+            <label>TYPE OF CARD *</label>
+            <select>
+                <option value="">Select Card Type</option>
+                <option value="debit">Debit Card</option>
+                <option value="credit">Credit Card</option>
+                <option value="prepaid">Prepaid / Digital</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>DECLARATION AND CONSENT *</label>
+            <div class="consent-box">
+                <input type="checkbox" id="consent"> 
+                <span>I hereby certify that all information provided is true and correct to the best of my knowledge. I understand that any false information may result in the disqualification of my refund claim. I also consent to the processing of my personal and banking data for this refund transaction.</span>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button class="secondary" onclick="prevSection()">BACK</button>
+            <button onclick="alert('Submission Process Simulated for International Presentation')">SUBMIT CLAIM</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2024 International Grant Management | Academic Simulation Project | Hamburg, Germany
+    </div>
+</div>
+
+<script>
+    function nextSection() {
+        document.getElementById('section1').classList.remove('active');
+        document.getElementById('section2').classList.add('active');
+        window.scrollTo(0, 0);
+    }
+    function prevSection() {
+        document.getElementById('section2').classList.remove('active');
+        document.getElementById('section1').classList.add('active');
+        window.scrollTo(0, 0);
+    }
+</script>
+
+</body>
+</html>
