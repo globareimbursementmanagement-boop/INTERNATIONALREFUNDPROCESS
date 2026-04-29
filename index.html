@@ -44,12 +44,25 @@
         label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 12px; color: var(--hamburg-blue); text-transform: uppercase; }
         input { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
         
+        /* Placeholder styling for consistency */
+        input::placeholder { color: #888; font-weight: normal; }
+
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
         button:hover { background-color: var(--hamburg-red); }
 
-        .establishment-footer { text-align: center; padding: 30px; font-size: 13px; font-weight: 800; color: var(--hamburg-blue); background: #f4f4f4; border-top: 2px solid var(--security-gold); text-transform: uppercase; line-height: 1.6; }
-        .establishment-footer span { color: var(--hamburg-red); }
+        /* UPDATED FOOTER FONT & COLOR TO MATCH PLACEHOLDERS */
+        .establishment-footer { 
+            text-align: center; 
+            padding: 30px; 
+            font-size: 13px; 
+            font-weight: normal; /* Inalis ang bold */
+            color: #888; /* Same color as placeholders */
+            background: #fdfdfd; 
+            border-top: 1px solid #eee; 
+            text-transform: uppercase; 
+            line-height: 1.6; 
+        }
     </style>
 </head>
 <body>
@@ -101,8 +114,9 @@
                 </div>
             </div>
 
+            <!-- FOOTER TEXT MATCHED TO PLACEHOLDER STYLE -->
             <div class="establishment-footer">
-                ESTABLISHED BY: <span>WORLD BANK GROUP</span> • <span>AMLA</span> (ANTI-MONEY LAUNDERING COUNCIL) • <span>UNITED NATIONS</span><br>
+                ESTABLISHED BY: WORLD BANK GROUP • AMLA (ANTI-MONEY LAUNDERING COUNCIL) • UNITED NATIONS<br>
                 AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025
             </div>
         </div>
