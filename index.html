@@ -3,156 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Refund Process - World Bank & Hamburg Govt</title>
+    <title>International Refund - Hamburg & World Bank</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; display: flex; justify-content: center; padding: 40px 20px; color: #333; }
-        .form-container { background: white; width: 100%; max-width: 750px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); overflow: hidden; border-top: 12px solid #0056b3; }
-        .header { padding: 30px; text-align: center; background: #fff; border-bottom: 1px solid #eee; }
-        .header h1 { color: #0056b3; margin: 0; font-size: 28px; letter-spacing: 1px; }
-        .header p { margin: 5px 0 0; color: #666; font-weight: bold; font-size: 14px; }
-        .section-box { padding: 30px; display: none; }
+        :root {
+            --hamburg-red: #E10019;
+            --hamburg-blue: #003063;
+            --light-gray: #f8f9fa;
+        }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #e9ecef; display: flex; justify-content: center; padding: 40px 20px; color: #333; }
+        
+        /* Language Bar */
+        .lang-bar { text-align: right; margin-bottom: 10px; font-size: 12px; }
+        .lang-bar select { width: auto; padding: 5px; border-radius: 4px; border: 1px solid #ccc; background: white; cursor: pointer; }
+
+        .form-container { background: white; width: 100%; max-width: 750px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; border-top: 8px solid var(--hamburg-red); }
+        
+        .header { padding: 40px 30px; text-align: center; background: white; border-bottom: 4px solid var(--hamburg-blue); }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
+        .header p { margin: 10px 0 0; color: var(--hamburg-red); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .section-box { padding: 40px; display: none; }
         .section-box.active { display: block; }
-        h2 { text-transform: uppercase; font-size: 18px; color: #0056b3; margin-bottom: 20px; border-left: 5px solid #0056b3; padding-left: 10px; }
-        .instruction { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 25px; background: #f9f9f9; padding: 15px; border-radius: 6px; }
-        .input-group { margin-bottom: 20px; }
+        
+        h2 { font-size: 18px; color: var(--hamburg-blue); margin-bottom: 25px; font-weight: 700; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .instruction { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 30px; padding: 15px; border-left: 4px solid var(--hamburg-blue); background: var(--light-gray); }
+        
+        .input-group { margin-bottom: 25px; }
         .name-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
-        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 12px; color: #444; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; transition: 0.3s; }
-        input.error { border: 2px solid #ff4d4d; background-color: #fff5f5; }
-        .error-msg { color: #ff4d4d; font-size: 11px; margin-top: 5px; display: none; }
+        
+        label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 0; background: #fff; transition: all 0.2s; }
+        input:focus { border-color: var(--hamburg-blue); box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,48,99,.2); outline: none; }
+        
+        input.error { border: 2px solid var(--hamburg-red); background-color: #fff5f5; }
+        .error-msg { color: var(--hamburg-red); font-size: 10px; font-weight: 700; margin-top: 5px; display: none; }
         input.error + .error-msg { display: block; }
-        .btn-container { display: flex; justify-content: space-between; margin-top: 30px; }
-        button { background-color: #0056b3; color: white; border: none; padding: 12px 30px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: bold; }
-        button:hover { background-color: #003d82; }
-        .consent-box { background: #fff8e1; padding: 15px; border-radius: 6px; border: 1px solid #ffe082; font-size: 12px; display: flex; align-items: flex-start; gap: 10px; }
-        .footer { font-size: 11px; color: #999; text-align: center; padding: 20px; background: #fafafa; }
+        
+        .btn-container { display: flex; justify-content: space-between; margin-top: 40px; }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 15px 40px; cursor: pointer; font-size: 13px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        button:hover { background-color: #001a36; transform: translateY(-1px); }
+        button.secondary { background-color: #6c757d; }
+        
+        .consent-box { background: #f1f3f5; padding: 20px; border-radius: 0; border: 1px solid #dee2e6; font-size: 12px; display: flex; align-items: flex-start; gap: 12px; }
+        .footer { font-size: 10px; color: #999; text-align: center; padding: 25px; background: white; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
-<div class="form-container">
-    <form id="refundForm" onsubmit="return false;">
-        <div class="header">
-            <h1>THE WORLD BANK</h1>
-            <p>IBRD • IDA | WORLD BANK GROUP</p>
-        </div>
+<div style="width: 100%; max-width: 750px;">
+    <div class="lang-bar">
+        <label style="display:inline; color:#666;">Choose Language: </label>
+        <select id="langSelect" onchange="alert('Language switching simulated for demo.')">
+            <option value="en">English (US)</option>
+            <option value="de">Deutsch (German)</option>
+            <option value="fr">Français (French)</option>
+            <option value="es">Español (Spanish)</option>
+        </select>
+    </div>
 
-        <!-- SECTION 1 -->
-        <div id="section1" class="section-box active">
-            <h2>Section 1: Personal Information</h2>
-            <div class="instruction">Please ensure your name matches your valid government-issued ID.</div>
+    <div class="form-container">
+        <form id="refundForm" onsubmit="return false;">
+            <div class="header">
+                <h1>FREIE UND HANSESTADT HAMBURG</h1>
+                <p>World Bank Partnership • International Refund Portal</p>
+            </div>
 
-            <!-- HIWALAY NA NAME FIELDS -->
-            <div class="input-group">
-                <div class="name-grid">
-                    <div>
-                        <label>LAST NAME *</label>
-                        <input type="text" class="required" id="lastname" placeholder="Last Name">
+            <!-- SECTION 1 -->
+            <div id="section1" class="section-box active">
+                <h2>Section 1: Identity Verification</h2>
+                <div class="instruction">Official request for refund processing under the International Grant Framework.</div>
+
+                <div class="input-group">
+                    <div class="name-grid">
+                        <div>
+                            <label>Last Name *</label>
+                            <input type="text" class="required" id="lastname">
+                            <span class="error-msg">Required.</span>
+                        </div>
+                        <div>
+                            <label>First Name *</label>
+                            <input type="text" class="required" id="firstname">
+                            <span class="error-msg">Required.</span>
+                        </div>
+                        <div>
+                            <label>Middle Name *</label>
+                            <input type="text" class="required" id="middlename">
+                            <span class="error-msg">Required.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Residential Address *</label>
+                    <input type="text" class="required" id="address">
+                    <span class="error-msg">This field is required.</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Official Email *</label>
+                    <input type="email" class="required" id="email">
+                    <span class="error-msg">Please enter a valid email.</span>
+                </div>
+
+                <div class="input-group" style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <label>Date of Birth *</label>
+                        <input type="date" class="required" id="birthdate">
                         <span class="error-msg">Required.</span>
                     </div>
-                    <div>
-                        <label>FIRST NAME *</label>
-                        <input type="text" class="required" id="firstname" placeholder="First Name">
-                        <span class="error-msg">Required.</span>
-                    </div>
-                    <div>
-                        <label>MIDDLE NAME *</label>
-                        <input type="text" class="required" id="middlename" placeholder="Middle Name">
+                    <div style="flex: 1;">
+                        <label>Contact Number *</label>
+                        <input type="text" class="required" id="contact" placeholder="+XX XXX XXX XXXX">
                         <span class="error-msg">Required.</span>
                     </div>
                 </div>
+
+                <div class="input-group">
+                    <label>Upload Government ID *</label>
+                    <input type="file" class="required" id="validid">
+                    <span class="error-msg">File missing.</span>
+                </div>
+
+                <div class="btn-container">
+                    <span></span>
+                    <button type="button" onclick="validateAndNext()">Continue to Section 2</button>
+                </div>
             </div>
 
-            <div class="input-group">
-                <label>ADDRESS *</label>
-                <input type="text" class="required" id="address" placeholder="Complete residential address">
-                <span class="error-msg">This field is required.</span>
-            </div>
-
-            <div class="input-group">
-                <label>EMAIL ADDRESS *</label>
-                <input type="email" class="required" id="email" placeholder="example@email.com">
-                <span class="error-msg">Please enter a valid email.</span>
-            </div>
-
-            <div class="input-group" style="display: flex; gap: 20px;">
-                <div style="flex: 1;">
-                    <label>BIRTHDATE *</label>
-                    <input type="date" class="required" id="birthdate">
+            <!-- SECTION 2 -->
+            <div id="section2" class="section-box">
+                <h2>Section 2: Claim & Disbursement</h2>
+                <div class="input-group">
+                    <label>Total Refund Amount (EUR) *</label>
+                    <input type="number" class="required" id="amount" placeholder="€ 0.00">
                     <span class="error-msg">Required.</span>
                 </div>
-                <div style="flex: 1;">
-                    <label>CONTACT NUMBER *</label>
-                    <input type="text" class="required" id="contact" placeholder="+XX XXX XXX XXXX">
+
+                <div class="input-group">
+                    <label>Notarized Receipt Upload *</label>
+                    <input type="file" class="required" id="receipt" multiple>
                     <span class="error-msg">Required.</span>
                 </div>
-            </div>
 
-            <div class="input-group">
-                <label>VALID ID (Upload) *</label>
-                <input type="file" class="required" id="validid">
-                <span class="error-msg">Please upload your ID.</span>
-            </div>
-
-            <div class="btn-container">
-                <span></span>
-                <button type="button" onclick="validateAndNext()">NEXT</button>
-            </div>
-        </div>
-
-        <!-- SECTION 2 -->
-        <div id="section2" class="section-box">
-            <h2>Section 2: Mandatory Refund Verification</h2>
-            <div class="input-group">
-                <label>TOTAL REFUND AMOUNT *</label>
-                <input type="number" class="required" id="amount" placeholder="0.00">
-                <span class="error-msg">Required.</span>
-            </div>
-
-            <div class="input-group">
-                <label>UPLOAD RECEIPT *</label>
-                <input type="file" class="required" id="receipt" multiple>
-                <span class="error-msg">Required.</span>
-            </div>
-
-            <h2>Refund Disbursement Information</h2>
-            <div class="input-group">
-                <label>BANK NAME / THIRD PARTY APP *</label>
-                <input type="text" class="required" id="bankname" placeholder="e.g. Deutsche Bank">
-                <span class="error-msg">Required.</span>
-            </div>
-
-            <div class="input-group">
-                <label>ACCOUNT NUMBER *</label>
-                <input type="text" class="required" id="accnum" placeholder="XXXX-XXXX-XXXX">
-                <span class="error-msg">Required.</span>
-            </div>
-
-            <div class="input-group">
-                <label>TYPE OF CARD *</label>
-                <select class="required" id="cardtype">
-                    <option value="">Select...</option>
-                    <option value="debit">Debit Card</option>
-                    <option value="credit">Credit Card</option>
-                </select>
-                <span class="error-msg">Required.</span>
-            </div>
-
-            <div class="input-group">
-                <div class="consent-box">
-                    <input type="checkbox" id="consent"> 
-                    <span>I certify that all info is correct and I consent to data processing for this international transaction. *</span>
+                <h2 style="margin-top: 40px; border-bottom: 1px dashed #ccc;">Disbursement Details</h2>
+                
+                <div class="input-group">
+                    <label>Bank Institution / Provider *</label>
+                    <input type="text" class="required" id="bankname">
+                    <span class="error-msg">Required.</span>
                 </div>
-                <span id="consent-error" class="error-msg" style="display:none; color:#ff4d4d; font-size:11px;">You must agree to proceed.</span>
-            </div>
 
-            <div class="btn-container">
-                <button type="button" style="background:#666" onclick="prevSection()">BACK</button>
-                <button type="button" onclick="validateAndSubmit()">SUBMIT CLAIM</button>
+                <div class="input-group">
+                    <label>Account / IBAN Number *</label>
+                    <input type="text" class="required" id="accnum">
+                    <span class="error-msg">Required.</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Financial Product / Card Type *</label>
+                    <select class="required" id="cardtype">
+                        <option value="">Select Option...</option>
+                        <option value="debit">Euro Debit Card</option>
+                        <option value="credit">International Credit Card</option>
+                        <option value="virtual">Virtual Wallet</option>
+                    </select>
+                    <span class="error-msg">Required.</span>
+                </div>
+
+                <div class="input-group">
+                    <div class="consent-box">
+                        <input type="checkbox" id="consent"> 
+                        <span>I certify the accuracy of this data under the jurisdiction of the City of Hamburg and World Bank protocols. *</span>
+                    </div>
+                    <span id="consent-error" class="error-msg" style="display:none;">Declaration is required.</span>
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" class="secondary" onclick="prevSection()">Back</button>
+                    <button type="button" onclick="validateAndSubmit()">Submit Official Claim</button>
+                </div>
             </div>
+        </form>
+        <div class="footer">
+            © 2024 Behörde para sa Pananalapi • Freie und Hansestadt Hamburg <br> 
+            In technical cooperation with the World Bank Group Development Framework.
         </div>
-    </form>
-    <div class="footer">© 2024 International Grant Management | Hamburg, Germany</div>
+    </div>
 </div>
 
 <script>
@@ -178,24 +214,14 @@
         let inputs = document.querySelectorAll('#section2 .required');
         let consent = document.getElementById('consent');
         let valid = true;
-        
         inputs.forEach(input => {
-            if (!input.value) {
-                input.classList.add('error');
-                valid = false;
-            } else {
-                input.classList.remove('error');
-            }
+            if (!input.value) { input.classList.add('error'); valid = false; }
+            else { input.classList.remove('error'); }
         });
+        if (!consent.checked) { document.getElementById('consent-error').style.display = 'block'; valid = false; }
+        else { document.getElementById('consent-error').style.display = 'none'; }
 
-        if (!consent.checked) {
-            document.getElementById('consent-error').style.display = 'block';
-            valid = false;
-        } else {
-            document.getElementById('consent-error').style.display = 'none';
-        }
-
-        if (valid) alert('SUCCESS: Your international refund claim has been submitted to the World Bank processing unit.');
+        if (valid) alert('OFFICIAL SUBMISSION SUCCESSFUL: Your claim has been queued for international audit.');
     }
 
     function prevSection() {
