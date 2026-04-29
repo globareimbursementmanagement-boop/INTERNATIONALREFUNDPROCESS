@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Refund Security Portal</title>
+    <title>International Refund Security Portal - Project</title>
     <style>
-        :root { --hamburg-red: #E10019; --hamburg-blue: #003063; --security-gold: #FFD700; }
+        :root { 
+            --hamburg-red: #E10019; 
+            --hamburg-blue: #003063; 
+            --security-gold: #FFD700; 
+        }
         
+        /* FADED BACKGROUND PATTERN */
         body { 
-            font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; min-height: 100vh; 
-            display: flex; justify-content: center; align-items: center;
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-start;
             background: linear-gradient(rgba(0, 48, 99, 0.94), rgba(0, 48, 99, 0.94)),
             linear-gradient(30deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
             linear-gradient(150deg, #001a36 12%, transparent 12.5%, transparent 87%, #001a36 87.5%, #001a36),
@@ -18,80 +28,202 @@
             overflow-x: hidden;
         }
 
-        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1700px; gap: 60px; padding: 40px; }
-
-        /* PINALAKING SIDE TEXTS */
-        .side-text { width: 350px; color: white; line-height: 1.6; margin-top: 100px; }
-        .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 24px; margin-bottom: 15px; border-bottom: 2px solid var(--security-gold); padding-bottom: 5px; font-weight: 900; }
-        .side-text p { font-size: 16px; font-weight: 500; text-align: justify; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-
-        .form-container { 
-            background: #ffffff; width: 100%; max-width: 850px; border-radius: 4px; 
-            box-shadow: 0 50px 150px rgba(0,0,0,0.9); overflow: hidden; 
-            border-top: 12px solid var(--hamburg-red); position: relative; z-index: 10;
+        /* PAGE WRAPPER PARA SA KABILAANG TEXT */
+        .page-wrapper { 
+            display: flex; 
+            align-items: flex-start; 
+            justify-content: center; 
+            width: 100%; 
+            max-width: 1800px; 
+            gap: 50px; 
+            padding-top: 60px; 
         }
 
-        .security-banner { background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid var(--security-gold); letter-spacing: 1px; }
+        /* LARGE SIDE TEXTS (MISSION & VISION) */
+        .side-text { 
+            width: 380px; 
+            color: white; 
+            line-height: 1.6; 
+            margin-top: 180px; /* Pantay sa gitna ng form */
+        }
+        .side-text h3 { 
+            color: var(--security-gold); 
+            text-transform: uppercase; 
+            font-size: 28px; 
+            margin-bottom: 20px; 
+            border-bottom: 3px solid var(--security-gold); 
+            display: inline-block; 
+            padding-bottom: 5px; 
+            font-weight: 900; 
+        }
+        .side-text p { 
+            font-size: 18px; 
+            font-weight: 500; 
+            text-align: justify; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); 
+        }
+
+        /* MAIN FORM CONTAINER */
+        .form-container { 
+            background: #ffffff; 
+            width: 100%; 
+            max-width: 900px; 
+            border-radius: 4px; 
+            box-shadow: 0 50px 150px rgba(0,0,0,0.9); 
+            overflow: hidden; 
+            border-top: 15px solid var(--hamburg-red); 
+            position: relative; 
+            z-index: 10;
+        }
+
+        .security-banner { 
+            background: var(--hamburg-blue); 
+            color: white; 
+            padding: 14px; 
+            text-align: center; 
+            font-size: 12px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            border-bottom: 3px solid var(--security-gold); 
+            letter-spacing: 2px; 
+        }
         
-        /* UPDATED HEADER */
-        .header { padding: 40px 30px; text-align: center; background: #fff; border-bottom: 6px solid var(--hamburg-blue); }
-        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 900; text-transform: uppercase; }
-        .header .declaration { margin: 15px auto 0; color: #444; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; max-width: 600px; line-height: 1.4; }
+        /* HEADER WITH GLOBAL DECLARATION */
+        .header { 
+            padding: 45px 40px; 
+            text-align: center; 
+            background: #fff; 
+            border-bottom: 8px solid var(--hamburg-blue); 
+        }
+        .header h1 { 
+            color: var(--hamburg-blue); 
+            margin: 0; 
+            font-size: 32px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            border: 2px solid var(--hamburg-blue); 
+            display: inline-block; 
+            padding: 10px 20px; 
+        }
+        .header .declaration { 
+            margin: 20px auto 0; 
+            color: #333; 
+            font-weight: 800; 
+            font-size: 13px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            max-width: 750px; 
+            line-height: 1.5; 
+        }
         
-        .section-box { padding: 40px; }
-        h2 { font-size: 17px; color: var(--hamburg-blue); margin-bottom: 25px; font-weight: 800; text-transform: uppercase; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        .section-box { padding: 50px; }
+        h2 { 
+            font-size: 20px; 
+            color: var(--hamburg-blue); 
+            margin-bottom: 30px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            border-bottom: 2px solid #eee; 
+            padding-bottom: 15px; 
+        }
         
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
-        input { width: 100%; padding: 14px; border: 1px solid #ccc; box-sizing: border-box; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         
-        .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 13px; font-weight: 800; text-transform: uppercase; }
+        label { 
+            display: block; 
+            font-weight: 800; 
+            margin-bottom: 10px; 
+            font-size: 12px; 
+            color: var(--hamburg-blue); 
+            text-transform: uppercase; 
+        }
+        input, select { 
+            width: 100%; 
+            padding: 16px; 
+            border: 1px solid #bbb; 
+            box-sizing: border-box; 
+            font-size: 15px; 
+            border-radius: 2px; 
+        }
+        
+        .btn-container { 
+            display: flex; 
+            justify-content: flex-end; 
+            margin-top: 50px; 
+        }
+        button { 
+            background-color: var(--hamburg-blue); 
+            color: white; 
+            border: none; 
+            padding: 20px 60px; 
+            cursor: pointer; 
+            font-size: 15px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            transition: 0.3s; 
+        }
+        button:hover { background-color: var(--hamburg-red); }
     </style>
 </head>
 <body>
 
     <div class="page-wrapper">
-        <!-- MISSION (LEFT) -->
+        <!-- MISSION (LEFT SIDE) -->
         <div class="side-text">
-            <h3>Mission</h3>
+            <h3>MISSION</h3>
             <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against evolving digital scams and unauthorized access during the refund process.</p>
         </div>
 
-        <!-- MAIN FORM -->
+        <!-- MAIN FORM CENTER -->
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
             <div class="header">
                 <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: Dedicated to Eradicating Fraud through Vigilant Verification, Ethical Financial Stewardship, and the Uncompromising Protection of Every Legitimate Claim</div>
+                <div class="declaration">
+                    GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION, ETHICAL FINANCIAL STEWARDSHIP, AND THE UNCOMPROMISING PROTECTION OF EVERY LEGITIMATE CLAIM
+                </div>
             </div>
 
+            <!-- SECTION 1 CONTENT (Puwede mo ring palitan para sa Section 2) -->
             <div class="section-box">
-                <h2>Section 1: Identity & Nationality</h2>
+                <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
+                
                 <div class="grid-3">
                     <div><label>Last Name *</label><input type="text"></div>
                     <div><label>First Name *</label><input type="text"></div>
                     <div><label>Middle Name *</label><input type="text"></div>
                 </div>
-                <div class="grid-2" style="margin-top:20px;">
+
+                <div class="grid-2" style="margin-top:25px;">
                     <div><label>Personal Email Address *</label><input type="email"></div>
                     <div><label>Nationality *</label><input type="text"></div>
                 </div>
-                <div style="margin-top:20px;"><label>Residential Address *</label><input type="text"></div>
-                <div class="grid-2" style="margin-top:20px;">
+
+                <div style="margin-top:25px;">
+                    <label>Residential Address *</label>
+                    <input type="text">
+                </div>
+
+                <div class="grid-2" style="margin-top:25px;">
                     <div><label>Birthdate *</label><input type="date"></div>
                     <div><label>Contact Number *</label><input type="text"></div>
                 </div>
-                <div style="margin-top:20px;"><label>Upload Valid Government ID *</label><input type="file"></div>
-                
-                <div class="btn-container"><button type="button">NEXT STEP</button></div>
+
+                <div style="margin-top:25px;">
+                    <label>Upload Valid Government ID *</label>
+                    <input type="file">
+                </div>
+
+                <div class="btn-container">
+                    <button type="button">NEXT STEP</button>
+                </div>
             </div>
         </div>
 
-        <!-- VISION (RIGHT) -->
+        <!-- VISION (RIGHT SIDE) -->
         <div class="side-text">
-            <h3>Vision</h3>
+            <h3>VISION</h3>
             <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where a culture of absolute transparency and sophisticated security ensures that every individual can navigate the refund ecosystem with unwavering confidence and total protection from deceptive practices.</p>
         </div>
     </div>
