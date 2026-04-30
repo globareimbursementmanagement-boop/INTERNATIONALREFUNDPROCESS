@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CENTRAL ESTABLISHMENT FOR SECURE DISBURSEMENTS AND RECOVERY</title>
+    <title>International Refund Security Portal</title>
     <style>
         :root { --hamburg-red: #E10019; --hamburg-blue: #003063; --security-gold: #FFD700; }
+        
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; min-height: 100vh; 
             display: flex; justify-content: center; align-items: flex-start;
@@ -16,32 +17,48 @@
             background-size: 80px 140px; overflow-x: hidden;
         }
         .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1850px; gap: 40px; padding-top: 50px; }
-        .side-text { width: 350px; color: white; line-height: 1.6; margin-top: 100px; }
-        .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 26px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
-        .side-text p { font-size: 17px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        .form-container { background: #ffffff; width: 100%; max-width: 850px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); position: relative; min-height: 600px; }
-        .security-banner { background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
+           /* SIDE TEXT STYLES (MISSION & VISION) */
+        .side-text { width: 420px; color: white; line-height: 1.8; margin-top: 100px; padding: 20px; }
+        .side-text h3 { 
+            color: var(--security-gold); text-transform: uppercase; font-size: 28px; 
+            margin-bottom: 25px; border-bottom: 4px solid var(--security-gold); 
+            display: inline-block; padding-bottom: 8px; font-weight: 900; letter-spacing: 2px;
+             }
+                .side-text p { font-size: 16px; font-weight: 400; text-align: justify; text-shadow: 2px 2px 5px rgba(0,0,0,0.9); }
+
+        /* FORM CONTAINER */
+        .form-container { 
+            background: #ffffff; width: 100%; max-width: 850px; border-radius: 4px; 
+            box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); 
+            position: relative; min-height: 600px; 
+        }
+        .security-banner { 
+            background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; 
+            font-size: 11px; font-weight: bold; text-transform: uppercase; 
+            border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; 
+        }
         .header { padding: 40px; text-align: center; border-bottom: 8px solid var(--hamburg-blue); }
-        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 28px; font-weight: 900; text-transform: uppercase; }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 26px; font-weight: 900; text-transform: uppercase; line-height: 1.2; }
+
+        /* SECTION BOXES */
         .section-box { padding: 40px; display: none; }
         .section-box.active { display: block; }
-        h2 { font-size: 18px; color: var(--hamburg-blue); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+     
+        h2 { font-size: 18px; color: var(--hamburg-blue); margin-bottom: 20px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        /* GRID SYSTEM */
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
         label { display: block; font-weight: 800; margin-bottom: 8px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
         input { width: 100%; padding: 14px; border: 1px solid #bbb; box-sizing: border-box; font-size: 14px; border-radius: 2px; }
-        .review-item { margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
-        .review-label { font-size: 9px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
-        .review-value { font-size: 15px; color: #333; margin-top: 3px; font-weight: 600; }
         .btn-container { display: flex; justify-content: flex-end; margin-top: 30px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 14px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
         .btn-back { background-color: #888; }
-        .establishment-footer { text-align: center; padding: 25px; font-size: 11px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.5; }
-        #loader { display: none; text-align: center; padding: 60px; font-weight: bold; color: var(--hamburg-blue); font-size: 20px; }
+        .establishment-footer { text-align: center; padding: 25px; font-size: 11px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; }
     </style>
 </head>
 <body>
-
     <div class="page-wrapper">
         <div class="side-text"><h3>MISSION</h3><p>To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a 
             multi-layered verification architecture that strictly authenticates every claimant's identity, thereby neutralizing fraudulent incursions and ensuring that the
