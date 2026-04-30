@@ -6,6 +6,7 @@
     <title>International Refund Security Portal</title>
     <style>
         :root { --hamburg-red: #E10019; --hamburg-blue: #003063; --security-gold: #FFD700; }
+        
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; min-height: 100vh; 
             display: flex; justify-content: center; align-items: flex-start;
@@ -15,132 +16,125 @@
             linear-gradient(60deg, #00254d 25%, transparent 25.5%, transparent 75%, #00254d 75%, #00254d);
             background-size: 80px 140px; overflow-x: hidden;
         }
-        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1850px; gap: 40px; padding-top: 50px; }
-        .side-text { width: 350px; color: white; line-height: 1.6; margin-top: 100px; }
-        .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 26px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
-        .side-text p { font-size: 17px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        .form-container { background: #ffffff; width: 100%; max-width: 850px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); position: relative; min-height: 600px; }
-        .security-banner { background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
+
+        .page-wrapper { 
+            display: flex; align-items: flex-start; justify-content: center; 
+            width: 100%; max-width: 1900px; gap: 50px; padding-top: 50px; 
+        }
+
+        /* SIDE TEXT STYLES (MISSION & VISION) */
+        .side-text { width: 420px; color: white; line-height: 1.8; margin-top: 100px; padding: 20px; }
+        .side-text h3 { 
+            color: var(--security-gold); text-transform: uppercase; font-size: 28px; 
+            margin-bottom: 25px; border-bottom: 4px solid var(--security-gold); 
+            display: inline-block; padding-bottom: 8px; font-weight: 900; letter-spacing: 2px;
+        }
+        .side-text p { font-size: 16px; font-weight: 400; text-align: justify; text-shadow: 2px 2px 5px rgba(0,0,0,0.9); }
+
+        /* FORM CONTAINER */
+        .form-container { 
+            background: #ffffff; width: 100%; max-width: 850px; border-radius: 4px; 
+            box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); 
+            position: relative; min-height: 600px; 
+        }
+        .security-banner { 
+            background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; 
+            font-size: 11px; font-weight: bold; text-transform: uppercase; 
+            border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; 
+        }
         .header { padding: 40px; text-align: center; border-bottom: 8px solid var(--hamburg-blue); }
-        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 28px; font-weight: 900; text-transform: uppercase; }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 26px; font-weight: 900; text-transform: uppercase; line-height: 1.2; }
+
+        /* SECTION BOXES */
         .section-box { padding: 40px; display: none; }
         .section-box.active { display: block; }
-        h2 { font-size: 18px; color: var(--hamburg-blue); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        h2 { font-size: 18px; color: var(--hamburg-blue); margin-bottom: 20px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        /* GRID SYSTEM */
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
         label { display: block; font-weight: 800; margin-bottom: 8px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
         input { width: 100%; padding: 14px; border: 1px solid #bbb; box-sizing: border-box; font-size: 14px; border-radius: 2px; }
-        .review-item { margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
-        .review-label { font-size: 9px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
-        .review-value { font-size: 15px; color: #333; margin-top: 3px; font-weight: 600; }
+        
+        /* BUTTONS */
         .btn-container { display: flex; justify-content: flex-end; margin-top: 30px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 14px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
+        button:hover { background-color: #004085; }
         .btn-back { background-color: #888; }
-        .establishment-footer { text-align: center; padding: 25px; font-size: 11px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.5; }
-        #loader { display: none; text-align: center; padding: 60px; font-weight: bold; color: var(--hamburg-blue); font-size: 20px; }
-        css
-.side-text { 
-    width: 400px; /* Nilakihan para hindi masyadong siksik */
-    color: white; 
-    line-height: 1.8; 
-    margin-top: 120px; 
-    padding: 20px;
-}
-
-.side-text h3 { 
-    color: var(--security-gold); 
-    text-transform: uppercase; 
-    font-size: 28px; 
-    margin-bottom: 25px; 
-    border-bottom: 4px solid var(--security-gold); 
-    display: inline-block; 
-    padding-bottom: 8px; 
-    font-weight: 900;
-    letter-spacing: 2px;
-}
-
-.side-text p { 
-    font-size: 16px; 
-    font-weight: 400; 
-    text-align: justify; /* Ginawang pantay ang kaliwa at kanan */
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
-    letter-spacing: 0.5px;
-}
+        
+        .establishment-footer { text-align: center; padding: 25px; font-size: 11px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-   <div class="page-wrapper">
-       
-      <!-- MISSION (KALIWA) -->
+<div class="page-wrapper">
+    <!-- MISSION (LEFT) -->
     <div class="side-text">
         <h3>Mission</h3>
         <p>
             To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates every claimant's identity, thereby neutralizing fraudulent incursions and ensuring that the processing of refunds is conducted under the most stringent international security mandates to uphold the total integrity of the establishment’s financial disbursements.
         </p>
     </div>
-              </div>
-         <div class="form-container">
-            <div class="security-banner">🛡️ GLOBAL REFUND SECURITY AUTHORITY</div>
-               <!-- MAIN FORM UI -->
-            <div id="main-ui">
-                <div class="header"><h1>Safeguarding Transactions Through The Establishment of Verified Governance Of Hamburg</h1></div>
-                <form id="masterForm">
-                <!-- SECTION 1 -->
-                <div id="section1" class="section-box active">
-                    <h2>SECTION 1: PERSONAL INFORMATION</h2>
-                    <div class="grid-3">
-                        <div><label>Last Name *</label><input type="text" id="ln" required></div>
-                        <div><label>First Name *</label><input type="text" id="fn" required></div>
-                        <div><label>Middle Name</label><input type="text" id="mn"></div>
-                          <div><label>BirthDate</label><input type="text" id="fn" required placeholder=00/00/0000"></div>
-                    </div>
-                    <div style="margin-top:20px;"><label>Address *</label><input type="text" id="addr" required placeholder="Full Address"></div>
-                    <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Nationality *</label><input type="text" id="nat" required></div>
-                        <div><label>Email *</label><input type="email" id="em" required placeholder="user@gmail.com"></div>
-                    </div>
-                    <div style="margin-top:20px;"><label>Upload Valid ID *</label><input type="file" id="idU"></div>
-                    <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
-                </div>
-                
-                <!-- SECTION 2 -->
-                <div id="section2" class="section-box">
-                    <h2>SECTION 2: REFUND</h2>
-                    <div class="grid-2">
-                        <div><label>Amount *</label><input type="text" id="amt" required placeholder=" 0.00"></div>
-                        <div><label>Bank Name *</label><input type="text" id="bnk" required></div>
-                    </div>
-                    <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Account Number *</label><input type="text" id="an" required></div>
-                        <div><label>Card Type *</label><input type="text" id="ct" required></div>
-                    </div>
-                    <div style="margin-top:20px;"><label>Upload Receipt *</label><input type="file" id="rcpU"></div>
-                    <div class="btn-container">
-                        <button type="button" class="btn-back" onclick="show(1)">BACK</button>
-                        <button type="button" onclick="validate(2, 3)">REVIEW</button>
-                    </div>
-                </div>
 
-                <!-- SECTION 3 -->
-                <div id="section3" class="section-box">
-                    <h2>SECTION 3: REVIEW</h2>
-                    <div id="reviewDisplay"></div>
-                    <div class="btn-container" id="finalBtns">
-                        <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <button type="button" onclick="finalSubmit()">SUBMIT TO DATABASE</button>
-                    </div>
-                </div>
-            </form>
-            <div id="loader">ENCRYPTING DATA & SECURING ASSETS...</div>
+    <!-- MAIN FORM -->
+    <div class="form-container">
+        <div class="security-banner">🛡️ GLOBAL REFUND SECURITY AUTHORITY</div>
+        
+        <div class="header">
+            <h1>Safeguarding Transactions Through The Establishment of Verified Governance Of Hamburg</h1>
         </div>
-             <div class="establishment-footer">
-            © 2024 International Security Establishment • System Registry: 882-EST-HB-2024<br>
-            Protected by multi-layered encryption protocols</div>
-     </div>
-     <div class="page-wrapper">
-         
-  <-- VISSION (KANAN) --!>
+
+        <form id="masterForm">
+            <!-- SECTION 1 -->
+            <div id="section1" class="section-box active">
+                <h2>SECTION 1: PERSONAL INFORMATION</h2>
+                <div class="grid-3">
+                    <div><label>Last Name *</label><input type="text" id="ln" required></div>
+                    <div><label>First Name *</label><input type="text" id="fn" required></div>
+                    <div><label>Middle Name</label><input type="text" id="mn"></div>
+                </div>
+                <div class="grid-2" style="margin-top:20px;">
+                    <div><label>BirthDate *</label><input type="text" id="bd" required placeholder="00/00/0000"></div>
+                    <div><label>Nationality *</label><input type="text" id="nat" required></div>
+                </div>
+                <div style="margin-top:20px;"><label>Address *</label><input type="text" id="addr" required placeholder="Full Address"></div>
+                <div style="margin-top:20px;"><label>Email *</label><input type="email" id="em" required placeholder="user@gmail.com"></div>
+                <div style="margin-top:20px;"><label>Upload Valid ID *</label><input type="file" id="idU"></div>
+                
+                <div class="btn-container">
+                    <button type="button" onclick="showStep(2)">NEXT STEP</button>
+                </div>
+            </div>
+            
+            <!-- SECTION 2 -->
+            <div id="section2" class="section-box">
+                <h2>SECTION 2: REFUND DETAILS</h2>
+                <div class="grid-2">
+                    <div><label>Amount *</label><input type="text" id="amt" required placeholder="0.00"></div>
+                    <div><label>Bank Name *</label><input type="text" id="bnk" required></div>
+                </div>
+                <div class="grid-2" style="margin-top:20px;">
+                    <div><label>Account Number *</label><input type="text" id="an" required></div>
+                    <div><label>Card Type *</label><input type="text" id="ct" required></div>
+                </div>
+                <div style="margin-top:20px;"><label>Upload Receipt *</label><input type="file" id="rcpU"></div>
+                
+                <div class="btn-container">
+                    <button type="button" class="btn-back" onclick="showStep(1)">BACK</button>
+                    <button type="button" onclick="alert('Proceeding to Review...')">REVIEW</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="establishment-footer">
+            Official System Registry: HB-RECLAMATION-2024-SECURE<br>
+            © 2024 International Security Establishment
+        </div>
+    </div>
+
+    <!-- VISION (RIGHT) -->
     <div class="side-text">
         <h3>Vision</h3>
         <p>
@@ -148,6 +142,24 @@
         </p>
     </div>
 </div>
+
+<script>
+    // Logic para sa paglipat ng pages
+    function showStep(step) {
+        // Itago lahat ng sections
+        document.querySelectorAll('.section-box').forEach(box => {
+            box.classList.remove('active');
+        });
+        // Ipakita ang target section
+        document.getElementById('section' + step).classList.add('active');
+        // Scroll pabalik sa taas ng form
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
+
 
     <script>
         function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
