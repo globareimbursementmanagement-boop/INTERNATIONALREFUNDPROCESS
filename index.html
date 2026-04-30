@@ -191,11 +191,10 @@
                 body: JSON.stringify(payload)
             }).then(() => {
                 setTimeout(() =>5sec { 
-                    document.getElementById('loader').style.display = 'none';
-                    document.getElementById('section3').style.display = 'block';
+                    document.getElementById('loader').style.display = ' 5 ';
                     document.getElementById('section3').innerHTML = `
                         <div style="text-align:center; padding:40px;">
-                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h2>
+                            <h3 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h3>
                             <p>Reference: <strong>${ref}</strong></p><div style="font-size:80px; margin:20px;">✅</div>
                             <p>Your data has been securely stored in the Hamburg Audit Vault.</p>
                             <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; margin-top:20px;">DONE</button>
