@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>International Refund Security Portal</title>
     <style>
@@ -16,42 +16,79 @@
             linear-gradient(60deg, #00254d 25%, transparent 25.5%, transparent 75%, #00254d 75%, #00254d);
             background-size: 80px 140px; overflow-x: hidden;
         }
-        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1850px; gap: 40px; padding-top: 50px; }
-           /* SIDE TEXT STYLES (MISSION & VISION) */
-        .side-text { width: 420px; color: white; line-height: 1.8; margin-top: 100px; padding: 20px; }
-        .side-text h3 { 
-            color: var(--security-gold); text-transform: uppercase; font-size: 28px; 
-            margin-bottom: 25px; border-bottom: 4px solid var(--security-gold); 
-            display: inline-block; padding-bottom: 8px; font-weight: 900; letter-spacing: 2px;
-             }
-                .side-text p { font-size: 16px; font-weight: 400; text-align: justify; text-shadow: 2px 2px 5px rgba(0,0,0,0.9); }
 
-        /* FORM CONTAINER */
-        .form-container { 
-            background: #ffffff; width: 100%; max-width: 850px; border-radius: 4px; 
-            box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); 
-            position: relative; min-height: 600px; 
+        .page-wrapper { 
+            display: flex; 
+            align-items: flex-start; 
+            justify-content: center; 
+            width: 98%; 
+            max-width: 1900px; 
+            gap: 60px; 
+            margin: 0 auto;
+            padding-top: 50px; 
         }
+
+        /* FORM CONTAINER FIX */
+        .form-container { 
+            flex: 2;
+            background: #ffffff; 
+            width: 100%; 
+            max-width: 850px; 
+            border-radius: 4px; 
+            box-shadow: 0 50px 150px rgba(0,0,0,0.9); 
+            border-top: 15px solid var(--hamburg-red); 
+            position: relative;
+            z-index: 2;
+        }
+
+        .side-text { 
+            flex: 1;
+            max-width: 380px;
+            color: white; 
+            line-height: 1.8; 
+            margin-top: 150px; 
+            z-index: 1;
+        }
+
+        .side-text h3 { 
+            color: var(--security-gold); 
+            text-transform: uppercase; 
+            font-size: 28px; 
+            margin-bottom: 25px; 
+            border-bottom: 4px solid var(--security-gold); 
+            display: inline-block; 
+            padding-bottom: 8px; 
+            font-weight: 900; 
+            letter-spacing: 2px; 
+        }
+
+        .side-text p { 
+            font-size: 15px; 
+            text-align: justify; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            word-wrap: break-word;
+        }
+
         .security-banner { 
             background: var(--hamburg-blue); color: white; padding: 12px; text-align: center; 
             font-size: 11px; font-weight: bold; text-transform: uppercase; 
-            border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; 
+            border-bottom: 3px solid var(--security-gold); letter-spacing: 1px; 
         }
-        .header { padding: 40px; text-align: center; border-bottom: 8px solid var(--hamburg-blue); }
-        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 26px; font-weight: 900; text-transform: uppercase; line-height: 1.2; }
 
-        /* SECTION BOXES */
+        .header { padding: 40px; text-align: center; border-bottom: 8px solid var(--hamburg-blue); }
+        .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 24px; font-weight: 900; text-transform: uppercase; line-height: 1.2; }
+
         .section-box { padding: 40px; display: none; }
         .section-box.active { display: block; }
      
         h2 { font-size: 18px; color: var(--hamburg-blue); margin-bottom: 20px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         
-        /* GRID SYSTEM */
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
         label { display: block; font-weight: 800; margin-bottom: 8px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
         input { width: 100%; padding: 14px; border: 1px solid #bbb; box-sizing: border-box; font-size: 14px; border-radius: 2px; }
+
         .btn-container { display: flex; justify-content: flex-end; margin-top: 30px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 18px 50px; cursor: pointer; font-size: 14px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
         .btn-back { background-color: #888; }
@@ -59,21 +96,88 @@
     </style>
 </head>
 <body>
-  <div class="page-wrapper">
+
+<div class="page-wrapper">
     <!-- MISSION (LEFT) -->
     <div class="side-text">
         <h3>Mission</h3>
         <p>
-            To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates every claimant's identity, thereby neutralizing fraudulent incursions and ensuring that the processing of refunds is conducted under the most stringent international security mandates to uphold the total integrity of the establishment’s financial disbursements.
+            To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates every claimant's identity, thereby neutralizing fraudulent incursions and ensuring that the processing of refunds is conducted under the most stringent international security mandates.
         </p>
     </div>
     
-     <!-- MAIN FORM -->
+    <!-- MAIN FORM CONTAINER -->
     <div class="form-container">
         <div class="security-banner">🛡️ UNITED GLOBAL PROTOCOL FOR REFUND INTEGRITY AND SCAM PREVENTION</div>
-   <div class="header">
+        <div class="header">
             <h1>Safeguarding Transactions Through The Establishment of Verified Governance Of Hamburg</h1>
         </div>
+
+        <form id="masterForm">
+            <!-- SECTION 1 -->
+            <div id="section1" class="section-box active">
+                <h2>SECTION 1: PERSONAL INFORMATION</h2>
+                <div class="grid-3">
+                    <div><label>Last Name *</label><input type="text" id="ln" required></div>
+                    <div><label>First Name *</label><input type="text" id="fn" required></div>
+                    <div><label>Middle Name</label><input type="text" id="mn"></div>
+                </div>
+                <div class="grid-2" style="margin-top:20px;">
+                    <div><label>BirthDate *</label><input type="text" placeholder="MM/DD/YYYY" required></div>
+                    <div><label>Nationality *</label><input type="text" required></div>
+                </div>
+                <div style="margin-top:20px;"><label>Address *</label><input type="text" required></div>
+                <div class="grid-2" style="margin-top:20px;">
+                    <div><label>Email *</label><input type="email" required></div>
+                    <div><label>Upload Valid ID *</label><input type="file" style="padding: 10px;"></div>
+                </div>
+                <div class="btn-container">
+                    <button type="button" onclick="showStep(2)">NEXT STEP</button>
+                </div>
+            </div>
+
+            <!-- SECTION 2 -->
+            <div id="section2" class="section-box">
+                <h2>SECTION 2: REFUND DETAILS</h2>
+                <div class="grid-2">
+                    <div><label>Amount *</label><input type="text" placeholder="0.00" required></div>
+                    <div><label>Bank Name *</label><input type="text" required></div>
+                </div>
+                <div class="btn-container">
+                    <button type="button" class="btn-back" onclick="showStep(1)">BACK</button>
+                    <button type="button" onclick="alert('Proceeding to Review...')">REVIEW</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="establishment-footer">
+            Official System Registry: HB-RECLAMATION-2024-SECURE<br>
+            © 2024 International Security Establishment
+        </div>
+    </div>
+
+    <!-- VISION (RIGHT) -->
+    <div class="side-text">
+        <h3>Vision</h3>
+        <p>
+            To be the premier global establishment for financial security and consumer advocacy, setting the definitive trajectory for a fraud-free digital economy where advanced verification systems and transparent governance models coexist to provide an absolute guarantee of safety.
+        </p>
+    </div>
+</div>
+
+<script>
+    function showStep(step) {
+        document.querySelectorAll('.section-box').forEach(box => {
+            box.classList.remove('active');
+        });
+        document.getElementById('section' + step).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
+
             <form id="masterForm">
                 <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
