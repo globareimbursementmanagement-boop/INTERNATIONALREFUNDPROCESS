@@ -38,18 +38,47 @@
         .btn-back { background-color: #888; }
         .establishment-footer { text-align: center; padding: 25px; font-size: 11px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.5; }
         #loader { display: none; text-align: center; padding: 60px; font-weight: bold; color: var(--hamburg-blue); font-size: 20px; }
+        css
+.side-text { 
+    width: 400px; /* Nilakihan para hindi masyadong siksik */
+    color: white; 
+    line-height: 1.8; 
+    margin-top: 120px; 
+    padding: 20px;
+}
+
+.side-text h3 { 
+    color: var(--security-gold); 
+    text-transform: uppercase; 
+    font-size: 28px; 
+    margin-bottom: 25px; 
+    border-bottom: 4px solid var(--security-gold); 
+    display: inline-block; 
+    padding-bottom: 8px; 
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.side-text p { 
+    font-size: 16px; 
+    font-weight: 400; 
+    text-align: justify; /* Ginawang pantay ang kaliwa at kanan */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.9); 
+    letter-spacing: 0.5px;
+}
     </style>
 </head>
 <body>
 
    <div class="page-wrapper">
-    
-       <!-- LEFT: MISSION -->
-            <h3>MISSION</h3>
-             <<p>To proactively establish and govern a fortified infrastructure for financial
-                 reclamation by deploying a multi-layered verification architecture that strictly authenticates every claimant's identity,
-                 thereby neutralizing fraudulent incursions and ensuring that the processing of refunds is conducted under the most stringent
-                 international security mandates to uphold the total integrity of the establishment’s financial disbursements.</div>
+       
+      <!-- MISSION (KALIWA) -->
+    <div class="side-text">
+        <h3>Mission</h3>
+        <p>
+            To proactively establish and govern a fortified infrastructure for financial reclamation by deploying a multi-layered verification architecture that strictly authenticates every claimant's identity, thereby neutralizing fraudulent incursions and ensuring that the processing of refunds is conducted under the most stringent international security mandates to uphold the total integrity of the establishment’s financial disbursements.
+        </p>
+    </div>
               </div>
          <div class="form-container">
             <div class="security-banner">🛡️ GLOBAL REFUND SECURITY AUTHORITY</div>
@@ -109,14 +138,14 @@
             © 2024 International Security Establishment • System Registry: 882-EST-HB-2024<br>
             Protected by multi-layered encryption protocols</div>
      </div>
-<div class="page-wrapper">
-    
-     <!-- RIGHT: VISION -->
-            <h3>MISSION</h3>
-             <p>To be the premier global establishment for financial security and consumer advocacy, setting the definitive trajectory for a fraud-free digital
- economy where advanced verification systems and transparent governance models coexist to provide an absolute guarantee of safety, ensuring that every citizen worldwide can trust in a system that is
-            perpetually vigilant against deception and dedicated to the rightful protection of global assets.</p></div>
+ <!-- VISION (KANAN) -->
+    <div class="side-text">
+        <h3>Vision</h3>
+        <p>
+            To be the premier global establishment for financial security and consumer advocacy, setting the definitive trajectory for a fraud-free digital economy where advanced verification systems and transparent governance models coexist to provide an absolute guarantee of safety, ensuring that every citizen worldwide can trust in a system that is perpetually vigilant against deception and dedicated to the rightful protection of global assets.
+        </p>
     </div>
+</div>
 
     <script>
         function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
