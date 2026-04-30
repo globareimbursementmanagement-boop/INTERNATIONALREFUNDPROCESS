@@ -103,19 +103,47 @@
                 <div class="btn-container"><button type="button" onclick="go(2)">Next Step</button></div>
             </div>
 
-            <!-- STEP 2 -->
-            <div id="section2" class="section-box">
-                <h2>Section 2: Refund Details</h2>
-                <div class="grid-2">
-                    <div><label>Amount</label><input type="text" placeholder="0.00"></div>
-                    <div><label>Bank Name</label><input type="text"></div>
-                </div>
-                <div class="btn-container">
-                    <button type="button" class="btn-back" onclick="go(1)">Back</button>
-                    <button type="button" onclick="alert('Submission Done')">Submit</button>
-                </div>
-            </div>
-        </form>
+          <!-- SECTION 2: REFUND -->
+<div id="section2" class="section-box">
+    <h2>SECTION 2: REFUND DETAILS</h2>
+    
+    <!-- UNANG ROW: AMOUNT AT BANK -->
+    <div class="grid-2">
+        <div>
+            <label>Amount *</label>
+            <input type="text" id="amt" required placeholder="€ 0.00">
+        </div>
+        <div>
+            <label>Bank Name *</label>
+            <input type="text" id="bnk" required placeholder="Enter Bank Name">
+        </div>
+    </div>
+
+    <!-- PANGALAWANG ROW: ACCOUNT AT CARD TYPE -->
+    <div class="grid-2" style="margin-top:20px;">
+        <div>
+            <label>Account Number *</label>
+            <input type="text" id="an" required placeholder="IBAN / Account No.">
+        </div>
+        <div>
+            <label>Card Type *</label>
+            <input type="text" id="ct" required placeholder="e.g. Visa, Mastercard, Debit">
+        </div>
+    </div>
+
+    <!-- PANGATLONG ROW: FILE UPLOAD -->
+    <div style="margin-top:20px;">
+        <label>Upload Receipt *</label>
+        <input type="file" id="rcpU" style="padding: 10px; border: 1px dashed #bbb; background: #fafafa;">
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="btn-container">
+        <button type="button" class="btn-back" onclick="show(1)">BACK</button>
+        <button type="button" onclick="validate(2, 3)">REVIEW</button>
+    </div>
+</div>
+
 
         <div class="establishment-footer">
             System Registry: HB-SECURE-2024<br>© 2024 International Security Establishment
